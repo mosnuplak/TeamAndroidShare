@@ -42,4 +42,5 @@ public class MainActivity extends AppCompatActivity {
         game.setText("gamenaja");
     }
     //fah narak
+    //mosnaja
 }
