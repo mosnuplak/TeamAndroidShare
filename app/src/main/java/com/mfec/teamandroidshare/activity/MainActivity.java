@@ -13,7 +13,7 @@ TextView tvTest;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tvTest = (TextView) findViewById(R.id.tvTest);
-        tvTest.setText("mos");
+        tvTest.setText("mosnaja");
         //mosnaja
 
     }
