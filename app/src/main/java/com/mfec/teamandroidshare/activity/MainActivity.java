@@ -13,7 +13,6 @@ import com.mfec.teamandroidshare.R;
 public class MainActivity extends AppCompatActivity {
     TextView tvTest;
     EditText mos;
-    EditText game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +33,7 @@ public class MainActivity extends AppCompatActivity {
         int width = size.x;
         int height = size.y;
 
-        Toast.makeText(MainActivity.this,
-                "Width = " + width + ", Height = " + height,
-                Toast.LENGTH_SHORT)
-                .show();
-        game = (EditText) findViewById(R.id.game);
-        game.setText("gamenaja");
+
     }
     //fah narak  ( . )( . )
     //mosnaja     )  .   (
