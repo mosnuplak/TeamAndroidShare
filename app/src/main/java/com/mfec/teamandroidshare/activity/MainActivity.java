@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         game = (EditText) findViewById(R.id.game);
         game.setText("gamenaja");
     }
-    //fah narak
-    //mosnaja
-    //มันก็จะงงๆหน่อย
+    //fah narak  ( . )( . )
+    //mosnaja     )  .   (
+    //มันก็จะงงๆหน่อย(   Y    )
     //แล้วไง จะใครละ
     //เกมส์เอง จะใครละ
 }
