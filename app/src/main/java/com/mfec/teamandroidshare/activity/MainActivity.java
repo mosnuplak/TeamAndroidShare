@@ -14,6 +14,7 @@ TextView tvTest;
         setContentView(R.layout.activity_main);
         tvTest = (TextView) findViewById(R.id.tvTest);
         tvTest.setText("mosnaja");
+        tvTest.setText("Nooooooo");
         //mosnaja
 
     }
