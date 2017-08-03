@@ -24,6 +24,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this,
                 "Width = " + width + ", Height = " + height,
                 Toast.LENGTH_SHORT)
-                .show();
+                .show();//555
     }
 }
