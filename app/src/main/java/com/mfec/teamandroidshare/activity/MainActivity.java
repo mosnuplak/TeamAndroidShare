@@ -1,15 +1,19 @@
 package com.mfec.teamandroidshare.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 
 public class MainActivity extends AppCompatActivity {
-TextView tvTest;
+    TextView tvTest;
     EditText mos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +26,16 @@ TextView tvTest;
         mos.setText("mosnaja");
 
         //mosnaja
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
 
+        Toast.makeText(MainActivity.this,
+                "Width = " + width + ", Height = " + height,
+                Toast.LENGTH_SHORT)
+                .show();
     }
     //fah narak
 }
