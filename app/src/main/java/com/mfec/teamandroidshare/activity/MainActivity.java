@@ -45,4 +45,5 @@ public class MainActivity extends AppCompatActivity {
     //mosnaja
     //มันก็จะงงๆหน่อย
     //แล้วไง จะใครละ
+    //เกมส์เอง จะใครละ
 }
