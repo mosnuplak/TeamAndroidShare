@@ -40,7 +40,6 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         btnGoLogin = (Button) rootView.findViewById(R.id.btnGoLogin);
         // Init 'View' instance(s) with rootView.findViewById here
     }
-
     @Override
     public void onStart() {
         super.onStart();
