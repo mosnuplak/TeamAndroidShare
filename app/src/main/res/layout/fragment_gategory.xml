@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/tvHello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:freezesText="true"
-        android:text="Test Test game game game" />
+        android:text="Gategort" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+            <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right"-->
+            <!--android:layout_margin="16dp"-->
+            <!--android:text="+"-->
+
+            <!--android:textSize="20sp" />-->
+
+            <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton
+                android:id="@+id/imgIc_Plus32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/selector_btn_default"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_Plus32" />
+
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>
