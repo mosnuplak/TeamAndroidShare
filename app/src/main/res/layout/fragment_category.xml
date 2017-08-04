@@ -30,14 +30,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
-
-
                 <Button
-                    android:id="@+id/btnInsertGategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:text="+" />
+                android:id="@+id/btnInsertGategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:text="+"
+                android:textSize="20sp" />
+                <!--<com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton-->
+                    <!--android:id="@+id/imgIc_Insert_Gategory"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:adjustViewBounds="true"-->
+                    <!--android:background="@drawable/selector_btn_default"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--android:src="@drawable/icons8-Plus-48" />-->
 
             </FrameLayout>
         </LinearLayout>
