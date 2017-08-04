@@ -2,7 +2,8 @@ package com.mfec.teamandroidshare;
 
 import android.app.Application;
 
-import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
+import com.mfec.teamandroidshare.manager.Contextor;
+
 
 /**
  * Created by E5-473G on 8/3/2017.
