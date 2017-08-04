@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     Button btnLogin;
+    EditText editUsername;
+    EditText editPassword;
 
 
     @Override
@@ -25,20 +28,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getTaskId();
 
         btnLogin.setOnClickListener(this);
+        editUsername.setOnClickListener(this);
+        editPassword.setOnClickListener(this);
 
     }
     private void initinstances(){
         btnLogin = (Button) findViewById(R.id.btn_login);
+        editUsername = (EditText) findViewById(R.id.input_username);
+        editPassword = (EditText) findViewById(R.id.input_password);
     }
-
     @Override
     public void onClick(View v) {
         if (v == btnLogin) {
             Toast.makeText(this,
-                    "ffffff",
-                    Toast.LENGTH_SHORT)
+                    editUsername.getText().toString() + ""+ editPassword.getText().toString() +"",
+                    Toast.LENGTH_LONG)
                     .show();
-
         }
     }
 }
