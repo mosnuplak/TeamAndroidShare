@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.CategoryActivity;
 import com.mfec.teamandroidshare.activity.LoginActivity;
 import com.mfec.teamandroidshare.activity.TitleActivity;
 
@@ -20,6 +21,7 @@ import com.mfec.teamandroidshare.activity.TitleActivity;
 public class MainFragment extends Fragment implements View.OnClickListener{
     Button btnGoLogin;
     Button btnGoTitle;
+    Button btnGoCatagory;
     public MainFragment() {
         super();
     }
@@ -39,6 +41,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
         btnGoLogin.setOnClickListener(this);
         btnGoTitle.setOnClickListener(this);
+        btnGoCatagory.setOnClickListener(this);
 
         return rootView;
     }
@@ -47,6 +50,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
         btnGoLogin = (Button) rootView.findViewById(R.id.btnGoLogin);
         btnGoTitle = (Button) rootView.findViewById(R.id.btnGoTitle);
+        btnGoCatagory = (Button) rootView.findViewById(R.id.btnGoCatagory);
         // Init 'View' instance(s) with rootView.findViewById here
     }
     @Override
@@ -97,6 +101,14 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                     Toast.LENGTH_LONG)
                     .show();
             Intent intent = new Intent(getActivity() ,TitleActivity.class);
+            startActivity(intent);
+        }
+        if (v == btnGoCatagory) {
+            Toast.makeText(getActivity(),
+                    "ไปหน้า Catagory",
+                    Toast.LENGTH_LONG)
+                    .show();
+            Intent intent = new Intent(getActivity() ,CategoryActivity.class);
             startActivity(intent);
         }
     }
