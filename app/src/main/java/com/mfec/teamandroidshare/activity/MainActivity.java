@@ -24,11 +24,5 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.contentContainer,new MainFragment())
                     .commit();
         }
-
-
-
-
-
     }
-
 }
