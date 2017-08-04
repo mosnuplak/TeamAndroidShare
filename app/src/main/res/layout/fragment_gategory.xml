@@ -27,15 +27,25 @@
             android:layout_weight="1">
 
 
-            <Button
-                android:layout_width="wrap_content"
+            <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right"-->
+            <!--android:layout_margin="16dp"-->
+            <!--android:text="+"-->
+
+            <!--android:textSize="20sp" />-->
+
+            <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton
+                android:id="@+id/imgIc_Plus32"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_margin="16dp"
-                android:text="+"
-                android:textSize="20sp" />
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/selector_btn_default"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_Plus32" />
+
         </FrameLayout>
-
-
     </LinearLayout>
 </RelativeLayout>
