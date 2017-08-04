@@ -5,11 +5,11 @@
     android:orientation="vertical">
 
 
-        <TextView
-            android:id="@+id/tvHello"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:freezesText="true"
-            android:text="Test Test game game game" />
+    <TextView
+        android:id="@+id/tvHello"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:freezesText="true"
+        android:text="Test Test game game game" />
 
 </LinearLayout>
