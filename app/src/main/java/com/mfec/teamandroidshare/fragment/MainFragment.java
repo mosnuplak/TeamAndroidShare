@@ -1,5 +1,6 @@
 package com.mfec.teamandroidshare.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.MainActivity;
+import com.mfec.teamandroidshare.activity.TitleActivity;
 
 
 /**
@@ -16,6 +19,7 @@ import com.mfec.teamandroidshare.R;
  */
 public class MainFragment extends Fragment implements View.OnClickListener{
     Button btnGoLogin;
+    Button btnGoTitle;
     public MainFragment() {
         super();
     }
@@ -32,12 +36,17 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         initInstances(rootView);
+
         btnGoLogin.setOnClickListener(this);
+        btnGoTitle.setOnClickListener(this);
+
         return rootView;
     }
 
     private void initInstances(View rootView) {
+
         btnGoLogin = (Button) rootView.findViewById(R.id.btnGoLogin);
+        btnGoTitle = (Button) rootView.findViewById(R.id.btnGoTitle);
         // Init 'View' instance(s) with rootView.findViewById here
     }
     @Override
@@ -72,12 +81,20 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        if (v == btnGoLogin){
+        if (v == btnGoLogin) {
             Toast.makeText(getActivity(),
                     "ไปหน้า Login",
                     Toast.LENGTH_LONG)
                     .show();
             //ใส่ intent ไปหน้า Login ไว้ในนี้
+        }
+        if (v == btnGoTitle) {
+            Toast.makeText(getActivity(),
+                    "ไปหน้า Title",
+                    Toast.LENGTH_LONG)
+                    .show();
+            Intent intent = new Intent(getActivity() ,TitleActivity.class);
+            startActivity(intent);
         }
     }
 }

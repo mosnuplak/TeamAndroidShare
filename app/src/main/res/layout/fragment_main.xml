@@ -10,5 +10,13 @@
         android:background="#e4baba"
         android:layout_width="match_parent"
         android:layout_height="56dp" />
+    <Button
+        android:id="@+id/btnGoTitle"
+        android:text="Title Here"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:background="#e98b8b"
+        android:layout_width="match_parent"
+        android:layout_height="56dp" />
 
 </LinearLayout>

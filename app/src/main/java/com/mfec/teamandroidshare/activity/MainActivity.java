@@ -13,9 +13,6 @@ import com.mfec.teamandroidshare.fragment.MainFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-    TextView tvTest;
-    EditText mos;
-    EditText game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
