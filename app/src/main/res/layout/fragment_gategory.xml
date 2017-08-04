@@ -4,41 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-        android:scaleType="centerCrop" />
+        android:fillViewport="true">
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Gategort" />-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:scaleType="centerCrop" />
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gategort" />
 
-
-        <!--<FrameLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1">-->
-
-
-            <!--<com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton-->
-                <!--android:id="@+id/imgIc_launcher2"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="bottom|right"-->
-                <!--android:layout_weight="1"-->
-                <!--android:adjustViewBounds="true"-->
-                <!--android:background="@drawable/selector_btn_default"-->
-                <!--android:scaleType="fitXY"-->
-                <!--android:src="@drawable/ic_Plus50" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-        <!--</FrameLayout>-->
-    <!--</LinearLayout>-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+
+                <Button
+                    android:id="@+id/btnInsertGategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:text="+" />
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
