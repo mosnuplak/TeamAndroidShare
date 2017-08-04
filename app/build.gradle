@@ -25,6 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    //โหลดมาใช้ทำภาพ
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:recyclerview-v7:22.0.0'
@@ -34,6 +35,6 @@ dependencies {
     compile 'com.android.support:support-v4:22.0.0'
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.1'//โหลดมาใช้ทำภาพ
 }

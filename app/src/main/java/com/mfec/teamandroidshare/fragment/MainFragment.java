@@ -12,16 +12,19 @@ import android.widget.Toast;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.activity.CategoryActivity;
 import com.mfec.teamandroidshare.activity.LoginActivity;
+import com.mfec.teamandroidshare.activity.RankActivity;
 import com.mfec.teamandroidshare.activity.TitleActivity;
 
 
 /**
  * Created by nuuneoi on 11/16/2014.
  */
-public class MainFragment extends Fragment implements View.OnClickListener{
+public class MainFragment extends Fragment implements View.OnClickListener {
     Button btnGoLogin;
     Button btnGoTitle;
     Button btnGoCatagory;
+    Button btnGoRank;
+
     public MainFragment() {
         super();
     }
@@ -42,6 +45,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         btnGoLogin.setOnClickListener(this);
         btnGoTitle.setOnClickListener(this);
         btnGoCatagory.setOnClickListener(this);
+        btnGoRank.setOnClickListener(this);
 
         return rootView;
     }
@@ -51,8 +55,10 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         btnGoLogin = (Button) rootView.findViewById(R.id.btnGoLogin);
         btnGoTitle = (Button) rootView.findViewById(R.id.btnGoTitle);
         btnGoCatagory = (Button) rootView.findViewById(R.id.btnGoCatagory);
+        btnGoRank = (Button) rootView.findViewById(R.id.btnGoRank);
         // Init 'View' instance(s) with rootView.findViewById here
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -100,7 +106,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                     "ไปหน้า Title",
                     Toast.LENGTH_LONG)
                     .show();
-            Intent intent = new Intent(getActivity() ,TitleActivity.class);
+            Intent intent = new Intent(getActivity(), TitleActivity.class);
             startActivity(intent);
         }
         if (v == btnGoCatagory) {
@@ -108,7 +114,15 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                     "ไปหน้า Catagory",
                     Toast.LENGTH_LONG)
                     .show();
-            Intent intent = new Intent(getActivity() ,CategoryActivity.class);
+            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+            startActivity(intent);
+        }
+        if (v == btnGoRank) {
+            Toast.makeText(getActivity(),
+                    "ไปหน้า Rank",
+                    Toast.LENGTH_LONG)
+                    .show();
+            Intent intent = new Intent(getActivity(), RankActivity.class);
             startActivity(intent);
         }
     }
