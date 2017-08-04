@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
-import com.mfec.teamandroidshare.activity.MainActivity;
 import com.mfec.teamandroidshare.activity.TitleActivity;
 
 
@@ -97,4 +96,5 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             startActivity(intent);
         }
     }
+
 }
