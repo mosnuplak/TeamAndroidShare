@@ -16,4 +16,6 @@ public interface ApiService {
     @GET("public/artist/findAll")
     Call<List<PeopleDao>> LoadPerpeoList();
 
+
+
 }

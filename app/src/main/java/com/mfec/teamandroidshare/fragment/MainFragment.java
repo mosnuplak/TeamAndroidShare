@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.LoginActivity;
 import com.mfec.teamandroidshare.activity.TitleActivity;
 
 
@@ -85,6 +86,9 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                     "ไปหน้า Login",
                     Toast.LENGTH_LONG)
                     .show();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+
             //ใส่ intent ไปหน้า Login ไว้ในนี้
         }
         if (v == btnGoTitle) {
