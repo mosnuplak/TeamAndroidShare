@@ -10,42 +10,35 @@
         android:background="@color/colorAccent"
         android:scaleType="centerCrop" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gategort" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Gategort" />-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
 
 
-            <!--<Button-->
+        <!--<FrameLayout-->
             <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom|right"-->
-            <!--android:layout_margin="16dp"-->
-            <!--android:text="+"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1">-->
 
-            <!--android:textSize="20sp" />-->
 
-            <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton
-                android:id="@+id/imgIc_Plus32"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="@drawable/selector_btn_default"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_Plus32" />
+            <!--<com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton-->
+                <!--android:id="@+id/imgIc_launcher2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="bottom|right"-->
+                <!--android:layout_weight="1"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:background="@drawable/selector_btn_default"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@drawable/ic_Plus50" />-->
 
-        </FrameLayout>
-    </LinearLayout>
+
+        <!--</FrameLayout>-->
+    <!--</LinearLayout>-->
 </RelativeLayout>
