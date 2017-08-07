@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.PeopleDao;
+import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
 
 import java.util.List;
@@ -18,15 +20,15 @@ import java.util.List;
  * Created by MSI on 4/8/2560.
  */
 
-public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
+public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implements View.OnClickListener {
     FragmentTitle fragmentTitle;
     private FragmentTitle mContext;
-    private List<PeopleDao> peopleList;
-    public TitleAdapter(FragmentTitle mContext, List<PeopleDao> peopleList , FragmentTitle fragmentTitle) {
-        Log.d("mosTitleAdapter","mosTitleAdapter");
+    private List<TitleDao> TitleList;
+    public TitleAdapter(FragmentTitle mContext, List<TitleDao> TitleList , FragmentTitle fragmentTitle) {
+
         this.mContext = mContext;
         this.fragmentTitle = fragmentTitle;
-        this.peopleList = peopleList;
+        this.TitleList = TitleList;
 
     }
 
@@ -38,13 +40,28 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
 
     @Override
     public void onBindViewHolder(TitleViewHolder holder, int position) {
-        PeopleDao peopleDao = peopleList.get(position);
-        holder.tvTitle.setText(peopleDao.getKnownAsName());
+        TitleDao titleDao = TitleList.get(position);
+        holder.tvTitle.setText(titleDao.getHead());
+        holder.tvDescript.setText(titleDao.getDescription());
+        holder.tvPoster.setText(titleDao.getPoster());
+        holder.ibtnStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(),"Star",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 
     @Override
     public int getItemCount() {
-        return peopleList.size();
+        return TitleList.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

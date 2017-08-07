@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.PeopleDao;
+import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.view.TitleAdapter;
 
@@ -84,52 +85,64 @@ public class FragmentTitle extends Fragment {
 
         //initPeople();
 
-
-
-
-        Call<List<PeopleDao>> call = HttpManager.getInstance().getService().LoadPerpeoList();
-        call.enqueue(new Callback<List<PeopleDao>>() {
+        Call<List<TitleDao>> call = HttpManager.getInstance().getService().LoadTopicList();
+        call.enqueue(new Callback<List<TitleDao>>() {
             @Override
-            public void onResponse(Call<List<PeopleDao>> call,
-                                   Response<List<PeopleDao>> response) {
+            public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {
                 if (response.isSuccessful()) {
-                    List<PeopleDao> dao = response.body();
-                    showPeopleOnLogD(dao);
-
-                } else {
-                    try {
-                        Toast.makeText(getActivity(),
-                                response.errorBody().string(),
-                                Toast.LENGTH_LONG)
-                                .show();
-
-                    } catch (IOException e){
-
-                        e.printStackTrace();
-                    }
+                    List<TitleDao> dao = response.body();
+                    showTitle(dao);
                 }
             }
 
+
+
             @Override
-            public void onFailure(Call<List<PeopleDao>> call, Throwable t) {
+            public void onFailure(Call<List<TitleDao>> call, Throwable t) {
 
             }
         });
+
+
+//        Call<List<PeopleDao>> call = HttpManager.getInstance().getService().LoadPerpeoList();
+//        call.enqueue(new Callback<List<PeopleDao>>() {
+//            @Override
+//            public void onResponse(Call<List<PeopleDao>> call,
+//                                   Response<List<PeopleDao>> response) {
+//                if (response.isSuccessful()) {
+//                    List<PeopleDao> dao = response.body();
+//                    showPeopleOnLogD(dao);
+//
+//                } else {
+//                    try {
+//                        Toast.makeText(getActivity(),
+//                                response.errorBody().string(),
+//                                Toast.LENGTH_LONG)
+//                                .show();
+//
+//                    } catch (IOException e){
+//
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<PeopleDao>> call, Throwable t) {
+//
+//            }
+//        });
 //        // Init 'View' instance(s) with rootView.findViewById here
     }
 
-    private void showPeopleOnLogD(List<PeopleDao> dao) {
-        int i = 0;
-        for (PeopleDao p : dao) {
-            Log.d("mosnaja"+i , "" +p.getKnownAsName());
-            i++;
-        }
+    private void showTitle(List<TitleDao> dao) {
         GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(),1);
         rvTitle.setLayoutManager(manager);
 
         adapter = new TitleAdapter(this,dao,FragmentTitle.this);
         rvTitle.setAdapter(adapter);
     }
+
 
 
     @Override
