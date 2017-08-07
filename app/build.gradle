@@ -37,5 +37,7 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.1'
+    compile 'com.github.arthurghazaryan:floatingactionmenu:1.0.0'
     testCompile 'junit:junit:4.12'
+
 }

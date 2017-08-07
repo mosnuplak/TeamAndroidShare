@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
-        getTaskId();
+       // getTaskId();
 
         btnLogin.setOnClickListener(this);
         editUsername.setOnClickListener(this);
@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     editUsername.getText().toString() + ""+ editPassword.getText().toString() +"",
                     Toast.LENGTH_LONG)
                     .show();
+            Intent i = new Intent(getApplication(),CategoryActivity.class);
+            startActivity(i);
         }
     }
 }
