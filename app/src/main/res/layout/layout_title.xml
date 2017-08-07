@@ -9,12 +9,9 @@
 
     <FrameLayout
         android:id="@+id/fragmentTitle"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content">
-    </FrameLayout>
-    <TextView
-        android:text="mos"
         android:layout_width="match_parent"
-        android:layout_height="56dp" />
+        android:layout_height="match_parent">
+    </FrameLayout>
+
 
 </LinearLayout>
