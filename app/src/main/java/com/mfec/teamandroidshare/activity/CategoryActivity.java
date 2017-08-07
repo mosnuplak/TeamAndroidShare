@@ -35,6 +35,7 @@ public class CategoryActivity extends AppCompatActivity {
                     .add(R.id.fmCategory, new FragmentCategory())
                     .commit();
         }
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //        mCircleProgressView = (CircleProgressView) findViewById(R.id.circle_progress_view);
 //        mCircleProgressView.setTextEnabled(false);
@@ -55,7 +56,6 @@ public class CategoryActivity extends AppCompatActivity {
 //        });
 /////////////////////////////////////////////////////////////////////////
     }
-
 
     private void initInstance() {
         toolbar = (Toolbar) findViewById(R.id.toobar);
