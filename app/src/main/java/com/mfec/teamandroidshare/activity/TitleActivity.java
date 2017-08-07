@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -19,6 +20,7 @@ public class TitleActivity extends AppCompatActivity {
         setContentView(R.layout.layout_title);
 
         if (savedInstanceState == null) {
+            Log.d("mosmosmsosm","mosmosmsosm");
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragmentTitle, new FragmentTitle())
                     .commit();
