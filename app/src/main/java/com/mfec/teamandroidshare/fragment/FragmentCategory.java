@@ -57,6 +57,7 @@ public class FragmentCategory extends Fragment {
             public void onMiniFabSelected(MenuItem fabItem) {
                 switch (fabItem.getItemId()) {
 
+
                     case R.id.fab_addCategory:
                         Toast.makeText(getContext(),
                                 fabItem.getTitle() + "clicked!",
