@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.mfec.teamandroidshare.R;
@@ -18,6 +19,7 @@ import com.mfec.teamandroidshare.fragment.FragmentCategory;
 public class CategoryActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +37,9 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void initInstance() {
+        toolbar =(Toolbar)findViewById(R.id.toobar) ;
+        setSupportActionBar(toolbar);
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,
                 drawerLayout,
