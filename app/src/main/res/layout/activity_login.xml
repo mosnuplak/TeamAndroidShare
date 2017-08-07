@@ -14,7 +14,7 @@
         android:paddingRight="24dp"
         android:paddingLeft="24dp">
         <ImageView
-            android:src="@drawable/user"
+            android:src="@drawable/logo"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
@@ -24,16 +24,18 @@
             android:id="@+id/input_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_default_normal"
             android:hint="username"
-            android:textColorHint="#e4e2e2"
+            android:textColorHint="#969595"
             />
         <EditText
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:background="@drawable/btn_default_normal"
             android:hint="password"
-            android:textColorHint="#e4e2e2"
+            android:textColorHint="#969595"
             />
         <Button
             android:id="@+id/btn_login"
