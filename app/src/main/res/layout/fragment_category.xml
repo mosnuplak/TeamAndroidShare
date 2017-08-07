@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-        <ImageView
+    <ImageView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#DCDCDC"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gategort" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent"
-            android:scaleType="centerCrop" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gategort" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <Button
-                android:id="@+id/btnInsertGategory"
+            <!--<Button-->
+            <!--android:id="@+id/btnInsertGategory"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right"-->
+            <!--android:text="+"-->
+            <!--android:textSize="20sp" />-->
+            <com.github.ag.floatingactionmenu.OptionsFabLayout
+                android:id="@+id/fab_l"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:text="+"
-                android:textSize="20sp" />
-                <!--<com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton-->
-                    <!--android:id="@+id/imgIc_Insert_Gategory"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:adjustViewBounds="true"-->
-                    <!--android:background="@drawable/selector_btn_default"-->
-                    <!--android:scaleType="fitXY"-->
-                    <!--android:src="@drawable/icons8-Plus-48" />-->
+                custom:color="@color/colorAccent"
+                custom:options_color="@color/colorPrimary"
+                custom:options_menu="@menu/menu"
+                custom:src="@drawable/ic_plus" />
 
-            </FrameLayout>
-        </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
 
 </RelativeLayout>
