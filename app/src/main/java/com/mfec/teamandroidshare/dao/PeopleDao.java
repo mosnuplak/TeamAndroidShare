@@ -10,6 +10,9 @@ public class PeopleDao {
     @SerializedName("knownAsName")
     private String KnownAsName;
 
+    public PeopleDao(String knownAsName){
+        this.KnownAsName = knownAsName;
+    }
     public String getKnownAsName() {
         return KnownAsName;
     }

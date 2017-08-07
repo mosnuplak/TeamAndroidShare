@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="5">
+    >
 
-    <View
-        android:id="@+id/vOne"
-        android:layout_weight="1"
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/rvTitle"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#85e754"></View>
+        android:layout_height="match_parent">
 
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
