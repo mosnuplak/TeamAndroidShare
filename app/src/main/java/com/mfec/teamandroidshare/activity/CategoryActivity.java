@@ -20,6 +20,7 @@ public class CategoryActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
+    //CircleProgressView mCircleProgressView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +35,30 @@ public class CategoryActivity extends AppCompatActivity {
                     .add(R.id.fmCategory, new FragmentCategory())
                     .commit();
         }
+///////////////////////////////////////////////////////////////////////////////////////////
+//        mCircleProgressView = (CircleProgressView) findViewById(R.id.circle_progress_view);
+//        mCircleProgressView.setTextEnabled(false);
+//        mCircleProgressView.setInterpolator(new AccelerateDecelerateInterpolator());
+//        mCircleProgressView.setStartAngle(45);
+//        mCircleProgressView.setProgressWithAnimation(85, 2000);
+//
+//        mCircleProgressView.addAnimationListener(new ProgressAnimationListener() {
+//            @Override
+//            public void onValueChanged(float value) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd() {
+//                Toast.makeText(CategoryActivity.this, "Animation of CircleProgressView done", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+/////////////////////////////////////////////////////////////////////////
     }
 
+
     private void initInstance() {
-        toolbar =(Toolbar)findViewById(R.id.toobar) ;
+        toolbar = (Toolbar) findViewById(R.id.toobar);
         setSupportActionBar(toolbar);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -49,6 +70,7 @@ public class CategoryActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
     }
 
