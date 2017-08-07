@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class PeopleDao {
-    @SerializedName("knownAsName")
+    @SerializedName("head")
     private String KnownAsName;
 
     public PeopleDao(String knownAsName){

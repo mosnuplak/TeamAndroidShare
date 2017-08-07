@@ -13,7 +13,7 @@ import retrofit2.http.GET;
 
 public interface ApiService {
     // call service on here
-    @GET("public/artist/findAll")
+    @GET("topic/getalltopic")
     Call<List<PeopleDao>> LoadPerpeoList();
 
 
