@@ -13,9 +13,7 @@ import android.widget.Toast;
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.CategoryDao;
-import com.mfec.teamandroidshare.dao.PeopleDao;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
-import com.mfec.teamandroidshare.view.TitleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +96,22 @@ public class FragmentCategory extends Fragment {
         categoryList.add(new CategoryDao("Android"));
         categoryList.add(new CategoryDao("IOS"));
         categoryList.add(new CategoryDao("Web"));
-
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("มอส เอง ไง จะ ใคร ละ"));
+        categoryList.add(new CategoryDao("เกมส์เอง อิอิ อะอะ อึอึ อุอุ"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("ป๊อป กวน ตีน"));
+        categoryList.add(new CategoryDao("ฟ้า กวน ตีน "));
+        categoryList.add(new CategoryDao("คลิปหลุดเกมส์ 18+ "));
+        categoryList.add(new CategoryDao("คลิปเกย์เรท ฉ "));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
 
 
     }
@@ -108,10 +121,10 @@ public class FragmentCategory extends Fragment {
 
         getCategoryItem();
 
-        GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(),3);
+        GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 3);
         rvCategory.setLayoutManager(manager);
 
-        adapter = new CategoryAdapter(this,categoryList,FragmentCategory.this);
+        adapter = new CategoryAdapter(this, categoryList, FragmentCategory.this);
         rvCategory.setAdapter(adapter);
 
         // Init 'View' instance(s) with rootView.findViewById here
