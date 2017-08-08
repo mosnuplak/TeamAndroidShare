@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:background="#ffffff"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/rv_rank"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -17,13 +17,15 @@
 
             <TextView
                 android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/rank_pl_v"
                 android:text="@string/rank_number"
                 android:textSize="@dimen/rank_text_size"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"/>
             <ImageView
                 android:id="@+id/iv_image"
                 android:layout_width="@dimen/rank_lw_image"
@@ -41,7 +43,9 @@
                 android:paddingRight="@dimen/rank_pr_v"
                 android:text="Name"
                 android:textSize="@dimen/rank_text_size"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"/>
 
         </LinearLayout>
 
