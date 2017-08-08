@@ -68,7 +68,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btn_rank"
                 android:layout_width="match_parent"
@@ -83,8 +82,8 @@
                 fancy:fb_focusColor="#66FFFF"
                 fancy:fb_fontIconResource="&#xf04b;"
                 fancy:fb_iconPosition="left"
-                fancy:fb_text="Rank"
                 fancy:fb_radius="10dp"
+                fancy:fb_text="Rank"
                 fancy:fb_textColor="#FFFFFF" />
 
             <TextView

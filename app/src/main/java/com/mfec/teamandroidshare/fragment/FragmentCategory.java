@@ -2,6 +2,8 @@ package com.mfec.teamandroidshare.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +12,11 @@ import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.dao.CategoryDao;
+import com.mfec.teamandroidshare.view.CategoryAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -17,7 +24,10 @@ import com.mfec.teamandroidshare.R;
  */
 public class FragmentCategory extends Fragment {
 
+    RecyclerView rvCategory;
+    CategoryAdapter adapter;
     OptionsFabLayout fabWithOptions;
+    private List<CategoryDao> categoryList;
 
     public FragmentCategory() {
         super();
@@ -74,12 +84,49 @@ public class FragmentCategory extends Fragment {
             }
         });
 
+        getCategoryItem();
+
         return rootView;
 
 
     }
 
+    private void getCategoryItem() {
+        categoryList = new ArrayList<>();
+        categoryList.add(new CategoryDao("Android"));
+        categoryList.add(new CategoryDao("IOS"));
+        categoryList.add(new CategoryDao("Web"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("มอส เอง ไง จะ ใคร ละ"));
+        categoryList.add(new CategoryDao("เกมส์เอง อิอิ อะอะ อึอึ อุอุ"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("ป๊อป กวน ตีน"));
+        categoryList.add(new CategoryDao("ฟ้า กวน ตีน "));
+        categoryList.add(new CategoryDao("คลิปหลุดเกมส์ 18+ "));
+        categoryList.add(new CategoryDao("คลิปเกย์เรท ฉ "));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+
+
+    }
+
     private void initInstances(View rootView) {
+        rvCategory = (RecyclerView) rootView.findViewById(R.id.rvCategory);
+
+        getCategoryItem();
+
+        GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 3);
+        rvCategory.setLayoutManager(manager);
+
+        adapter = new CategoryAdapter(this, categoryList, FragmentCategory.this);
+        rvCategory.setAdapter(adapter);
+
         // Init 'View' instance(s) with rootView.findViewById here
     }
 

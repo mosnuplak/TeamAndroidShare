@@ -45,6 +45,7 @@ dependencies {
     compile 'com.github.arthurghazaryan:floatingactionmenu:1.0.0'
     compile 'com.github.eralpyucel:CircleProgressView:v1.1'
     compile 'com.github.medyo:fancybuttons:1.8.3'
+    compile 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.1'
     testCompile 'junit:junit:4.12'
 
 }
