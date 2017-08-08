@@ -3,13 +3,11 @@ package com.mfec.teamandroidshare.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
@@ -35,6 +33,7 @@ public class FragmentTitle extends Fragment {
     RecyclerView rvTitle;
     TitleAdapter adapter;
     private List<PeopleDao> peopleList;
+
     public FragmentTitle() {
         super();
     }
@@ -50,7 +49,7 @@ public class FragmentTitle extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_title, container, false);
-        Log.d("mosaaa","mosaaa");
+        Log.d("mosaaa", "mosaaa");
 
         initInstances(rootView);
 
@@ -113,13 +112,12 @@ public class FragmentTitle extends Fragment {
     }
 
     private void showTitle(List<TitleDao> dao) {
-        GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(),1);
+        GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 1);
         rvTitle.setLayoutManager(manager);
 
-        adapter = new TitleAdapter(this,dao,FragmentTitle.this);
+        adapter = new TitleAdapter(this, dao, FragmentTitle.this);
         rvTitle.setAdapter(adapter);
     }
-
 
 
     @Override

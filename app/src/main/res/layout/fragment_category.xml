@@ -10,13 +10,9 @@
         android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DCDCDC"
+        android:background="@color/backgroundCategory"
         android:scaleType="centerCrop" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Categort" />
     <android.support.v7.widget.RecyclerView
 
         android:id="@+id/rvCategory"
@@ -29,7 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
 
         <FrameLayout
