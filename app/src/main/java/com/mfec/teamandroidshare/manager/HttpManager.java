@@ -28,7 +28,7 @@ public class HttpManager {
         mContext = Contextor.getInstance().getContext();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://52.221.197.204:8080/TEST/api/")
+                .baseUrl("http://52.221.197.204:8080/ShareService/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(ApiService.class);
