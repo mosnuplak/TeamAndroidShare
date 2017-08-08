@@ -105,4 +105,5 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         Intent i = new Intent(getApplication(),RankActivity.class);
         startActivity(i);
     }
+
 }

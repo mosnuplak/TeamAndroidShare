@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.CategoryActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
 

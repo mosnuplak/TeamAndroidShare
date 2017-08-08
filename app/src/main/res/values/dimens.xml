@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="drawer_menu_width">240dp</dimen>
+    <dimen name="rank_pl_v">16dp</dimen>
+    <dimen name="rank_pr_v">16dp</dimen>
+    <dimen name="rank_text_size">18sp</dimen>
+    <dimen name="rank_lw_image">80dp</dimen>
+    <dimen name="rank_lh_image">80dp</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package com.mfec.teamandroidshare.view;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.TitleActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.fragment.FragmentCategory;
+import com.mfec.teamandroidshare.fragment.FragmentTitle;
 
 import java.util.List;
 
@@ -16,7 +19,7 @@ import java.util.List;
  * Created by MSI on 8/8/2560.
  */
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> implements View.OnClickListener{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
     FragmentCategory fragmentCategory;
     List<CategoryDao> categoryList;
     FragmentCategory fragmentCategory1;
@@ -40,7 +43,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> im
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         categoryDao = categoryList.get(position);
         holder.tvNameCate.setText(categoryDao.getCateName());
-        holder.rvCategory.setOnClickListener(this);
+        holder.rvCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(fragmentCategory1.getActivity(), TitleActivity.class);
+                fragmentCategory1.startActivity(intent);
+            }
+        });
 
     }
 
@@ -49,13 +58,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> im
         return categoryList.size();
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v == v.findViewById(R.id.rvCategory)){
-                Toast.makeText(v.getContext(),
-                        "go Title",
-                        Toast.LENGTH_SHORT)
-                        .show();
-        }
-    }
 }

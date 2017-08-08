@@ -25,29 +25,34 @@
         <TextView
             android:id="@+id/tvDescript"
             android:text="@string/app_name"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvPoster"
-            android:text="@string/app_name"
-            android:textSize="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/tvPoster"
+                android:text="@string/app_name"
+                android:textSize="14dp"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <ImageButton
                 android:id="@+id/ibtnStar"
                 android:layout_toLeftOf="@+id/tvStar"
-                android:src="@mipmap/ic_launcher"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:src="@drawable/love_s1"
+                android:background="#ffffff"
+                android:scaleType="fitXY"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                 />
             <TextView
                 android:id="@+id/tvStar"
                 android:layout_alignParentRight="true"
-                android:text="Like this"
-                android:textSize="18dp"
+                android:text="Love this"
+                android:textSize="14dp"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
