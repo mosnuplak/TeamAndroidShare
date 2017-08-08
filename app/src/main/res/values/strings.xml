@@ -2,5 +2,6 @@
     <string name="app_name">TeamAndroidShare</string>
     <string name="open_drawer">Open Menu</string>
     <string name="close_drawer">Close Menu</string>
+    <string name="rank_number">00</string>
 
 </resources>
