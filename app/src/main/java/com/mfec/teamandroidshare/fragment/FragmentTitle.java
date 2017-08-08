@@ -92,9 +92,16 @@ public class FragmentTitle extends Fragment {
                 if (response.isSuccessful()) {
                     List<TitleDao> dao = response.body();
                     showTitle(dao);
+                } else {
+                    try {
+                        Toast.makeText(getActivity(),
+                                response.errorBody().string(),
+                                Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-
 
 
             @Override
@@ -103,36 +110,6 @@ public class FragmentTitle extends Fragment {
             }
         });
 
-
-//        Call<List<PeopleDao>> call = HttpManager.getInstance().getService().LoadPerpeoList();
-//        call.enqueue(new Callback<List<PeopleDao>>() {
-//            @Override
-//            public void onResponse(Call<List<PeopleDao>> call,
-//                                   Response<List<PeopleDao>> response) {
-//                if (response.isSuccessful()) {
-//                    List<PeopleDao> dao = response.body();
-//                    showPeopleOnLogD(dao);
-//
-//                } else {
-//                    try {
-//                        Toast.makeText(getActivity(),
-//                                response.errorBody().string(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//
-//                    } catch (IOException e){
-//
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<PeopleDao>> call, Throwable t) {
-//
-//            }
-//        });
-//        // Init 'View' instance(s) with rootView.findViewById here
     }
 
     private void showTitle(List<TitleDao> dao) {
