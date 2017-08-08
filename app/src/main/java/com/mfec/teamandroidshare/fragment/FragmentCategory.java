@@ -104,6 +104,8 @@ public class FragmentCategory extends Fragment {
         categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
         categoryList.add(new CategoryDao("ป๊อป กวน ตีน"));
         categoryList.add(new CategoryDao("ฟ้า กวน ตีน "));
+        categoryList.add(new CategoryDao("คลิปหลุดเกมส์ 18+ "));
+        categoryList.add(new CategoryDao("คลิปเกย์เรท ฉ "));
         categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
         categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
         categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
