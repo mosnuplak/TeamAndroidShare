@@ -13,13 +13,19 @@
         android:background="@color/backgroundCategory"
         android:scaleType="centerCrop" />
 
-    <android.support.v7.widget.RecyclerView
-
-        android:id="@+id/rvCategory"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/rvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
