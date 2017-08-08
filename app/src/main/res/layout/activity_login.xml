@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg"
     android:fitsSystemWindows="true">
-
     <FrameLayout
         android:layout_centerInParent="true"
         android:paddingTop="70dp"
@@ -33,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
                     android:text="Login"
-                    android:textColor="#2fa881"
+                    android:textColor="#ffffff"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     />
@@ -51,7 +50,7 @@
                         <EditText
                             android:textSize="13sp"
                             android:hint="Username"
-                            android:textColor="#2fa881"
+                            android:textColor="#fcfffe"
                             android:id="@+id/input_username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -69,15 +68,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
                     <android.support.design.widget.TextInputLayout
-
-                        android:textColorHint="#f0f7f4"
+                        android:textColorHint="#f5f9f7"
                         android:theme="@style/TextLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
                             android:textSize="13sp"
                             android:hint="Password"
-                            android:textColor="#2fa881"
+                            android:textColor="#fcfffe"
                             android:id="@+id/input_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -95,12 +93,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
                     <android.support.design.widget.TextInputLayout
-
                         android:textColorHint="#f0f7f4"
                         android:theme="@style/TextLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
                 <Button
