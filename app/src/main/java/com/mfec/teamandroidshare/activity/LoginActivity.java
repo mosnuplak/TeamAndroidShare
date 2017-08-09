@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,11 +13,12 @@ import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 
+
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     Button btnLogin;
     EditText editUsername;
     EditText editPassword;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            Intent i = new Intent(getApplication(),CategoryActivity.class);
-                            startActivity(i);
+                            boolean check = checkLoginValidate(editUsername.getText().toString(),editPassword.getText().toString());
+                            if(check == true){
+                                Intent i = new Intent(getApplication(),CategoryActivity.class);
+                                startActivity(i);
+                            }else {
+
+                            }
                             return true;
                         default:
                             break;
@@ -61,8 +68,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            Intent i = new Intent(getApplication(),CategoryActivity.class);
-                            startActivity(i);
+                            boolean check = checkLoginValidate(editUsername.getText().toString(),editPassword.getText().toString());
+                            if(check == true){
+                                Intent i = new Intent(getApplication(),CategoryActivity.class);
+                                startActivity(i);
+                            }else {
+
+                            }
                             return true;
                         default:
                             break;
@@ -75,12 +87,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == btnLogin) {
-            Toast.makeText(this,
-                    editUsername.getText().toString() + ""+ editPassword.getText().toString() +"",
-                    Toast.LENGTH_LONG)
-                    .show();
-            Intent i = new Intent(getApplication(),CategoryActivity.class);
-            startActivity(i);
+            boolean check = checkLoginValidate(editUsername.getText().toString(),editPassword.getText().toString());
+            if(check == true){
+                Intent i = new Intent(getApplication(),CategoryActivity.class);
+                startActivity(i);
+            }
         }
+    }
+    public boolean checkLoginValidate(String username, String password) {
+        if ( (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
+                username.equals(username) &&
+                password.equals(password)) {
+            return true;
+        }else if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
+            Toast.makeText(this,
+                    "กรุณาใส่ username และ password",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }else if(TextUtils.isEmpty(username)){
+            Toast.makeText(this,
+                    "กรุณาใส่ username",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }else if(TextUtils.isEmpty(password)){
+            Toast.makeText(this,
+                    "กรุณาใส่ password",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+        return false;
     }
 }
