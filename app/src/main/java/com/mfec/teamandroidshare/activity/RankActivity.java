@@ -14,7 +14,7 @@ public class RankActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rank);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.flRank, new FragmentRank())
+                    .add(R.id.fragmentRank, new FragmentRank())
                     .commit();
         }
     }
