@@ -1,5 +1,6 @@
 package com.mfec.teamandroidshare.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
-import com.mfec.teamandroidshare.activity.CategoryActivity;
+import com.mfec.teamandroidshare.activity.RankActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
 
@@ -73,11 +74,14 @@ public class FragmentCategory extends Fragment {
                         Toast.makeText(getContext(),
                                 fabItem.getTitle() + "clicked!",
                                 Toast.LENGTH_SHORT).show();
-                    case R.id.fab_add:
+
+                    case R.id.fab_gotoRank:
                         Toast.makeText(
                                 getContext(),
                                 fabItem.getTitle() + " clicked!",
                                 Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), RankActivity.class);
+                        startActivity(intent);
                         break;
                     default:
                         break;
