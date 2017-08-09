@@ -1,5 +1,6 @@
 package com.mfec.teamandroidshare.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.activity.CategoryActivity;
+import com.mfec.teamandroidshare.activity.RankActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
@@ -23,6 +25,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.mfec.teamandroidshare.R.id.fab_addCategory;
+import static com.mfec.teamandroidshare.R.id.fab_gotoRank;
 
 
 /**
