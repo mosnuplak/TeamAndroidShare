@@ -46,15 +46,34 @@ public class FragmentRank extends Fragment {
 
         getRankItem();
 
+
         return rootView;
     }
+
+
 
     private void getRankItem(){
         rankList = new ArrayList<>();
         rankList.add(new RankDao("1","mos"));
         rankList.add(new RankDao("2","fah"));
         rankList.add(new RankDao("3","game"));
-        rankList.add(new RankDao("4","pop"));
+        rankList.add(new RankDao("5","pop"));
+        rankList.add(new RankDao("6","pop1"));
+        rankList.add(new RankDao("7","pop2"));
+        rankList.add(new RankDao("8","pop3"));
+        rankList.add(new RankDao("9","pop4"));
+        rankList.add(new RankDao("10","pop5"));
+        rankList.add(new RankDao("11","pop6"));
+        rankList.add(new RankDao("12","pop7"));
+        rankList.add(new RankDao("13","pop8"));
+        rankList.add(new RankDao("14","pop9"));
+        rankList.add(new RankDao("15","pop10"));
+        rankList.add(new RankDao("16","pop11"));
+        rankList.add(new RankDao("17","pop12"));
+        rankList.add(new RankDao("18","pop13"));
+        rankList.add(new RankDao("19","pop14"));
+        rankList.add(new RankDao("20","pop15"));
+        rankList.add(new RankDao("2100","เป็นแค่ลูกแมวตัวขาวๆกลมๆเล็กๆไม่ใหญ่ๆชอบที่กลิ้งๆหลุนๆมาบรรจบพบดวงอาทิตย์ริมหาดทราย"));
 
     }
 
