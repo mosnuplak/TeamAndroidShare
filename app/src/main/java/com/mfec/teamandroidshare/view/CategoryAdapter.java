@@ -20,7 +20,7 @@ import java.util.List;
  * Created by MSI on 8/8/2560.
  */
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> implements FragmentCategory.gg{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
     FragmentCategory fragmentCategory;
     List<CategoryDao> categoryList;
     FragmentCategory fragmentCategory1;
@@ -63,8 +63,5 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> im
         return categoryList.size();
     }
 
-    @Override
-    public void setCateName(String name) {
 
-    }
 }
