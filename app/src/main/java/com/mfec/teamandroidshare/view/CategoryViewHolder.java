@@ -16,10 +16,26 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     LinearLayout rvCategory;
     ImageView ivPicCate;
     TextView tvNameCate;
-    public CategoryViewHolder(View itemView) {
+    View view;
+    onItemClick holderClick;
+    public CategoryViewHolder(View itemView, onItemClick itemClick) {
         super(itemView);
+        this.view = itemView;
         rvCategory = (LinearLayout) itemView.findViewById(R.id.rvCategory);
         ivPicCate = (ImageView) itemView.findViewById(R.id.ivPicCate);
         tvNameCate = (TextView) itemView.findViewById(R.id.tvNameCate);
+        holderClick =itemClick;
+        view.setOnClickListener(clickItem);
+    }
+
+    View.OnClickListener clickItem = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            holderClick.onItemClickListener(getAdapterPosition());
+        }
+    };
+
+    public interface onItemClick{
+        void onItemClickListener(int position);
     }
 }

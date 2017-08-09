@@ -1,6 +1,8 @@
 package com.mfec.teamandroidshare.view;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +42,11 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implemen
     @Override
     public void onBindViewHolder(TitleViewHolder holder, int position) {
         TitleDao titleDao = TitleList.get(position);
-        holder.tvTitle.setText(titleDao.getHead());
+
+        SpannableString content = new SpannableString(titleDao.getHead());
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+
+        holder.tvTitle.setText(content);
         holder.tvDescript.setText(titleDao.getDescription());
         holder.tvPoster.setText(titleDao.getPoster());
         holder.ibtnStar.setOnClickListener(new View.OnClickListener() {

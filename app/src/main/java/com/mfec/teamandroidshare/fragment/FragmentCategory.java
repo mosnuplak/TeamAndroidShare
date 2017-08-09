@@ -1,6 +1,5 @@
 package com.mfec.teamandroidshare.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,15 +12,17 @@ import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
-import com.mfec.teamandroidshare.activity.RankActivity;
+import com.mfec.teamandroidshare.activity.CategoryActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
+import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mfec.teamandroidshare.R.id.fab_addCategory;
-import static com.mfec.teamandroidshare.R.id.fab_gotoRank;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -33,7 +34,6 @@ public class FragmentCategory extends Fragment {
     CategoryAdapter adapter;
     OptionsFabLayout fabWithOptions;
     private List<CategoryDao> categoryList;
-    FragmentCategory fragmentCategory1;//ใส่ไปเล่นๆ
 
     public FragmentCategory() {
         super();
@@ -87,28 +87,10 @@ public class FragmentCategory extends Fragment {
                     Intent intent = new Intent(getActivity(), RankActivity.class);
                     startActivity(intent);
                 }
-
-//                switch (fabItem.getItemId()) {
-//                    case fab_addCategory:
-//                        Toast.makeText(getContext(),
-//                                "Add "+ fabItem.getTitle(),
-//                                Toast.LENGTH_SHORT).show();
-//
-//                    case fab_gotoRank:
-//                        Toast.makeText(
-//                                getContext(),
-//                                "Go To " + fabItem.getTitle(),
-//                                Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(getActivity(), RankActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                    default:
-//                        break;
-//                }
             }
         });
 
-        getCategoryItem();
+        //getCategoryItem();
 
         return rootView;
 
@@ -143,16 +125,34 @@ public class FragmentCategory extends Fragment {
     private void initInstances(View rootView) {
         rvCategory = (RecyclerView) rootView.findViewById(R.id.rvCategory);
 
+        //getCategoryItem();
+        Call<List<CategoryDao>> call = HttpManager.getInstance().getService().LoadCategory();
+        call.enqueue(new Callback<List<CategoryDao>>() {
+            @Override
+            public void onResponse(Call<List<CategoryDao>> call, Response<List<CategoryDao>> response) {
+                if (response.isSuccessful()) {
+                    List<CategoryDao> dao = response.body();
+                    showCategory(dao);
+                }
+            }
 
-        getCategoryItem();
+            @Override
+            public void onFailure(Call<List<CategoryDao>> call, Throwable t) {
 
+            }
+        });
+
+
+        // Init 'View' instance(s) with rootView.findViewById here
+    }
+
+    private void showCategory(List<CategoryDao> dao) {
         GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 3);
         rvCategory.setLayoutManager(manager);
 
-        adapter = new CategoryAdapter(this, categoryList, FragmentCategory.this);
+        adapter = new CategoryAdapter(this, dao, FragmentCategory.this);
         rvCategory.setAdapter(adapter);
 
-        // Init 'View' instance(s) with rootView.findViewById here
     }
 //    public void doProgress(View v){
 //        ProgressDialog dialog = new ProgressDialog(getContext());

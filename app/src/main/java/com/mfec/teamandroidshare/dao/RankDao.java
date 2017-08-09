@@ -17,15 +17,7 @@ public class RankDao {
         return tv_num;
     }
 
-    public void setTv_num(String tv_num) {
-        this.tv_num = tv_num;
-    }
-
     public String getTv_name() {
         return tv_name;
-    }
-
-    public void setTv_name(String tv_name) {
-        this.tv_name = tv_name;
     }
 }

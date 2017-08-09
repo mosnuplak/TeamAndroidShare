@@ -9,15 +9,19 @@ import com.mfec.teamandroidshare.fragment.FragmentTitle;
 
 public class TitleActivity extends AppCompatActivity {
     public String title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
 
+
+        String cateName = getIntent().getStringExtra("cateName");
+
+
         if (savedInstanceState == null) {
-            Log.d("mosmosmsosm","mosmosmsosm");
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragmentTitle, new FragmentTitle())
+                    .add(R.id.fragmentTitle, new FragmentTitle().newInstance(cateName))
                     .commit();
         }
         // set title name
