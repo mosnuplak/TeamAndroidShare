@@ -21,7 +21,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
  * Created by User on 4/8/2560.
  */
 
-public class CategoryActivity extends AppCompatActivity implements View.OnClickListener{
+public class CategoryActivity extends AppCompatActivity implements View.OnClickListener {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
@@ -35,9 +35,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_category);
 
 
-
         initInstance();
-
 
 
         if (savedInstanceState == null) {
@@ -61,13 +59,13 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 R.string.close_drawer
         );
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-
     }
+
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -84,11 +82,13 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     public boolean onOptionsItemSelected(MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item))
             return true;
+
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(getApplication(),RankActivity.class);
+        Intent i = new Intent(getApplication(), RankActivity.class);
         startActivity(i);
     }
 

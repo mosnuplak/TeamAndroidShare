@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="backgroundCategory">#DCDCDC</color>
+    <color name="menu_category_rank">#FF9900</color>
+    <color name="menu_category_profile">#99FFFF</color>
+    <color name="menu_category_category">#32CD32</color>
 </resources>
