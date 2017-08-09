@@ -46,10 +46,8 @@ public class FragmentRank extends Fragment {
 
         getRankItem();
 
-
         return rootView;
     }
-
 
 
     private void getRankItem(){
@@ -72,8 +70,8 @@ public class FragmentRank extends Fragment {
         rankList.add(new RankDao("17","pop12"));
         rankList.add(new RankDao("18","pop13"));
         rankList.add(new RankDao("19","pop14"));
-        rankList.add(new RankDao("20","pop15"));
-        rankList.add(new RankDao("2100","เป็นแค่ลูกแมวตัวขาวๆกลมๆเล็กๆไม่ใหญ่ๆชอบที่กลิ้งๆหลุนๆมาบรรจบพบดวงอาทิตย์ริมหาดทราย"));
+        rankList.add(new RankDao("2000","pop15"));
+        rankList.add(new RankDao("210000000000000","เป็นแค่ลูกแมวตัวขาวๆกลมๆเล็กๆไม่ใหญ่ๆชอบที่กลิ้งๆหลุนๆมาบรรจบพบดวงอาทิตย์ริมหาดทราย"));
 
     }
 

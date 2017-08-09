@@ -80,8 +80,9 @@ public class FragmentCategory extends Fragment {
 
                 if (fabItem.getItemId() == fab_addCategory) {
                     Toast.makeText(getContext(),
-                            "Add "+ fabItem.getTitle(),
+                            fabItem.getTitle(),
                             Toast.LENGTH_SHORT).show();
+
                 }
                 if (fabItem.getItemId() == fab_gotoRank) {
                     Toast.makeText(
@@ -158,6 +159,23 @@ public class FragmentCategory extends Fragment {
         rvCategory.setAdapter(adapter);
 
     }
+//    public void doProgress(View v){
+//        ProgressDialog dialog = new ProgressDialog(getContext());
+//        dialog.setTitle("*-*");
+//        dialog.setMessage("*-*-*-*-*");
+//        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        dialog.setIcon(R.drawable.bg);
+//        dialog.setButton("*-*-", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+//
+//
+//        dialog.show();
+//
+//    }
 
     @Override
     public void onStart() {
