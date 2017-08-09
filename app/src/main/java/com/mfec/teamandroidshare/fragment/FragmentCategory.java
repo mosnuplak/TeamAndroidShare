@@ -54,6 +54,7 @@ public class FragmentCategory extends Fragment {
 
         fabWithOptions = (OptionsFabLayout) rootView.findViewById(R.id.fab_l);
 
+
         //Set mini fab's colors.
         fabWithOptions.setMiniFabsColors(
                 R.color.colorPrimary,
@@ -71,21 +72,19 @@ public class FragmentCategory extends Fragment {
         fabWithOptions.setMiniFabSelectedListener(new OptionsFabLayout.OnMiniFabSelectedListener() {
             @Override
             public void onMiniFabSelected(MenuItem fabItem) {
-                switch (fabItem.getItemId()) {
 
-
-                    case R.id.fab_addCategory:
-                        Toast.makeText(getContext(),
-                                fabItem.getTitle() + "clicked!",
-                                Toast.LENGTH_SHORT).show();
-                    case R.id.fab_add:
-                        Toast.makeText(
-                                getContext(),
-                                fabItem.getTitle() + " clicked!",
-                                Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
+                if (fabItem.getItemId() == fab_addCategory) {
+                    Toast.makeText(getContext(),
+                            "Add "+ fabItem.getTitle(),
+                            Toast.LENGTH_SHORT).show();
+                }
+                if (fabItem.getItemId() == fab_gotoRank) {
+                    Toast.makeText(
+                            getContext(),
+                            "Go To " + fabItem.getTitle(),
+                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), RankActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -183,9 +182,5 @@ public class FragmentCategory extends Fragment {
         if (savedInstanceState != null) {
             // Restore Instance State here
         }
-    }
-
-    public interface gg{
-        void setCateName(String name);
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/fab_add"
-        android:icon="@drawable/ic_plus"
-        android:title="@string/fab_1" />
+        android:id="@+id/fab_gotoRank"
+        android:icon="@drawable/crown"
+        android:title="Rank" />
     <item
         android:id="@+id/fab_addCategory"
         android:icon="@drawable/ic_plus"
-        android:title="add Category" />
+        android:title="Category" />
 
 
 </menu>

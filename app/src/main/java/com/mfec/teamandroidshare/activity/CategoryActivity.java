@@ -26,7 +26,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     FancyButton btnRank;
-
+    private Button mButtonDialog;
     //CircleProgressView mCircleProgressView;
 
     @Override
@@ -35,7 +35,10 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_category);
 
 
+
         initInstance();
+
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -44,31 +47,12 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         }
         btnRank.setOnClickListener(this);
 
-///////////////////////////////////////////////////////////////////////////////////////////
-//        mCircleProgressView = (CircleProgressView) findViewById(R.id.circle_progress_view);
-//        mCircleProgressView.setTextEnabled(false);
-//        mCircleProgressView.setInterpolator(new AccelerateDecelerateInterpolator());
-//        mCircleProgressView.setStartAngle(45);
-//        mCircleProgressView.setProgressWithAnimation(85, 2000);
-//
-//        mCircleProgressView.addAnimationListener(new ProgressAnimationListener() {
-//            @Override
-//            public void onValueChanged(float value) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd() {
-//                Toast.makeText(CategoryActivity.this, "Animation of CircleProgressView done", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-/////////////////////////////////////////////////////////////////////////
     }
 
     private void initInstance() {
         btnRank = (FancyButton) findViewById(R.id.btn_rank);
-        toolbar = (Toolbar) findViewById(R.id.toobar);
-        setSupportActionBar(toolbar);
+//        toolbar = (Toolbar) findViewById(R.id.toobar); เครื่องมือ ทำเมนู toobar
+//        setSupportActionBar(toolbar); //คอมเม้น
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,
@@ -79,6 +63,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
 
     }
@@ -105,5 +91,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         Intent i = new Intent(getApplication(),RankActivity.class);
         startActivity(i);
     }
+
 
 }
