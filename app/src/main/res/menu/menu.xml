@@ -2,9 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fab_gotoRank"
-        android:icon="@drawable/crown"
+        android:icon="@drawable/crown_menu"
         android:title="Rank"
-
         />
     <item
         android:id="@+id/fab_addCategory"
