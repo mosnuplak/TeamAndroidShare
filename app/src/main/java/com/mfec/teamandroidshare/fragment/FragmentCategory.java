@@ -20,6 +20,9 @@ import com.mfec.teamandroidshare.view.CategoryAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mfec.teamandroidshare.R.id.fab_addCategory;
+import static com.mfec.teamandroidshare.R.id.fab_gotoRank;
+
 
 /**
  * Created by nuuneoi on 11/16/2014.
@@ -30,6 +33,7 @@ public class FragmentCategory extends Fragment {
     CategoryAdapter adapter;
     OptionsFabLayout fabWithOptions;
     private List<CategoryDao> categoryList;
+    FragmentCategory fragmentCategory1;//ใส่ไปเล่นๆ
 
     public FragmentCategory() {
         super();
@@ -50,6 +54,7 @@ public class FragmentCategory extends Fragment {
 
         fabWithOptions = (OptionsFabLayout) rootView.findViewById(R.id.fab_l);
 
+
         //Set mini fab's colors.
         fabWithOptions.setMiniFabsColors(
                 R.color.colorPrimary,
@@ -67,25 +72,38 @@ public class FragmentCategory extends Fragment {
         fabWithOptions.setMiniFabSelectedListener(new OptionsFabLayout.OnMiniFabSelectedListener() {
             @Override
             public void onMiniFabSelected(MenuItem fabItem) {
-                switch (fabItem.getItemId()) {
 
-
-                    case R.id.fab_addCategory:
-                        Toast.makeText(getContext(),
-                                fabItem.getTitle() + "clicked!",
-                                Toast.LENGTH_SHORT).show();
-
-                    case R.id.fab_gotoRank:
-                        Toast.makeText(
-                                getContext(),
-                                fabItem.getTitle() + " clicked!",
-                                Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), RankActivity.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
+                if (fabItem.getItemId() == fab_addCategory) {
+                    Toast.makeText(getContext(),
+                            "Add "+ fabItem.getTitle(),
+                            Toast.LENGTH_SHORT).show();
                 }
+                if (fabItem.getItemId() == fab_gotoRank) {
+                    Toast.makeText(
+                            getContext(),
+                            "Go To " + fabItem.getTitle(),
+                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), RankActivity.class);
+                    startActivity(intent);
+                }
+
+//                switch (fabItem.getItemId()) {
+//                    case fab_addCategory:
+//                        Toast.makeText(getContext(),
+//                                "Add "+ fabItem.getTitle(),
+//                                Toast.LENGTH_SHORT).show();
+//
+//                    case fab_gotoRank:
+//                        Toast.makeText(
+//                                getContext(),
+//                                "Go To " + fabItem.getTitle(),
+//                                Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(getActivity(), RankActivity.class);
+//                        startActivity(intent);
+//                        break;
+//                    default:
+//                        break;
+//                }
             }
         });
 
@@ -123,6 +141,7 @@ public class FragmentCategory extends Fragment {
 
     private void initInstances(View rootView) {
         rvCategory = (RecyclerView) rootView.findViewById(R.id.rvCategory);
+
 
         getCategoryItem();
 

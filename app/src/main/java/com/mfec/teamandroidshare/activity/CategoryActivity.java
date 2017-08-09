@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.fragment.FragmentCategory;
@@ -25,7 +26,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     FancyButton btnRank;
-
+    private Button mButtonDialog;
     //CircleProgressView mCircleProgressView;
 
     @Override
@@ -34,7 +35,10 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_category);
 
 
+
         initInstance();
+
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -43,25 +47,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         }
         btnRank.setOnClickListener(this);
 
-///////////////////////////////////////////////////////////////////////////////////////////
-//        mCircleProgressView = (CircleProgressView) findViewById(R.id.circle_progress_view);
-//        mCircleProgressView.setTextEnabled(false);
-//        mCircleProgressView.setInterpolator(new AccelerateDecelerateInterpolator());
-//        mCircleProgressView.setStartAngle(45);
-//        mCircleProgressView.setProgressWithAnimation(85, 2000);
-//
-//        mCircleProgressView.addAnimationListener(new ProgressAnimationListener() {
-//            @Override
-//            public void onValueChanged(float value) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd() {
-//                Toast.makeText(CategoryActivity.this, "Animation of CircleProgressView done", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-/////////////////////////////////////////////////////////////////////////
     }
 
     private void initInstance() {
@@ -78,6 +63,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
 
     }
@@ -104,5 +91,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         Intent i = new Intent(getApplication(),RankActivity.class);
         startActivity(i);
     }
+
 
 }
