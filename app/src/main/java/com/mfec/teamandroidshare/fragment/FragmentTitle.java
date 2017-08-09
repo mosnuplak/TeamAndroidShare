@@ -1,6 +1,7 @@
 package com.mfec.teamandroidshare.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,23 +34,33 @@ public class FragmentTitle extends Fragment {
     RecyclerView rvTitle;
     TitleAdapter adapter;
     private List<PeopleDao> peopleList;
+    String cateName;
 
     public FragmentTitle() {
         super();
     }
 
-    public static FragmentTitle newInstance() {
+    public static FragmentTitle newInstance(String cateName) {
         FragmentTitle fragment = new FragmentTitle();
         Bundle args = new Bundle();
+        args.putString("cateName",cateName);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getArguments()!=null)
+        cateName = getArguments().getString("cateName");
+    }
+
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_title, container, false);
-        Log.d("mosaaa", "mosaaa");
 
         initInstances(rootView);
 
@@ -80,11 +91,15 @@ public class FragmentTitle extends Fragment {
 
     private void initInstances(View rootView) {
 
+
+
+
+
         rvTitle = (RecyclerView) rootView.findViewById(R.id.rvTitle);
 
         //initPeople();
 
-        Call<List<TitleDao>> call = HttpManager.getInstance().getService().LoadTopicList();
+        Call<List<TitleDao>> call = HttpManager.getInstance().getService().LoadTopicList(cateName);
         call.enqueue(new Callback<List<TitleDao>>() {
             @Override
             public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {

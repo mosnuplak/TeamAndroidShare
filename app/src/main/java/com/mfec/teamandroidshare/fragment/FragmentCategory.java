@@ -14,10 +14,15 @@ import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.activity.CategoryActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
+import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -85,7 +90,7 @@ public class FragmentCategory extends Fragment {
             }
         });
 
-        getCategoryItem();
+        //getCategoryItem();
 
         return rootView;
 
@@ -120,15 +125,34 @@ public class FragmentCategory extends Fragment {
     private void initInstances(View rootView) {
         rvCategory = (RecyclerView) rootView.findViewById(R.id.rvCategory);
 
-        getCategoryItem();
+        //getCategoryItem();
+        Call<List<CategoryDao>> call = HttpManager.getInstance().getService().LoadCategory();
+        call.enqueue(new Callback<List<CategoryDao>>() {
+            @Override
+            public void onResponse(Call<List<CategoryDao>> call, Response<List<CategoryDao>> response) {
+                if (response.isSuccessful()) {
+                    List<CategoryDao> dao = response.body();
+                    showCategory(dao);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<CategoryDao>> call, Throwable t) {
+
+            }
+        });
+
+
+        // Init 'View' instance(s) with rootView.findViewById here
+    }
+
+    private void showCategory(List<CategoryDao> dao) {
         GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 3);
         rvCategory.setLayoutManager(manager);
 
-        adapter = new CategoryAdapter(this, categoryList, FragmentCategory.this);
+        adapter = new CategoryAdapter(this, dao, FragmentCategory.this);
         rvCategory.setAdapter(adapter);
 
-        // Init 'View' instance(s) with rootView.findViewById here
     }
 
     @Override
@@ -159,5 +183,9 @@ public class FragmentCategory extends Fragment {
         if (savedInstanceState != null) {
             // Restore Instance State here
         }
+    }
+
+    public interface gg{
+        void setCateName(String name);
     }
 }

@@ -2,6 +2,7 @@ package com.mfec.teamandroidshare.view;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by MSI on 8/8/2560.
  */
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> implements FragmentCategory.gg{
     FragmentCategory fragmentCategory;
     List<CategoryDao> categoryList;
     FragmentCategory fragmentCategory1;
@@ -36,27 +37,34 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_category,parent,false);
-        return new CategoryViewHolder(view);
+        return new CategoryViewHolder(view, itemClick);
     }
 
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         categoryDao = categoryList.get(position);
         holder.tvNameCate.setText(categoryDao.getCateName());
-        holder.rvCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(fragmentCategory1.getActivity(), TitleActivity.class);
-                fragmentCategory1.startActivity(intent);
-            }
-        });
+
 
     }
 
+    CategoryViewHolder.onItemClick itemClick = new CategoryViewHolder.onItemClick() {
+        @Override
+        public void onItemClickListener(int position) {
+            Log.d("MOSS", "onItemClickListener: "+categoryList.get(position).getCateName());
+            Intent intent = new Intent(fragmentCategory1.getActivity(), TitleActivity.class);
+            intent.putExtra("cateName",categoryList.get(position).getCateName());
+            fragmentCategory1.startActivity(intent);
+        }
+    };
 
     @Override
     public int getItemCount() {
         return categoryList.size();
     }
 
+    @Override
+    public void setCateName(String name) {
+
+    }
 }
