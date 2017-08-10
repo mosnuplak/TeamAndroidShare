@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
-import com.mfec.teamandroidshare.activity.CategoryActivity;
 import com.mfec.teamandroidshare.activity.RankActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.manager.HttpManager;
@@ -28,6 +27,7 @@ import retrofit2.Response;
 
 import static com.mfec.teamandroidshare.R.id.fab_addCategory;
 import static com.mfec.teamandroidshare.R.id.fab_gotoRank;
+import static com.mfec.teamandroidshare.R.id.fab_profile;
 
 
 /**
@@ -62,8 +62,9 @@ public class FragmentCategory extends Fragment {
 
         //Set mini fab's colors.
         fabWithOptions.setMiniFabsColors(
-                R.color.colorPrimary,
-                R.color.green_fab);
+                R.color.menu_category_rank,
+                R.color.menu_category_profile,
+                R.color.menu_category_category);
 
         //Set main fab clicklistener.
         fabWithOptions.setMainFabOnClickListener(new View.OnClickListener() {
@@ -77,6 +78,13 @@ public class FragmentCategory extends Fragment {
         fabWithOptions.setMiniFabSelectedListener(new OptionsFabLayout.OnMiniFabSelectedListener() {
             @Override
             public void onMiniFabSelected(MenuItem fabItem) {
+                if (fabItem.getItemId() == fab_profile) {
+                    Toast.makeText(getContext(),
+                            "Go to "+fabItem.getTitle(),
+                            Toast.LENGTH_SHORT).show();
+
+
+            }
 
                 if (fabItem.getItemId() == fab_addCategory) {
                     Toast.makeText(getContext(),

@@ -56,6 +56,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         btnGoTitle = (Button) rootView.findViewById(R.id.btnGoTitle);
         btnGoCatagory = (Button) rootView.findViewById(R.id.btnGoCatagory);
         btnGoRank = (Button) rootView.findViewById(R.id.btnGoRank);
+
         // Init 'View' instance(s) with rootView.findViewById here
     }
 
