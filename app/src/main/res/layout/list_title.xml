@@ -23,6 +23,11 @@
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/ivTitle"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/tvDescript"
@@ -52,18 +57,19 @@
             android:layout_height="50dp">
 
             <LinearLayout
-                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
                 <ImageButton
                 android:id="@+id/ibtnStar"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                 android:src="@drawable/love_s1"
                 android:background="#ffffff"
                 android:scaleType="fitXY"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 />
                 <TextView
                     android:id="@+id/tvStar"
@@ -75,7 +81,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/eye"
+                    android:layout_gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+                <TextView
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center"
+                    android:text="12"
+                    android:textSize="14dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
 
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.view;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
     TextView tvPoster;
     ImageButton ibtnStar;
     TextView tvStar;
+    ImageView ivTitle;
     public TitleViewHolder(View itemView) {
         super(itemView);
 
@@ -28,6 +30,7 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
         tvPoster = (TextView) itemView.findViewById(R.id.tvPoster);
         ibtnStar = (ImageButton) itemView.findViewById(R.id.ibtnStar);
         tvStar = (TextView) itemView.findViewById(R.id.tvStar);
+        ivTitle = (ImageView) itemView.findViewById(R.id.ivTitle);
 
 
     }

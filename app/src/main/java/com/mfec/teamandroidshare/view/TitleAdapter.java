@@ -6,8 +6,10 @@ import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
@@ -41,14 +43,34 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implemen
 
     @Override
     public void onBindViewHolder(TitleViewHolder holder, int position) {
+        String android = "Android";
+        String ios = "IOS";
+        String iot = "IoT";
+        String wed = "Web";
         TitleDao titleDao = TitleList.get(position);
 
         SpannableString content = new SpannableString(titleDao.getHead());
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 
-        holder.tvTitle.setText(content);
+        holder.tvTitle.setText(titleDao.getHead());
         holder.tvDescript.setText(titleDao.getDescription());
-        holder.tvPoster.setText(titleDao.getPoster());
+        if (titleDao.getPoster() == null){
+            holder.tvPoster.setText("Share by Anonymous");
+        } else {
+            holder.tvPoster.setText("Share by "+titleDao.getPoster());
+        }
+
+        if (titleDao.getCategory().equals(android)) {
+            holder.ivTitle.setImageResource(R.drawable.android_fix);
+        }else if (titleDao.getCategory().equals(ios)){
+            holder.ivTitle.setImageResource(R.drawable.ios_fix);
+        }else if (titleDao.getCategory().equals(iot)){
+            holder.ivTitle.setImageResource(R.drawable.iot_fix);
+        }else if (titleDao.getCategory().equals(wed)) {
+            holder.ivTitle.setImageResource(R.drawable.web_fix);
+        }else {
+            holder.ivTitle.setImageResource(R.drawable.logo);
+        }
         holder.ibtnStar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
