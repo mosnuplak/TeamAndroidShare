@@ -105,17 +105,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return true;
         }else if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
             Toast.makeText(this,
-                    "กรุณาใส่ username และ password",
+                    "username/password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
                     .show();
         }else if(TextUtils.isEmpty(username)){
             Toast.makeText(this,
-                    "กรุณาใส่ username",
+                    "username/password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
                     .show();
         }else if(TextUtils.isEmpty(password)){
             Toast.makeText(this,
-                    "กรุณาใส่ password",
+                    "username/password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
                     .show();
         }

@@ -49,8 +49,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
     private void initInstance() {
         btnRank = (FancyButton) findViewById(R.id.btn_rank);
-//        toolbar = (Toolbar) findViewById(R.id.toobar); เครื่องมือ ทำเมนู toobar
-//        setSupportActionBar(toolbar); //คอมเม้น
+        toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
+        setSupportActionBar(toolbar); //คอมเม้น
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,
