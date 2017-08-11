@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(i);
             }
         }
+        finish();
     }
     public boolean checkLoginValidate(String username, String password) {
         if ( (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
