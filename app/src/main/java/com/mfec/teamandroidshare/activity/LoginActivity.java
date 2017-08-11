@@ -112,7 +112,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 password.equals(password)) {
             //เช็คอักขระพิเศษ
             boolean check = checkSpicalchareceter(username, password);
-
             if( check == false ){
                 return false;
             }
@@ -131,7 +130,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return false;
     }
     public boolean checkSpicalchareceter(String username, String password){
-        if (!username.matches("[a-zA-Z0-9.-_]*") || !password.matches("[a-zA-Z0-9.-_]*" )){
+
+        if (!username.matches("@/^[a-zA-Z0-9.-_]*") || !password.matches("@/^[a-zA-Z0-9.-_]*" )){
             Toast.makeText(this,
                     "username/password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
