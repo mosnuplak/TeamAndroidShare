@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.ProfileActivity;
 import com.mfec.teamandroidshare.activity.RankActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.manager.HttpManager;
@@ -21,6 +22,7 @@ import com.mfec.teamandroidshare.view.CategoryAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +36,7 @@ import static com.mfec.teamandroidshare.R.id.fab_profile;
  * Created by nuuneoi on 11/16/2014.
  */
 public class FragmentCategory extends Fragment {
-
+    FancyButton btnRank;
     RecyclerView rvCategory;
     CategoryAdapter adapter;
     OptionsFabLayout fabWithOptions;
@@ -80,11 +82,11 @@ public class FragmentCategory extends Fragment {
             public void onMiniFabSelected(MenuItem fabItem) {
                 if (fabItem.getItemId() == fab_profile) {
                     Toast.makeText(getContext(),
-                            "Go to "+fabItem.getTitle(),
+                            "Go to " + fabItem.getTitle(),
                             Toast.LENGTH_SHORT).show();
-
-
-            }
+                    Intent i = new Intent(getActivity(), ProfileActivity.class);
+                    startActivity(i);
+                }
 
                 if (fabItem.getItemId() == fab_addCategory) {
                     Toast.makeText(getContext(),
@@ -137,6 +139,7 @@ public class FragmentCategory extends Fragment {
 
     private void initInstances(View rootView) {
         rvCategory = (RecyclerView) rootView.findViewById(R.id.rvCategory);
+        btnRank = (FancyButton) rootView.findViewById(R.id.btn_rank);
 
         //getCategoryItem();
         Call<List<CategoryDao>> call = HttpManager.getInstance().getService().LoadCategory();
@@ -167,23 +170,7 @@ public class FragmentCategory extends Fragment {
         rvCategory.setAdapter(adapter);
 
     }
-//    public void doProgress(View v){
-//        ProgressDialog dialog = new ProgressDialog(getContext());
-//        dialog.setTitle("*-*");
-//        dialog.setMessage("*-*-*-*-*");
-//        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//        dialog.setIcon(R.drawable.bg);
-//        dialog.setButton("*-*-", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//            }
-//        });
-//
-//
-//        dialog.show();
-//
-//    }
+
 
     @Override
     public void onStart() {
