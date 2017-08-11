@@ -47,7 +47,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         }
         btnRank.setOnClickListener(this);
 
-    }
+}
 
     private void initInstance() {
         btnRank = (FancyButton) findViewById(R.id.btn_rank);
