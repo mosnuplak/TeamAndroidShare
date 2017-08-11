@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -37,8 +38,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
         editUsername.setOnClickListener(this);
         editPassword.setOnClickListener(this);
-
+       // finish();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
     private void initinstances(){
         btnLogin = (Button) findViewById(R.id.btn_login);
         editUsername = (EditText) findViewById(R.id.input_username);
@@ -97,29 +105,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(i);
             }
         }
-        finish();
     }
     public boolean checkLoginValidate(String username, String password) {
         if ( (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
                 username.equals(username) &&
                 password.equals(password)) {
+            //เช็คอักขระพิเศษ
+            boolean check = checkSpicalchareceter(username, password);
+
+            if( check == false ){
+                return false;
+            }
             return true;
         }else if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
             Toast.makeText(this,
                     "username/password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
                     .show();
-        }else if(TextUtils.isEmpty(username)){
-            Toast.makeText(this,
-                    "username/password ไม่ถูกต้อง",
-                    Toast.LENGTH_SHORT)
-                    .show();
-        }else if(TextUtils.isEmpty(password)){
+        }else if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
             Toast.makeText(this,
                     "username/password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
                     .show();
         }
         return false;
+    }
+    public boolean checkSpicalchareceter(String username, String password){
+        if (!username.matches("[a-zA-Z0-9.-_]*") || !password.matches("[a-zA-Z0-9.-_]*" )){
+            Toast.makeText(this,
+                    "username/password ไม่ถูกต้อง",
+                    Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        } else {
+            return true;
+        }
+
     }
 }

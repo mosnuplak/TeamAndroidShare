@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     Toolbar toolbar;
     FancyButton btnRank;
     private Button mButtonDialog;
+    private String TAG = "ff";
     //CircleProgressView mCircleProgressView;
 
     @Override
@@ -90,6 +92,31 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         Intent i = new Intent(getApplication(), RankActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "INSIDE: onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "INSIDE: onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+        Log.d(TAG, "INSIDE: onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "INSIDE: onResume");
     }
 
 
