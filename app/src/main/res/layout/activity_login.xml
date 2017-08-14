@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-    android:background="@drawable/bg"
+    android:background="@color/colorPrimary"
     android:fitsSystemWindows="true">
     <FrameLayout
         android:layout_centerInParent="true"
@@ -13,7 +13,7 @@
         android:layout_height="400dp">
         <android.support.v7.widget.CardView
             android:id="@+id/cv_add"
-            app:cardBackgroundColor="#1f8e72"
+            app:cardBackgroundColor="#fcfffe"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
@@ -44,14 +44,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
                     <android.support.design.widget.TextInputLayout
-                        android:textColorHint="#f0f7f4"
+                        android:textColorHint="#9fa1a0"
                         android:layout_width="match_parent"
                         android:theme="@style/TextLabel"
                         android:layout_height="wrap_content">
                         <EditText
                             android:textSize="13sp"
                             android:hint="Username"
-                            android:textColor="#fcfffe"
+                            android:textColor="#000"
                             android:id="@+id/input_username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -69,14 +69,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
                     <android.support.design.widget.TextInputLayout
-                        android:textColorHint="#f5f9f7"
+                        android:textColorHint="#9fa1a0"
                         android:theme="@style/TextLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
                             android:textSize="13sp"
                             android:hint="Password"
-                            android:textColor="#fcfffe"
+                            android:textColor="#000"
                             android:id="@+id/input_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -104,12 +104,12 @@
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/btn_login"
-                    android:background="@drawable/bt_shape_2"
+                    android:background="@color/colorPrimary"
                     android:stateListAnimator="@drawable/state_list_animator_z"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:text="Login"
-                    android:textColor="#2fa881"
+                    android:textColor="#ffffff"
                     >
                 </Button>
             </LinearLayout>

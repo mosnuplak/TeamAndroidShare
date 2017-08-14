@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        initinstances();
+        initInstances();
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         finish();
     }
 
-    private void initinstances(){
+    private void initInstances(){
         btnLogin = (Button) findViewById(R.id.btn_login);
         editUsername = (EditText) findViewById(R.id.input_username);
         editUsername.setOnKeyListener(new View.OnKeyListener() {
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 username.equals(username) &&
                 password.equals(password)) {
             //เช็คอักขระพิเศษ
-            boolean check = checkSpicalchareceter(username, password);
+            boolean check = checkSpecialCharacter(username, password);
             if( check == false ){
                 return false;
             }
@@ -129,9 +129,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         return false;
     }
-    public boolean checkSpicalchareceter(String username, String password){
+    public boolean checkSpecialCharacter(String username, String password){
 
-        if (!username.matches("@/^[a-zA-Z0-9.-_]*") || !password.matches("@/^[a-zA-Z0-9.-_]*" )){
+        if (!username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
             Toast.makeText(this,
                     "username/password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
@@ -140,6 +140,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             return true;
         }
-
     }
 }
