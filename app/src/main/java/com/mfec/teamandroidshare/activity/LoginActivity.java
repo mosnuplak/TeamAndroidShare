@@ -1,12 +1,14 @@
 package com.mfec.teamandroidshare.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -17,17 +19,28 @@ import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+    @InjectView(R.id.btn_login)
     Button btnLogin;
+    @InjectView(R.id.input_username)
     EditText editUsername;
+    @InjectView(R.id.input_password)
     EditText editPassword;
+    @InjectView(R.id.fab)
+    FloatingActionButton fab;
+    @InjectView(R.id.cv)
+    CardView cv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.inject(this);
 
         initInstances();
         getWindow().setSoftInputMode(
@@ -44,7 +57,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
     }
 
     private void initInstances(){
@@ -96,14 +108,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-    @Override
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @OnClick({R.id.btn_login, R.id.fab})
     public void onClick(View v) {
-        if (v == btnLogin) {
-            boolean check = checkLoginValidate(editUsername.getText().toString(),editPassword.getText().toString());
-            if(check == true){
-                Intent i = new Intent(getApplication(),CategoryActivity.class);
-                startActivity(i);
-            }
+        switch (v.getId()) {
+            case R.id.fab:
+                getWindow().setExitTransition(null);
+                getWindow().setEnterTransition(null);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(this, fab, fab.getTransitionName());
+                    startActivity(new Intent(this, RegisterActivity.class), options.toBundle());
+                } else {
+                    startActivity(new Intent(this, RegisterActivity.class));
+                }
+                break;
+            case R.id.btn_login:
+                if (v == btnLogin) {
+                    boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
+                    if (check == true) {
+                        Intent i = new Intent(getApplication(), CategoryActivity.class);
+                        startActivity(i);
+                    }
+                }
+                break;
         }
     }
     public boolean checkLoginValidate(String username, String password) {
