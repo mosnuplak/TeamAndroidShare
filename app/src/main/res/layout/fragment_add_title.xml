@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-<EditText
-    android:id="@+id/etTilteName"
-    android:nextFocusDown="@+id/etTitleDis"
     android:layout_width="match_parent"
-    android:layout_height="56dp" />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Topic" />
+
+    <EditText
+        android:id="@+id/etTilteName"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:nextFocusDown="@+id/etTitleDis" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discription" />
 
     <EditText
         android:id="@+id/etTitleDis"
-        android:nextFocusForward="@+id/etTilteName"
         android:layout_width="match_parent"
-        android:layout_height="56dp" />
+        android:layout_height="56dp"
+        android:nextFocusForward="@+id/etTilteName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="link" />
+
     <EditText
         android:id="@+id/etTitleLink"
         android:layout_width="match_parent"
         android:layout_height="56dp" />
+
     <Button
         android:id="@+id/btnAdd"
-        android:text="Add"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Add" />
+    <TextView
+        android:id="@+id/tvAlert"
+        android:textSize="26dp"
+        android:textColor="#ff000d"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="56dp" />
 </LinearLayout>

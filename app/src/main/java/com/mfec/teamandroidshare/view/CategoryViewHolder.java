@@ -2,6 +2,7 @@ package com.mfec.teamandroidshare.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     LinearLayout rvCategory;
     ImageView ivPicCate;
     TextView tvNameCate;
+
     View view;
     onItemClick holderClick;
     public CategoryViewHolder(View itemView, onItemClick itemClick) {
@@ -24,7 +26,8 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         rvCategory = (LinearLayout) itemView.findViewById(R.id.rvCategory);
         ivPicCate = (ImageView) itemView.findViewById(R.id.ivPicCate);
         tvNameCate = (TextView) itemView.findViewById(R.id.tvNameCate);
-        holderClick =itemClick;
+
+        holderClick = itemClick;
         view.setOnClickListener(clickItem);
     }
 

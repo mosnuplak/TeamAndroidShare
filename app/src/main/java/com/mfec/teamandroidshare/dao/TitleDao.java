@@ -28,6 +28,17 @@ public class TitleDao {
     @SerializedName("userId")
     private String userId;
 
+    @SerializedName("totalViewer")
+    private String totalViewer;
+
+    public String getTotalViewer() {
+        return totalViewer;
+    }
+
+    public void setTotalViewer(String totalViewer) {
+        this.totalViewer = totalViewer;
+    }
+
     public String getUserId() {
         return userId;
     }

@@ -89,7 +89,7 @@ public class TitleActivity extends AppCompatActivity {
             transaction.replace(R.id.fragmentTitle , FragmentRank.newInstance(),"getFragmentRank")
                     .commit();
         } else if (navigation.equals("item_add")) {
-            transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(),"getFragmentAddTitle")
+            transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName),"getFragmentAddTitle")
                     .commit();
         }
     }

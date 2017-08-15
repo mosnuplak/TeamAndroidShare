@@ -28,26 +28,21 @@
         android:id="@+id/fragmentTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_above="@+id/bottom_nav_view"
-
-        >
-
-
-    </FrameLayout>
-
-        <android.support.design.widget.BottomNavigationView
-
-            android:id="@+id/bottom_nav_view"
-            android:layout_gravity="bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:animateLayoutChanges="false"
-            android:background="?android:attr/windowBackground"
-            app:menu="@menu/menu_bn_title"/>
+        android:layout_weight="1"></FrameLayout>
 
 
+
+    <android.support.design.widget.BottomNavigationView
+
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:animateLayoutChanges="false"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/menu_bn_title" />
 
 
 </LinearLayout>

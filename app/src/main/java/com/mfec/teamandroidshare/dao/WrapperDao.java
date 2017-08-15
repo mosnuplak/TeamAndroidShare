@@ -1,11 +1,16 @@
 package com.mfec.teamandroidshare.dao;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by MSI on 15/8/2560.
  */
 
 public class WrapperDao {
+    @SerializedName("category")
     private CategoryDao categoryDao;
+
+    @SerializedName("topic")
     private TitleDao titleDao;
 
     public CategoryDao getCategoryDao() {

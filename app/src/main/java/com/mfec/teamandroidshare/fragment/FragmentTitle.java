@@ -101,7 +101,7 @@ public class FragmentTitle extends Fragment {
 
         //initPeople();
         CategoryDao categoryDao = new CategoryDao();
-        categoryDao.setCateName("Android");
+        categoryDao.setCateName(cateName);
 
         Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicList(categoryDao);
         call.enqueue(new Callback<List<TitleDao>>() {
@@ -110,7 +110,6 @@ public class FragmentTitle extends Fragment {
                 if (response.isSuccessful()) {
 
                     List<TitleDao> dao = response.body();
-                    Log.d("Mos :isSuccessful"+"",dao.size()+"");
                     showTitle(dao);
                 } else {
                     try {

@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.manager.http;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.PeopleDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
+import com.mfec.teamandroidshare.dao.WrapperDao;
 
 import java.sql.Wrapper;
 import java.util.List;
@@ -27,6 +28,9 @@ public interface ApiService {
 
     @POST("topic/getListTopicByCategory")
     Call<List<TitleDao>> LoadTopicList(@Body CategoryDao categoryDao);
+
+    @POST("topic/createTopic")
+    Call <WrapperDao> AddTopic(@Body WrapperDao wrapper);
 
     @GET("category/getAllCategory")
     Call<List<CategoryDao>> LoadCategory();

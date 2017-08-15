@@ -1,5 +1,6 @@
 package com.mfec.teamandroidshare.view;
 
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -14,13 +15,17 @@ import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
  * Created by MSI on 4/8/2560.
  */
 
-public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implements View.OnClickListener {
+public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     FragmentTitle fragmentTitle;
     private FragmentTitle mContext;
     private List<TitleDao> TitleList;
@@ -38,7 +43,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implemen
     @Override
     public TitleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_title,parent,false);
-        return new TitleViewHolder(view);
+        return new TitleViewHolder(view, itemClick);
     }
 
     @Override
@@ -54,6 +59,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implemen
 
         holder.tvTitle.setText(titleDao.getHead());
         holder.tvDescript.setText(titleDao.getDescription());
+        holder.totalViewer.setText(titleDao.getTotalViewer());
         if (titleDao.getPoster() == null){
             holder.tvPoster.setText("Share by Anonymous");
         } else {
@@ -71,24 +77,25 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implemen
         }else {
             holder.ivTitle.setImageResource(R.drawable.logo);
         }
-        holder.ibtnStar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(),"Star",Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
 
     }
+
+    TitleViewHolder.onItemClick itemClick = new TitleViewHolder.onItemClick() {
+
+        @Override
+        public void onItemClickListener(int position) {
+            Toast.makeText(fragmentTitle.getActivity(),"go webView",Toast.LENGTH_SHORT).show();
+
+        }
+    };
+
 
     @Override
     public int getItemCount() {
         return TitleList.size();
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }
+
