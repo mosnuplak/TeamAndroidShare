@@ -27,7 +27,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.mfec.teamandroidshare.R.id.fab_addCategory;
 import static com.mfec.teamandroidshare.R.id.fab_gotoRank;
 import static com.mfec.teamandroidshare.R.id.fab_profile;
 
@@ -88,12 +87,12 @@ public class FragmentCategory extends Fragment {
                     startActivity(i);
                 }
 
-                if (fabItem.getItemId() == fab_addCategory) {
-                    Toast.makeText(getContext(),
-                            fabItem.getTitle(),
-                            Toast.LENGTH_SHORT).show();
-
-                }
+//                if (fabItem.getItemId() == fab_addCategory) {
+//                    Toast.makeText(getContext(),
+//                            fabItem.getTitle(),
+//                            Toast.LENGTH_SHORT).show();
+//
+//                }
                 if (fabItem.getItemId() == fab_gotoRank) {
                     Toast.makeText(
                             getContext(),
