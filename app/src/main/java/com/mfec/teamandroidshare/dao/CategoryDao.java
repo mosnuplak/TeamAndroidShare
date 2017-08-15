@@ -10,9 +10,18 @@ public class CategoryDao {
     @SerializedName("name")
     private String cateName;
 
-    public CategoryDao(String cateName){
-        this.cateName = cateName;
+    @SerializedName("categoryId")
+    private String id;
+
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 
     public String getCateName() {
         return cateName;

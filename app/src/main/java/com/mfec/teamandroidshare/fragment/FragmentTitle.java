@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.PeopleDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.manager.HttpManager;
+import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 import com.mfec.teamandroidshare.view.TitleAdapter;
 
 import java.io.IOException;
@@ -98,13 +100,17 @@ public class FragmentTitle extends Fragment {
         rvTitle = (RecyclerView) rootView.findViewById(R.id.rvTitle);
 
         //initPeople();
+        CategoryDao categoryDao = new CategoryDao();
+        categoryDao.setCateName("Android");
 
-        Call<List<TitleDao>> call = HttpManager.getInstance().getService().LoadTopicList(cateName);
+        Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicList(categoryDao);
         call.enqueue(new Callback<List<TitleDao>>() {
             @Override
             public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {
                 if (response.isSuccessful()) {
+
                     List<TitleDao> dao = response.body();
+                    Log.d("Mos :isSuccessful"+"",dao.size()+"");
                     showTitle(dao);
                 } else {
                     try {

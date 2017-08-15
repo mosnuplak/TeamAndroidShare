@@ -4,9 +4,11 @@ import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.PeopleDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
 
+import java.sql.Wrapper;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -20,13 +22,20 @@ public interface ApiService {
     @GET("topic/getalltopic")
     Call<List<PeopleDao>> LoadPerpeoList();
 
-    @GET("topic/get-by-category/{category}")
-    Call<List<TitleDao>> LoadTopicList(@Path("category") String cateName);
+//    @GET("topic/getListTopicByCategory/{category}")
+//    Call<List<TitleDao>> LoadTopicList(@Path("category") String cateName);
 
-    @GET("category/getallcategory")
+    @POST("topic/getListTopicByCategory")
+    Call<List<TitleDao>> LoadTopicList(@Body CategoryDao categoryDao);
+
+    @GET("category/getAllCategory")
     Call<List<CategoryDao>> LoadCategory();
 //    @GET("topic/getalltopic")
 //    Call<List<TitleDao>> LoadTopicList();
+
+    @GET("topic/createTopic")
+    Call<Wrapper> AddTitle(@Body Wrapper wrapper);
+
 
 
 

@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class TitleDao {
-    @SerializedName("head")
+    @SerializedName("headTopic")
     private String head;
 
     @SerializedName("description")
     private String description;
 
-    @SerializedName("category")
+    @SerializedName("categoryName")
     private String category;
 
     @SerializedName("link")
@@ -25,7 +25,19 @@ public class TitleDao {
     @SerializedName("poster")
     private String poster;
 
+    @SerializedName("userId")
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @SerializedName("createDate")
+
     private  long createDate;
 
     public String getHead() {

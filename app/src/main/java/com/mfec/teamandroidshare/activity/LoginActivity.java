@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
+
                         case KeyEvent.KEYCODE_ENTER:
                             boolean check = checkLoginValidate(editUsername.getText().toString(),editPassword.getText().toString());
                             if(check == true){

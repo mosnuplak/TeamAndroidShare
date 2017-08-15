@@ -12,6 +12,7 @@ import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.manager.HttpManager;
+import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
 
 import java.util.ArrayList;
@@ -105,25 +106,25 @@ public class FragmentCategory extends Fragment {
 
     private void getCategoryItem() {
         categoryList = new ArrayList<>();
-        categoryList.add(new CategoryDao("Android"));
-        categoryList.add(new CategoryDao("IOS"));
-        categoryList.add(new CategoryDao("Web"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("มอส เอง ไง จะ ใคร ละ"));
-        categoryList.add(new CategoryDao("เกมส์เอง อิอิ อะอะ อึอึ อุอุ"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("ป๊อป กวน ตีน"));
-        categoryList.add(new CategoryDao("ฟ้า กวน ตีน "));
-        categoryList.add(new CategoryDao("คลิปหลุดเกมส์ 18+ "));
-        categoryList.add(new CategoryDao("คลิปเกย์เรท ฉ "));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("Android"));
+//        categoryList.add(new CategoryDao("IOS"));
+//        categoryList.add(new CategoryDao("Web"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("มอส เอง ไง จะ ใคร ละ"));
+//        categoryList.add(new CategoryDao("เกมส์เอง อิอิ อะอะ อึอึ อุอุ"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("ป๊อป กวน ตีน"));
+//        categoryList.add(new CategoryDao("ฟ้า กวน ตีน "));
+//        categoryList.add(new CategoryDao("คลิปหลุดเกมส์ 18+ "));
+//        categoryList.add(new CategoryDao("คลิปเกย์เรท ฉ "));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
+//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
 
 
     }
@@ -133,7 +134,7 @@ public class FragmentCategory extends Fragment {
         btnRank = (FancyButton) rootView.findViewById(R.id.btn_rank);
 
         //getCategoryItem();
-        Call<List<CategoryDao>> call = HttpManager.getInstance().getService().LoadCategory();
+        Call<List<CategoryDao>> call = HttpManagerNice.getInstance().getService().LoadCategory();
         call.enqueue(new Callback<List<CategoryDao>>() {
             @Override
             public void onResponse(Call<List<CategoryDao>> call, Response<List<CategoryDao>> response) {

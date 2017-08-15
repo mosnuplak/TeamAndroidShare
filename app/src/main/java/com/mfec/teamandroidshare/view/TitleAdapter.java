@@ -49,8 +49,8 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> implemen
         String wed = "Web";
         TitleDao titleDao = TitleList.get(position);
 
-        SpannableString content = new SpannableString(titleDao.getHead());
-        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        //SpannableString content = new SpannableString(titleDao.getHead());
+        //content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 
         holder.tvTitle.setText(titleDao.getHead());
         holder.tvDescript.setText(titleDao.getDescription());
