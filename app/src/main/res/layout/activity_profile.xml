@@ -59,12 +59,7 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-
-            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

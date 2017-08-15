@@ -1,20 +1,15 @@
 package com.mfec.teamandroidshare.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
-import com.mfec.teamandroidshare.activity.ProfileActivity;
-import com.mfec.teamandroidshare.activity.RankActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
@@ -26,9 +21,6 @@ import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.mfec.teamandroidshare.R.id.fab_gotoRank;
-import static com.mfec.teamandroidshare.R.id.fab_profile;
 
 
 /**
@@ -58,51 +50,51 @@ public class FragmentCategory extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
         initInstances(rootView);
 
-        fabWithOptions = (OptionsFabLayout) rootView.findViewById(R.id.fab_l);
+//        fabWithOptions = (OptionsFabLayout) rootView.findViewById(R.id.fab_l);  // ปุ่ม หน้า Category
 
 
         //Set mini fab's colors.
-        fabWithOptions.setMiniFabsColors(
-                R.color.menu_category_rank,
-                R.color.menu_category_profile,
-                R.color.menu_category_category);
+//        fabWithOptions.setMiniFabsColors(
+//                R.color.menu_category_rank,
+//                R.color.menu_category_profile,
+//                R.color.menu_category_category);
 
         //Set main fab clicklistener.
-        fabWithOptions.setMainFabOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Main fab clicked!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        fabWithOptions.setMainFabOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getContext(), "Main fab clicked!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         //Set mini fabs clicklisteners.
-        fabWithOptions.setMiniFabSelectedListener(new OptionsFabLayout.OnMiniFabSelectedListener() {
-            @Override
-            public void onMiniFabSelected(MenuItem fabItem) {
-                if (fabItem.getItemId() == fab_profile) {
-                    Toast.makeText(getContext(),
-                            "Go to " + fabItem.getTitle(),
-                            Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(), ProfileActivity.class);
-                    startActivity(i);
-                }
-
-//                if (fabItem.getItemId() == fab_addCategory) {
+//        fabWithOptions.setMiniFabSelectedListener(new OptionsFabLayout.OnMiniFabSelectedListener() {
+//            @Override
+//            public void onMiniFabSelected(MenuItem fabItem) {
+//                if (fabItem.getItemId() == fab_profile) {
 //                    Toast.makeText(getContext(),
-//                            fabItem.getTitle(),
+//                            "Go to " + fabItem.getTitle(),
 //                            Toast.LENGTH_SHORT).show();
-//
+//                    Intent i = new Intent(getActivity(), ProfileActivity.class);
+//                    startActivity(i);
 //                }
-                if (fabItem.getItemId() == fab_gotoRank) {
-                    Toast.makeText(
-                            getContext(),
-                            "Go To " + fabItem.getTitle(),
-                            Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), RankActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
+//
+////                if (fabItem.getItemId() == fab_addCategory) {
+////                    Toast.makeText(getContext(),
+////                            fabItem.getTitle(),
+////                            Toast.LENGTH_SHORT).show();
+////
+////                }
+//                if (fabItem.getItemId() == fab_gotoRank) {
+//                    Toast.makeText(
+//                            getContext(),
+//                            "Go To " + fabItem.getTitle(),
+//                            Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getActivity(), RankActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
 
         //getCategoryItem();
 

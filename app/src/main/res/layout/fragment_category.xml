@@ -38,22 +38,16 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <!--<Button-->
-            <!--android:id="@+id/btnInsertGategory"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom|right"-->
-            <!--android:text="+"-->
-            <!--android:textSize="20sp" />-->
 
-            <com.github.ag.floatingactionmenu.OptionsFabLayout
-                android:id="@+id/fab_l"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                custom:color="@color/colorAccent"
-                custom:options_color="@color/colorPrimary"
-                custom:options_menu="@menu/menu"
-                custom:src="@drawable/menu_hamburger1" />
+
+            <!--<com.github.ag.floatingactionmenu.OptionsFabLayout-->
+                <!--android:id="@+id/fab_l"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--custom:color="@color/colorPrimary"-->
+                <!--custom:options_color="@color/colorPrimary"-->
+                <!--custom:options_menu="@menu/menu"-->
+                <!--custom:src="@drawable/plus" />-->
 
 
         </FrameLayout>
