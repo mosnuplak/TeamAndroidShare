@@ -7,15 +7,31 @@
     android:layout_height="match_parent"
     tools:context="com.mfec.teamandroidshare.activity.ProfileActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#FFFFCC"
+        android:background="@color/backgroundCategory"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="8dp">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/app_name_profile"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                />
+
+        </android.support.v7.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,11 +58,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-
-
 
 
             </LinearLayout>
@@ -57,7 +72,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="2"
-                android:text="เป็นแค่ลูกแมวตัวขาวๆกลมๆเล็กๆไม่ใหญ่ๆชอบที่กลิ้งๆหลุนๆมาบรรจบพบดวงอาทิตย์ริมหาดทรายเป็นแค่ลูกแมวตัวขาวๆกลมๆเล็กๆไม่ใหญ่ๆชอบที่กลิ้งๆหลุนๆมาบรรจบพบดวงอาทิตย์ริมหาดทราย"
+                android:text="Mos เองไง จะใครละ"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -69,7 +84,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1.5" />
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btn_rank2"
@@ -88,12 +103,12 @@
                     fancy:fb_iconPosition="left"
                     fancy:fb_radius="10dp"
                     fancy:fb_text="Rank"
-                    fancy:fb_textColor="#FFFFFF" />
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1.5" />
 
             </LinearLayout>
 
@@ -106,3 +121,4 @@
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
+
