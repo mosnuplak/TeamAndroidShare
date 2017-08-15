@@ -81,21 +81,8 @@
                             />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:paddingStart="50dp"
-                    android:paddingEnd="30dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-                    <android.support.design.widget.TextInputLayout
-                        android:textColorHint="#f0f7f4"
-                        android:theme="@style/TextLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
                 <Button
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="50dp"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/btn_login"
                     android:background="@color/colorPrimary"
