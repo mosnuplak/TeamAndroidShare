@@ -62,8 +62,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         );
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
-//        getSupportActionBar().setHomeButtonEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
     }

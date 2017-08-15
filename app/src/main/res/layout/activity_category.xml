@@ -22,25 +22,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/app_name"
-                android:textSize="20sp"
                 android:gravity="center_vertical"
+                android:text="@string/app_name"
                 android:textColor="#000000"
-                />
+                android:textSize="20sp" />
 
         </android.support.v7.widget.Toolbar>
+
         <FrameLayout
             android:id="@+id/fmCategory"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent">
+
+        </FrameLayout>
     </LinearLayout>
 
     <!--</LinearLayout>-->
@@ -49,7 +53,7 @@
         android:layout_width="@dimen/drawer_menu_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#FFFFCC"
+        android:background="@color/backgroundCategory"
         android:orientation="vertical">
 
 
@@ -64,12 +68,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/user" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Mos"
-                android:textSize="30sp" />
+
 
         </LinearLayout>
 
@@ -85,7 +84,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="2"
-                android:text="เป็นแค่ลูกแมวตัวขาวๆกลมๆเล็กๆไม่ใหญ่ๆชอบที่กลิ้งๆหลุนๆมาบรรจบพบดวงอาทิตย์ริมหาดทรายเป็นแค่ลูกแมวตัวขาวๆกลมๆเล็กๆไม่ใหญ่ๆชอบที่กลิ้งๆหลุนๆมาบรรจบพบดวงอาทิตย์ริมหาดทราย"
+                android:text="Mos"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
