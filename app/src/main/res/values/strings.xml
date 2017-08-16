@@ -13,6 +13,7 @@
     <string name="menu_hot">Hot</string>
     <string name="menu_love">Love</string>
     <string name="menu_add">Add</string>
+    <string name="menu_logout">Log out</string>
 
 
 </resources>

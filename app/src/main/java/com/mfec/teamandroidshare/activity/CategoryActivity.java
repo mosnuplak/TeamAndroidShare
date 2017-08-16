@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -57,7 +58,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                     LoginDao dao = response.body();
                     Log.d("mos", dao.getName() + "");
                     tvProfile.setText(dao.getName());
-                }else {
+                } else {
                     try {
                         Toast.makeText(getApplicationContext(),
                                 response.errorBody().string(),
@@ -90,8 +91,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         btnRank = (FancyButton) findViewById(R.id.btn_rank);
         toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
         setSupportActionBar(toolbar); //คอมเม้น
-        tvProfile = (TextView)findViewById(R.id.tvProfile);
-
+        tvProfile = (TextView) findViewById(R.id.tvProfile);
 
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -127,6 +127,12 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     public boolean onOptionsItemSelected(MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item))
             return true;
+        if (item.getItemId() == R.id.action_settings) {
+            Intent i = new Intent(getApplication(), LoginActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
 
@@ -164,5 +170,9 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         Log.d(TAG, "INSIDE: onResume");
     }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 }
