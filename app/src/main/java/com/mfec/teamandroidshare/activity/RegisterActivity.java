@@ -51,49 +51,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         btnRegister.setOnClickListener(this) ;
         fab.setOnClickListener(this);
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("ff","dd");
-////                LoginDao loginDao = new LoginDao();
-////                loginDao.setName(editName.getText().toString());
-////                loginDao.setUsername(editUsername.getText().toString());
-////                loginDao.setPassword(editPassword.getText().toString());
-////                Call<Boolean> call = HttpManagerNice.getInstance().getService().CheckRegister(loginDao);
-////                call.enqueue(new Callback<Boolean>() {
-////                    @Override
-////                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-////                        if(response.isSuccessful()){
-////                            CheckRegister = response.body().booleanValue();
-////                            Log.d("ff","dd");
-////                            //   editName.setText(CheckRegister);
-////                        }else {
-////                            Toast.makeText(getApplicationContext()
-////                                    ,"มอสกาก"
-////                                    ,Toast.LENGTH_LONG)
-////                                    .show();
-////                        }
-////                    }
-////                    @Override
-////                    public void onFailure(Call<Boolean> call, Throwable t) {
-////                        Toast.makeText(getApplicationContext()
-////                                ,"fahhhh"
-////                                ,Toast.LENGTH_LONG)
-////                                .show();
-////
-////                    }
-////                });
-//            }
-//        });
-
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-//            @Override
-//            public void onClick(View v) {
-//                animateRevealClose();
-//
-//
-//            }
-//        });
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void animateRevealClose() {
