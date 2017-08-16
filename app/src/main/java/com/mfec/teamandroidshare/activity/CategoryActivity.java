@@ -128,7 +128,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         if (actionBarDrawerToggle.onOptionsItemSelected(item))
             return true;
         if (item.getItemId() == R.id.action_settings) {
-            Log.d(TAG, "Log Out");
             Intent i = new Intent(getApplication(), LoginActivity.class);
             startActivity(i);
             finish();
