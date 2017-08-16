@@ -110,6 +110,7 @@ public class FragmentTitle extends Fragment {
                 if (response.isSuccessful()) {
 
                     List<TitleDao> dao = response.body();
+                    Log.d(" "+dao.get(1).getCategory(),"getCategory Mos");
                     showTitle(dao);
                 } else {
                     try {
