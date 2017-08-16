@@ -2,6 +2,8 @@ package com.mfec.teamandroidshare.manager;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mfec.teamandroidshare.manager.http.ApiService;
 
 import retrofit2.Retrofit;
@@ -26,10 +28,13 @@ public class HttpManager {
 
     private HttpManager() {
         mContext = Contextor.getInstance().getContext();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://52.221.197.204:8080/ShareService/api/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         service = retrofit.create(ApiService.class);
     }

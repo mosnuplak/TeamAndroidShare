@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,10 +18,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.dao.LoginDao;
+import com.mfec.teamandroidshare.manager.HttpManager;
+import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
+
+import java.io.IOException;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -34,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FloatingActionButton fab;
     @InjectView(R.id.cv)
     CardView cv;
-
+    String checkLogin = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +121,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.btn_login, R.id.fab})
     public void onClick(View v) {
+
+
+
         switch (v.getId()) {
             case R.id.fab:
                 getWindow().setExitTransition(null);
@@ -125,16 +138,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btn_login:
+
                 if (v == btnLogin) {
-                    boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
-                    if (check == true) {
-                        Intent i = new Intent(getApplication(), CategoryActivity.class);
-                        startActivity(i);
-                    }
+                    Log.d("nnnn","aaaa");
+                    LoginDao loginDao = new LoginDao();
+                    loginDao.setUsername("mos");
+                    loginDao.setPassword("mos");
+
+                    Call<String> call = HttpManagerNice.getInstance().getService().CheckLogin(loginDao); //call service ส่ง ตัวแบบไป
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            if (response.isSuccessful()) {
+                                checkLogin = response.body().toString();
+                                editUsername.setText(checkLogin);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    //Toast.makeText(this,""+check,Toast.LENGTH_SHORT).show();
+//                    boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
+//                    if (check == true) {
+//                        Intent i = new Intent(getApplication(), CategoryActivity.class);
+//                        startActivity(i);
+//                    }
                 }
                 break;
         }
     }
+
+
+
+    private void setData(String data) {
+        editUsername.setText(data);
+    }
+
     public boolean checkLoginValidate(String username, String password) {
         if ( (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
                 username.equals(username) &&

@@ -1,6 +1,7 @@
 package com.mfec.teamandroidshare.manager.http;
 
 import com.mfec.teamandroidshare.dao.CategoryDao;
+import com.mfec.teamandroidshare.dao.LoginDao;
 import com.mfec.teamandroidshare.dao.PeopleDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.dao.WrapperDao;
@@ -8,7 +9,9 @@ import com.mfec.teamandroidshare.dao.WrapperDao;
 import java.sql.Wrapper;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -36,9 +39,10 @@ public interface ApiService {
     Call<List<CategoryDao>> LoadCategory();
 //    @GET("topic/getalltopic")
 //    Call<List<TitleDao>> LoadTopicList();
+    @POST("login/userlogin")
+    Call<String> CheckLogin(@Body LoginDao loginDao);
 
-    @GET("topic/createTopic")
-    Call<Wrapper> AddTitle(@Body Wrapper wrapper);
+
 
 
 
