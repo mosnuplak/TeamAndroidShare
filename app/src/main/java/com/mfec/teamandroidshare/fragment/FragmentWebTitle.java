@@ -17,13 +17,15 @@ import com.mfec.teamandroidshare.R;
  */
 public class FragmentWebTitle extends Fragment {
     WebView myWebView;
+    String link;
     public FragmentWebTitle() {
         super();
     }
 
-    public static FragmentWebTitle newInstance() {
+    public static FragmentWebTitle newInstance(String link) {
         FragmentWebTitle fragment = new FragmentWebTitle();
         Bundle args = new Bundle();
+        args.putString("link",link);
         fragment.setArguments(args);
         return fragment;
     }
@@ -36,6 +38,7 @@ public class FragmentWebTitle extends Fragment {
 
         myWebView.getSettings().setJavaScriptEnabled(true);
         Fragment fragment = this;
+        link = getArguments().getString("link");
 
         myWebView.setWebViewClient(new WebViewClient(){
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
@@ -43,7 +46,7 @@ public class FragmentWebTitle extends Fragment {
             }
         });
 
-        myWebView.loadUrl("http://www.youtube.com");
+        myWebView.loadUrl(link);
 
         return rootView;
     }

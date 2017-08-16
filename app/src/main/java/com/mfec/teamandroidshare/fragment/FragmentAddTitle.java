@@ -1,13 +1,19 @@
 package com.mfec.teamandroidshare.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -78,6 +84,25 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         tvAlert = (TextView) rootView.findViewById(R.id.tvAlert);
         btnAdd = (Button) rootView.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
+
+
+
+        etTitleLink.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                    addTopic();
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getActivity()
+                            .getCurrentFocus()
+                            .getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         // Init 'View' instance(s) with rootView.findViewById here
     }
 
@@ -121,53 +146,58 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == btnAdd) {
-
-            if (!TextUtils.isEmpty(etTilteName.getText().toString()) && !TextUtils.isEmpty(etTitleDis.getText().toString())
-                    && !TextUtils.isEmpty(etTitleLink.getText().toString())) {
-                //Toast.makeText(getActivity(), "mosNaja" + cateName, Toast.LENGTH_SHORT).show();
-                WrapperDao wrapper = new WrapperDao();
-                CategoryDao categoryDao = new CategoryDao();
-                TitleDao titleDao = new TitleDao();
-                categoryDao.setCateName(cateName);
-
-                titleDao.setHead(etTilteName.getText().toString());
-                titleDao.setLink(etTitleLink.getText().toString());
-                titleDao.setDescription(etTitleDis.getText().toString());
-                titleDao.setUserId("5992ced1e4b0bfbd84845d0b");
-
-                wrapper.setTitleDao(titleDao);
-                wrapper.setCategoryDao(categoryDao);
-
-                Call<WrapperDao> call = HttpManagerNice.getInstance().getService().AddTopic(wrapper);
-                call.enqueue(new Callback<WrapperDao>() {
-                    @Override
-                    public void onResponse(Call<WrapperDao> call, Response<WrapperDao> response) {
-                        if (response.isSuccessful()) {
-
-                        } else {
-                            try {
-                                Toast.makeText(getActivity(),
-                                        response.errorBody().string(),
-                                        Toast.LENGTH_LONG).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<WrapperDao> call, Throwable t) {
-
-                    }
-                });
-
-                etTilteName.setText("");
-                etTitleDis.setText("");
-                etTitleLink.setText("");
-                tvAlert.setText("บันทึกสำเร็จ");
-            } else {
-                tvAlert.setText("กรุณากรอกข้อมูลให้ครบ");
-            }
+            addTopic();
         }
     }
+
+    private void addTopic() {
+        if (!TextUtils.isEmpty(etTilteName.getText().toString()) && !TextUtils.isEmpty(etTitleDis.getText().toString())
+                && !TextUtils.isEmpty(etTitleLink.getText().toString())) {
+            //Toast.makeText(getActivity(), "mosNaja" + cateName, Toast.LENGTH_SHORT).show();
+            WrapperDao wrapper = new WrapperDao();
+            CategoryDao categoryDao = new CategoryDao();
+            TitleDao titleDao = new TitleDao();
+            categoryDao.setCateName(cateName);
+
+            titleDao.setHead(etTilteName.getText().toString());
+            titleDao.setLink(etTitleLink.getText().toString());
+            titleDao.setDescription(etTitleDis.getText().toString());
+            titleDao.setUserId("5992ced1e4b0bfbd84845d0b");
+
+            wrapper.setTitleDao(titleDao);
+            wrapper.setCategoryDao(categoryDao);
+
+            Call<WrapperDao> call = HttpManagerNice.getInstance().getService().AddTopic(wrapper);
+            call.enqueue(new Callback<WrapperDao>() {
+                @Override
+                public void onResponse(Call<WrapperDao> call, Response<WrapperDao> response) {
+                    if (response.isSuccessful()) {
+
+                    } else {
+                        try {
+                            Toast.makeText(getActivity(),
+                                    response.errorBody().string(),
+                                    Toast.LENGTH_LONG).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<WrapperDao> call, Throwable t) {
+
+                }
+            });
+
+            etTilteName.setText("");
+            etTitleDis.setText("");
+            etTitleLink.setText("");
+            tvAlert.setText("บันทึกสำเร็จ");
+        } else {
+            tvAlert.setText("กรุณากรอกข้อมูลให้ครบ");
+        }
+    }
+
 }
+

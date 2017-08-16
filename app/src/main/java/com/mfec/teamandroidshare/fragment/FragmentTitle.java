@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class FragmentTitle extends Fragment {
 
     RecyclerView rvTitle;
     TitleAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
     private List<PeopleDao> peopleList;
     String cateName;
 
@@ -94,12 +96,22 @@ public class FragmentTitle extends Fragment {
     private void initInstances(View rootView) {
 
 
-
-
-
         rvTitle = (RecyclerView) rootView.findViewById(R.id.rvTitle);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                    reloadData();
+            }
+        });
 
+        reloadData();
         //initPeople();
+
+
+    }
+
+    private void reloadData() {
         CategoryDao categoryDao = new CategoryDao();
         categoryDao.setCateName(cateName);
 
@@ -107,6 +119,7 @@ public class FragmentTitle extends Fragment {
         call.enqueue(new Callback<List<TitleDao>>() {
             @Override
             public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {
+                swipeRefreshLayout.setRefreshing(false);
                 if (response.isSuccessful()) {
 
                     List<TitleDao> dao = response.body();
@@ -126,10 +139,9 @@ public class FragmentTitle extends Fragment {
 
             @Override
             public void onFailure(Call<List<TitleDao>> call, Throwable t) {
-
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
-
     }
 
     private void showTitle(List<TitleDao> dao) {

@@ -39,7 +39,8 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
         ivTitle = (ImageView) itemView.findViewById(R.id.ivTitle);
 
         holderClick = itemClick;
-        view.setOnClickListener(clickItem);
+        ivTitle.setOnClickListener(clickItem);
+        //view.setOnClickListener(clickItem);
     }
 
     View.OnClickListener clickItem = new View.OnClickListener() {

@@ -31,6 +31,17 @@ public class TitleDao {
     @SerializedName("totalViewer")
     private String totalViewer;
 
+    @SerializedName("topicId")
+    private String topicId;
+
+    public String getTopicId() {
+        return topicId;
+    }
+
+    public void setTopicId(String topicId) {
+        this.topicId = topicId;
+    }
+
     public String getTotalViewer() {
         return totalViewer;
     }

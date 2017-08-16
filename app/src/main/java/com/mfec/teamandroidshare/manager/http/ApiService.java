@@ -31,9 +31,12 @@ public interface ApiService {
 
     @POST("topic/createTopic")
     Call<WrapperDao> AddTopic(@Body WrapperDao wrapper);
+    @POST("topic/viewTopic")
+    Call<TitleDao> AddViewTopic(@Body TitleDao titleDao);
 
     @GET("category/getAllCategory")
     Call<List<CategoryDao>> LoadCategory();
+
 
     //    @GET("topic/getalltopic")
 //    Call<List<TitleDao>> LoadTopicList();
