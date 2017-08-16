@@ -2,13 +2,15 @@ package com.mfec.teamandroidshare.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Dialog;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
@@ -48,9 +50,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.inject(this);
-
         btnRegister.setOnClickListener(this) ;
         fab.setOnClickListener(this);
+
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void animateRevealClose() {
@@ -101,10 +103,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                            if(response.isSuccessful()){
                                CheckRegister = response.body();
+                               AlertDialog.Builder builder =
+                                       new AlertDialog.Builder(RegisterActivity.this);
+                               builder.setMessage("Success");
+                               Toast.makeText(getApplicationContext()
+                                       ,"success"
+                                       ,Toast.LENGTH_LONG)
+                                       .show();
                                // Log.d("ff","dd");
-                               editName.setText(CheckRegister+"");
-                               editUsername.setText(CheckRegister+"");
-                               editPassword.setText(CheckRegister+"");
+//                               editName.setText(CheckRegister+"");
+//                               editUsername.setText(CheckRegister+"");
+//                               editPassword.setText(CheckRegister+"");
                            }else {
                                Toast.makeText(getApplicationContext()
                                        ,"no success"
@@ -124,6 +133,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                }
                break;
+
            case R.id.fab:
                animateRevealClose();
                break;

@@ -38,10 +38,11 @@ public interface ApiService {
     //    @GET("topic/getalltopic")
 //    Call<List<TitleDao>> LoadTopicList();
     @POST("login/userlogin")
-    Call<String> CheckLogin(@Body LoginDao loginDao);
+    Call<LoginDao>CheckLogin(@Body LoginDao loginDao);
 
     @POST("register/registerUser")
-    Call<Boolean> CheckRegister(@Body LoginDao loginDao);
+    Call<Boolean>CheckRegister(@Body LoginDao loginDao);
+
     @GET("profile/getUserProfile/{id}")
     Call<LoginDao> loadProfile(@Path("id") String id);
 

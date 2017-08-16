@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.LoginDao;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FloatingActionButton fab;
     @InjectView(R.id.cv)
     CardView cv;
-    String checkLogin = "";
+   // private  Call<LoginDao> checkLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,34 +67,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onPause() {
         super.onPause();
+      //  finish();
     }
 
     private void initInstances(){
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        editUsername = (EditText) findViewById(R.id.input_username);
-        editUsername.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_DPAD_CENTER:
-
-                        case KeyEvent.KEYCODE_ENTER:
-                            boolean check = checkLoginValidate(editUsername.getText().toString(),editPassword.getText().toString());
-                            if(check == true){
-                                Intent i = new Intent(getApplication(),CategoryActivity.class);
-                                startActivity(i);
-                            }else {
-
-                            }
-                            return true;
-                        default:
-                            break;
-                    }
-                }
-                return false;
-            }
-        });
         editPassword = (EditText) findViewById(R.id.input_password);
         editPassword.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -102,13 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            boolean check = checkLoginValidate(editUsername.getText().toString(),editPassword.getText().toString());
-                            if(check == true){
-                                Intent i = new Intent(getApplication(),CategoryActivity.class);
-                                startActivity(i);
-                            }else {
 
-                            }
                             return true;
                         default:
                             break;
@@ -118,10 +89,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.btn_login, R.id.fab})
-    public void onClick(View v) {
 
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
                 getWindow().setExitTransition(null);
@@ -142,28 +114,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     loginDao.setUsername(editUsername.getText().toString());
                     loginDao.setPassword(editPassword.getText().toString());
 
-                    Call<String> call = HttpManagerNice.getInstance().getService().CheckLogin(loginDao); //call service ส่ง ตัวแบบไป
-                    call.enqueue(new Callback<String>() {
+                    Call<LoginDao> call = HttpManagerNice.getInstance().getService().CheckLogin(loginDao); //call service ส่ง ตัวแบบไป
+                    call.enqueue(new Callback<LoginDao>() {
                         @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
-                            if (response.isSuccessful()) {
-                                checkLogin = response.body().toString();
-                                editUsername.setText(checkLogin);
-                                editPassword.setText(checkLogin);
-                            }
-                        }
+                        public void onResponse(Call<LoginDao> call, Response<LoginDao> response) {
+                            if(response.isSuccessful()){
+                               LoginDao login = response.body();
+                                boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
+                                if (check == true) {
+                                    Intent i = new Intent(getApplication(), CategoryActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+//                                login.getName();
+                                Toast.makeText(getApplicationContext(),
+                                        login.getName().toString(),
+                                        Toast.LENGTH_LONG).show();
 
+                            }else {
+                                    Toast.makeText(getApplicationContext(),
+                                            "no success".toString(),
+                                            Toast.LENGTH_LONG).show();
+
+                            }
+
+                        }
                         @Override
-                        public void onFailure(Call<String> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        public void onFailure(Call<LoginDao> call, Throwable t) {
+                            Toast.makeText(getApplicationContext()
+                                    ,"username หรือ password ไม่ถูกต้อง"
+                                    ,Toast.LENGTH_LONG)
+                                    .show();
+
                         }
                     });
                     //Toast.makeText(this,""+check,Toast.LENGTH_SHORT).show();
-//                    boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
-//                    if (check == true) {
-//                        Intent i = new Intent(getApplication(), CategoryActivity.class);
-//                        startActivity(i);
-//                    }
+
                 }
                 break;
         }
