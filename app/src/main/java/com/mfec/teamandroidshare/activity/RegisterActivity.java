@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                editPassword.setText(CheckRegister+"");
                            }else {
                                Toast.makeText(getApplicationContext()
-                                       ,"มอสกาก"
+                                       ,"no success"
                                        ,Toast.LENGTH_LONG)
                                        .show();
                            }
@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                        @Override
                        public void onFailure(Call<Boolean> call, Throwable t) {
                            Toast.makeText(getApplicationContext()
-                                   ,"dd"
+                                   ,"Fail"
                                    ,Toast.LENGTH_LONG)
                                    .show();
 
