@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
         editUsername.setOnClickListener(this);
         editPassword.setOnClickListener(this);
-       // finish();
+
     }
 
     @Override
@@ -127,15 +127,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     finish();
                                 }
 //                                login.getName();
-                                Toast.makeText(getApplicationContext(),
-                                        login.getName().toString(),
-                                        Toast.LENGTH_LONG).show();
-
+//                                Toast.makeText(getApplicationContext(),
+//                                        login.getName().toString(),
+//                                        Toast.LENGTH_LONG).show();
                             }else {
                                     Toast.makeText(getApplicationContext(),
                                             "no success".toString(),
                                             Toast.LENGTH_LONG).show();
-
                             }
 
                         }
@@ -145,17 +143,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     ,"username หรือ password ไม่ถูกต้อง"
                                     ,Toast.LENGTH_LONG)
                                     .show();
-
                         }
                     });
                     //Toast.makeText(this,""+check,Toast.LENGTH_SHORT).show();
-
                 }
                 break;
         }
     }
-
-
 
     private void setData(String data) {
         editUsername.setText(data);
@@ -192,7 +186,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.LENGTH_SHORT)
                     .show();
             return false;
-        } else {
+        }else {
             return true;
         }
     }

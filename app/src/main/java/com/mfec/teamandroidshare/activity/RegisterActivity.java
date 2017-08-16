@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -103,13 +105,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                            if(response.isSuccessful()){
                                CheckRegister = response.body();
-                               AlertDialog.Builder builder =
-                                       new AlertDialog.Builder(RegisterActivity.this);
-                               builder.setMessage("Success");
-                               Toast.makeText(getApplicationContext()
-                                       ,"success"
-                                       ,Toast.LENGTH_LONG)
-                                       .show();
+                               boolean check = checkLoginValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+                               if (check == true) {
+                                   Toast.makeText(getApplicationContext()
+                                           ,"success"
+                                           ,Toast.LENGTH_LONG)
+                                           .show();
+                               }
+
                                // Log.d("ff","dd");
 //                               editName.setText(CheckRegister+"");
 //                               editUsername.setText(CheckRegister+"");
@@ -138,6 +141,40 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                animateRevealClose();
                break;
        }
+    }
+    public boolean checkLoginValidate(String name, String username,String password) {
+        if ( (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
+                name.equals(name) && username.equals(username) &&
+                password.equals(password)) {
+            //เช็คอักขระพิเศษ
+            boolean check = checkSpecialCharacter(name, username, password);
+            if( check == false ){
+                return false;
+            }
+            return true;
+        }else if(TextUtils.isEmpty(name) && TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
+            Toast.makeText(this,
+                    "กรุณากรอกข้อมูลให้ครบ",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }else if(TextUtils.isEmpty(name) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+            Toast.makeText(this,
+                    "กรุณากรอกข้อมูลให้ครบ",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+        return false;
+    }
+    public boolean checkSpecialCharacter(String name, String username, String password){
 
+        if (!name.matches( "[a-zA-Z0-9._-]*" ) || !username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
+            Toast.makeText(this,
+                    "username หรือ password ไม่ถูกต้อง",
+                    Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        } else {
+            return true;
+        }
     }
 }
