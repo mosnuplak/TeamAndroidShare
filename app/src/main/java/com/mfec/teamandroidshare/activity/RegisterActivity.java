@@ -8,20 +8,40 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.dao.LoginDao;
+import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     @InjectView(R.id.fab)
     FloatingActionButton fab;
     @InjectView(R.id.cv_add)
     CardView cvAdd;
+    @InjectView(R.id.input_name)
+    EditText editName;
+    @InjectView(R.id.input_username)
+    EditText editUsername;
+    @InjectView(R.id.input_password)
+    EditText editPassword;
+    boolean CheckRegister;
+    @InjectView(R.id.btn_register)
+    Button btnRegister;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +49,51 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         ButterKnife.inject(this);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-                animateRevealClose();
+        btnRegister.setOnClickListener(this) ;
+        fab.setOnClickListener(this);
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("ff","dd");
+////                LoginDao loginDao = new LoginDao();
+////                loginDao.setName(editName.getText().toString());
+////                loginDao.setUsername(editUsername.getText().toString());
+////                loginDao.setPassword(editPassword.getText().toString());
+////                Call<Boolean> call = HttpManagerNice.getInstance().getService().CheckRegister(loginDao);
+////                call.enqueue(new Callback<Boolean>() {
+////                    @Override
+////                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+////                        if(response.isSuccessful()){
+////                            CheckRegister = response.body().booleanValue();
+////                            Log.d("ff","dd");
+////                            //   editName.setText(CheckRegister);
+////                        }else {
+////                            Toast.makeText(getApplicationContext()
+////                                    ,"มอสกาก"
+////                                    ,Toast.LENGTH_LONG)
+////                                    .show();
+////                        }
+////                    }
+////                    @Override
+////                    public void onFailure(Call<Boolean> call, Throwable t) {
+////                        Toast.makeText(getApplicationContext()
+////                                ,"fahhhh"
+////                                ,Toast.LENGTH_LONG)
+////                                .show();
+////
+////                    }
+////                });
+//            }
+//        });
 
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//            @Override
+//            public void onClick(View v) {
+//                animateRevealClose();
+//
+//
+//            }
+//        });
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void animateRevealClose() {
@@ -62,7 +119,58 @@ public class RegisterActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBackPressed() {
-        animateRevealClose();
-    }
 
+        animateRevealClose();
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    @OnClick({R.id.btn_register, R.id.fab})
+    public void onClick(View v) {
+       switch (v.getId()){
+           case R.id.btn_register:
+               if(v == btnRegister){
+//            Toast.makeText(getApplicationContext(),
+//                    "fah",
+//                    Toast.LENGTH_SHORT)
+//                    .show();
+                   LoginDao loginDao = new LoginDao();
+                   loginDao.setName(editName.getText().toString());
+                   loginDao.setUsername(editUsername.getText().toString());
+                   loginDao.setPassword(editPassword.getText().toString());
+                   Call<Boolean> call = HttpManagerNice.getInstance().getService().CheckRegister(loginDao);
+                   call.enqueue(new Callback<Boolean>() {
+                       @Override
+                       public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                           if(response.isSuccessful()){
+                               CheckRegister = response.body();
+                               // Log.d("ff","dd");
+                               editName.setText(CheckRegister+"");
+                               editUsername.setText(CheckRegister+"");
+                               editPassword.setText(CheckRegister+"");
+                           }else {
+                               Toast.makeText(getApplicationContext()
+                                       ,"มอสกาก"
+                                       ,Toast.LENGTH_LONG)
+                                       .show();
+                           }
+                       }
+                       @Override
+                       public void onFailure(Call<Boolean> call, Throwable t) {
+                           Toast.makeText(getApplicationContext()
+                                   ,"dd"
+                                   ,Toast.LENGTH_LONG)
+                                   .show();
+
+                       }
+                   });
+
+               }
+               break;
+           case R.id.fab:
+               animateRevealClose();
+               break;
+       }
+
+    }
 }

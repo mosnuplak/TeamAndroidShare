@@ -142,12 +142,12 @@
                 <Button
                     android:layout_marginTop="5dp"
                     android:layout_gravity="center_horizontal"
-                    android:id="@+id/btn_login"
+                    android:id="@+id/btn_register"
                     android:background="#ffffff"
                     android:stateListAnimator="@drawable/state_list_animator_z"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-                    android:text="NEXT"
+                    android:text="Done"
                     android:textColor="#FFCC00"
                     >
                 </Button>

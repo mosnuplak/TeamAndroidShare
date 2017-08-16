@@ -42,10 +42,7 @@ public interface ApiService {
     @POST("login/userlogin")
     Call<String> CheckLogin(@Body LoginDao loginDao);
 
-
-
-
-
-
+    @POST("register/registerUser")
+    Call<Boolean> CheckRegister(@Body LoginDao loginDao);
 
 }

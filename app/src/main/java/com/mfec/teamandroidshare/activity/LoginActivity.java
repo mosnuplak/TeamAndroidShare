@@ -122,8 +122,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @OnClick({R.id.btn_login, R.id.fab})
     public void onClick(View v) {
 
-
-
         switch (v.getId()) {
             case R.id.fab:
                 getWindow().setExitTransition(null);
@@ -138,7 +136,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btn_login:
-
                 if (v == btnLogin) {
                     Log.d("nnnn","aaaa");
                     LoginDao loginDao = new LoginDao();
