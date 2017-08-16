@@ -137,10 +137,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_login:
                 if (v == btnLogin) {
-                    Log.d("nnnn","aaaa");
+                  //  Log.d("nnnn","aaaa");
                     LoginDao loginDao = new LoginDao();
-                    loginDao.setUsername("mos");
-                    loginDao.setPassword("mos");
+                    loginDao.setUsername(editUsername.getText().toString());
+                    loginDao.setPassword(editPassword.getText().toString());
 
                     Call<String> call = HttpManagerNice.getInstance().getService().CheckLogin(loginDao); //call service ส่ง ตัวแบบไป
                     call.enqueue(new Callback<String>() {
@@ -149,6 +149,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (response.isSuccessful()) {
                                 checkLogin = response.body().toString();
                                 editUsername.setText(checkLogin);
+                                editPassword.setText(checkLogin);
                             }
                         }
 

@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                        @Override
                        public void onFailure(Call<Boolean> call, Throwable t) {
                            Toast.makeText(getApplicationContext()
-                                   ,"Fail"
+                                   ,t.getMessage()
                                    ,Toast.LENGTH_LONG)
                                    .show();
 
