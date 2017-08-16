@@ -12,11 +12,20 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.dao.LoginDao;
 import com.mfec.teamandroidshare.fragment.FragmentCategory;
+import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
+
+import java.io.IOException;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by User on 4/8/2560.
@@ -29,6 +38,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     FancyButton btnRank;
     private Button mButtonDialog;
     private String TAG = "ff";
+    TextView tvProfile;
     //CircleProgressView mCircleProgressView;
 
     @Override
@@ -38,7 +48,33 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
 
         initInstance();
+        Call<LoginDao> call = HttpManagerNice.getInstance().getService().loadProfile("5992ced1e4b0bfbd84845d0b");
+        call.enqueue(new Callback<LoginDao>() {
+            @Override
+            public void onResponse(Call<LoginDao> call, Response<LoginDao> response) {
+                if (response.isSuccessful()) {
 
+                    LoginDao dao = response.body();
+                    Log.d("mos", dao.getName() + "");
+                    tvProfile.setText(dao.getName());
+                }else {
+                    try {
+                        Toast.makeText(getApplicationContext(),
+                                response.errorBody().string(),
+                                Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginDao> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),
+                        t.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -48,12 +84,15 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         btnRank.setOnClickListener(this);
 
 
-}
+    }
 
     private void initInstance() {
         btnRank = (FancyButton) findViewById(R.id.btn_rank);
         toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
         setSupportActionBar(toolbar); //คอมเม้น
+        tvProfile = (TextView)findViewById(R.id.tvProfile);
+
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,

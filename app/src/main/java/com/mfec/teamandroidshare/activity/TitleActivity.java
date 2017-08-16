@@ -13,6 +13,7 @@ import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.fragment.FragmentAddTitle;
 import com.mfec.teamandroidshare.fragment.FragmentRank;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
+import com.mfec.teamandroidshare.fragment.FragmentWebTitle;
 
 public class TitleActivity extends AppCompatActivity {
     public String title;
@@ -29,7 +30,7 @@ public class TitleActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             cateName = getIntent().getStringExtra("cateName");
-            getSupportFragmentManager().beginTransaction().add(R.id.fragmentTitle , FragmentRank.newInstance(),"getFragmentRank")
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentTitle , FragmentWebTitle.newInstance(),"getFragmentWebTitle")
                     .commit();
         }
         bottomNavView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -86,7 +87,7 @@ public class TitleActivity extends AppCompatActivity {
             transaction.replace(R.id.fragmentTitle , FragmentTitle.newInstance(cateName),"getFragmentTitle")
             .commit();
         } else if (navigation.equals("item_hot")) {
-            transaction.replace(R.id.fragmentTitle , FragmentRank.newInstance(),"getFragmentRank")
+            transaction.replace(R.id.fragmentTitle , FragmentWebTitle.newInstance(),"getFragmentWebTitle")
                     .commit();
         } else if (navigation.equals("item_add")) {
             transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName),"getFragmentAddTitle")
