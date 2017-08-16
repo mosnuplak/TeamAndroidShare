@@ -47,6 +47,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         }
         btnRank.setOnClickListener(this);
 
+
 }
 
     private void initInstance() {
@@ -60,11 +61,11 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 R.string.open_drawer,
                 R.string.close_drawer
         );
+
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
     }
 
@@ -72,12 +73,15 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
+
     }
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
 
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
+
     }
 
     @Override
@@ -86,12 +90,15 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
             return true;
 
         return super.onOptionsItemSelected(item);
+
+
     }
 
     @Override
     public void onClick(View v) {
         Intent i = new Intent(getApplication(), RankActivity.class);
         startActivity(i);
+
     }
 
     @Override
