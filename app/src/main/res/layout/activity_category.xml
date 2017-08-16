@@ -62,14 +62,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imgProfile"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
                 android:src="@drawable/user" />
 
 
@@ -84,13 +85,13 @@
 
 
             <TextView
+                android:id="@+id/tvProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="Mos เองไง จะใครละ"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 />
