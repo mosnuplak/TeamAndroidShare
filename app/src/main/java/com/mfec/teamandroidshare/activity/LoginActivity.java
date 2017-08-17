@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -48,6 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FloatingActionButton fab;
     @InjectView(R.id.cv)
     CardView cv;
+    @InjectView(R.id.relative)
+    RelativeLayout relative;
    // private  Call<LoginDao> checkLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
        // getTaskId();
-
+        setHideKeyboard(editUsername);
+        setHideKeyboard(editPassword);
         btnLogin.setOnClickListener(this);
         editUsername.setOnClickListener(this);
         editPassword.setOnClickListener(this);
@@ -198,5 +202,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }else {
             return true;
         }
+    }
+    private void setHideKeyboard(final EditText editText) {
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                }
+            }
+        });
     }
 }

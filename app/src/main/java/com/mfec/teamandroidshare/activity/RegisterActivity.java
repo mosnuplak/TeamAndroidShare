@@ -164,6 +164,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
     private void checkRegister(){
+        boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+        if (check == true) {
+            callRegister();
+            Toast.makeText(getApplicationContext()
+                    , "success"
+                    , Toast.LENGTH_LONG)
+                    .show();
+        } else{
+            Toast.makeText(getApplicationContext()
+                    , "no success"
+                    , Toast.LENGTH_LONG)
+                    .show();
+        }
+
+    }
+    private void callRegister(){
         LoginDao loginDao = new LoginDao();
         loginDao.setName(editName.getText().toString());
         loginDao.setUsername(editUsername.getText().toString());
@@ -174,19 +190,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.isSuccessful()){
                     CheckRegister = response.body();
-                    boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+                    //   boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
                     if(CheckRegister == true) {
-                        if (check == true) {
-                            Toast.makeText(getApplicationContext()
-                                    , "success"
-                                    , Toast.LENGTH_LONG)
-                                    .show();
-                        } else {
-                            Toast.makeText(getApplicationContext()
-                                    , "no success"
-                                    , Toast.LENGTH_LONG)
-                                    .show();
-                        }
+                        Toast.makeText(getApplicationContext()
+                                , "Success"
+                                , Toast.LENGTH_LONG)
+                                .show();
                     }else{
                         Toast.makeText(getApplicationContext()
                                 , "Username and name already exists"
@@ -213,5 +222,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+
     }
 }
