@@ -1,6 +1,7 @@
 package com.mfec.teamandroidshare.activity;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -79,6 +82,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
+                            InputMethodManager enter = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                            enter.hideSoftInputFromWindow(v.getWindowToken(),0);
+                            checkLogin();
 
                             return true;
                         default:
@@ -110,50 +116,50 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_login:
                 if (v == btnLogin) {
                   //  Log.d("nnnn","aaaa");
-                    LoginDao loginDao = new LoginDao();
-                    loginDao.setUsername(editUsername.getText().toString());
-                    loginDao.setPassword(editPassword.getText().toString());
-
-                    Call<LoginDao> call = HttpManagerNice.getInstance().getService().CheckLogin(loginDao); //call service ส่ง ตัวแบบไป
-                    call.enqueue(new Callback<LoginDao>() {
-                        @Override
-                        public void onResponse(Call<LoginDao> call, Response<LoginDao> response) {
-                            if(response.isSuccessful()){
-                               LoginDao login = response.body();
-                                boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
-                                if (check == true) {
-                                    Intent i = new Intent(getApplication(), CategoryActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-//                                login.getName();
-//                                Toast.makeText(getApplicationContext(),
-//                                        login.getName().toString(),
-//                                        Toast.LENGTH_LONG).show();
-                            }else {
-                                    Toast.makeText(getApplicationContext(),
-                                            "no success".toString(),
-                                            Toast.LENGTH_LONG).show();
-                            }
-
-                        }
-                        @Override
-                        public void onFailure(Call<LoginDao> call, Throwable t) {
-                            Toast.makeText(getApplicationContext()
-                                    ,"username หรือ password ไม่ถูกต้อง"
-                                    ,Toast.LENGTH_LONG)
-                                    .show();
-                        }
-                    });
+                    checkLogin();
                     //Toast.makeText(this,""+check,Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
     }
+    private void checkLogin(){
+        LoginDao loginDao = new LoginDao();
+        loginDao.setUsername(editUsername.getText().toString());
+        loginDao.setPassword(editPassword.getText().toString());
 
-    private void setData(String data) {
-        editUsername.setText(data);
+        Call<LoginDao> call = HttpManagerNice.getInstance().getService().CheckLogin(loginDao); //call service ส่ง ตัวแบบไป
+        call.enqueue(new Callback<LoginDao>() {
+            @Override
+            public void onResponse(Call<LoginDao> call, Response<LoginDao> response) {
+                if(response.isSuccessful()){
+                    LoginDao login = response.body();
+                    boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
+                    if (check == true) {
+                        Intent i = new Intent(getApplication(), CategoryActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+//                                login.getName();
+//                                Toast.makeText(getApplicationContext(),
+//                                        login.getName().toString(),
+//                                        Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),
+                            "no success".toString(),
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+            @Override
+            public void onFailure(Call<LoginDao> call, Throwable t) {
+                Toast.makeText(getApplicationContext()
+                        ,"username หรือ password ไม่ถูกต้อง"
+                        ,Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
     }
+
 
     public boolean checkLoginValidate(String username, String password) {
         if ( (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
@@ -181,6 +187,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public boolean checkSpecialCharacter(String username, String password){
 
         if (!username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
+            //editUsername.setError("username");
+            //editPassword.setError("pass");
             Toast.makeText(this,
                     "username หรือ password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
