@@ -19,6 +19,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
@@ -46,6 +47,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     boolean CheckRegister;
     @InjectView(R.id.btn_register)
     Button btnRegister;
+    @InjectView(R.id.relative)
+    RelativeLayout relative;
 
 
     @Override
@@ -53,6 +56,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.inject(this);
+        setHideKeyboard(editName);
+        setHideKeyboard(editUsername);
+        setHideKeyboard(editPassword);
         initInstances();
         btnRegister.setOnClickListener(this) ;
         fab.setOnClickListener(this);
@@ -222,6 +228,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-
+    }
+    private void setHideKeyboard(final EditText editText) {
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                }
+            }
+        });
     }
 }
