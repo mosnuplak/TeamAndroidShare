@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ScrollingView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -16,6 +17,9 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +52,8 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     public Button btnAdd;
     public String cateName;
     public String userId;
+    public RelativeLayout scrollView;
+    public LinearLayout linear;
 
     public FragmentAddTitle() {
         super();
@@ -66,6 +72,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null)
             cateName = getArguments().getString("cateName");
             userId = getArguments().getString("userId");
@@ -85,8 +92,14 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         etTilteName = (EditText) rootView.findViewById(R.id.etTilteName);
         etTitleLink = (EditText) rootView.findViewById(R.id.etTitleLink);
         tvAlert = (TextView) rootView.findViewById(R.id.tvAlert);
+        scrollView = (RelativeLayout) rootView.findViewById(R.id.scrollView);
+        linear = (LinearLayout) rootView.findViewById(R.id.linear);
+        setHideKeyboard(etTitleDis);
+        setHideKeyboard(etTilteName);
+        setHideKeyboard(etTitleLink);
         btnAdd = (Button) rootView.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
+
 
 
 
@@ -200,6 +213,17 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         } else {
             tvAlert.setText("กรุณากรอกข้อมูลให้ครบ");
         }
+    }
+    private void setHideKeyboard(final EditText editText) {
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                }
+            }
+        });
     }
 
 }
