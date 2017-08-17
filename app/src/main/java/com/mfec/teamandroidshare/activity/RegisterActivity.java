@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -16,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -52,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.inject(this);
+        initInstances();
         btnRegister.setOnClickListener(this) ;
         fab.setOnClickListener(this);
 
@@ -95,44 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                    "fah",
 //                    Toast.LENGTH_SHORT)
 //                    .show();
-                   LoginDao loginDao = new LoginDao();
-                   loginDao.setName(editName.getText().toString());
-                   loginDao.setUsername(editUsername.getText().toString());
-                   loginDao.setPassword(editPassword.getText().toString());
-                   Call<Boolean> call = HttpManagerNice.getInstance().getService().CheckRegister(loginDao);
-                   call.enqueue(new Callback<Boolean>() {
-                       @Override
-                       public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                           if(response.isSuccessful()){
-                               CheckRegister = response.body();
-                               boolean check = checkLoginValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
-                               if (check == true) {
-                                   Toast.makeText(getApplicationContext()
-                                           ,"success"
-                                           ,Toast.LENGTH_LONG)
-                                           .show();
-                               }
-
-                               // Log.d("ff","dd");
-//                               editName.setText(CheckRegister+"");
-//                               editUsername.setText(CheckRegister+"");
-//                               editPassword.setText(CheckRegister+"");
-                           }else {
-                               Toast.makeText(getApplicationContext()
-                                       ,"no success"
-                                       ,Toast.LENGTH_LONG)
-                                       .show();
-                           }
-                       }
-                       @Override
-                       public void onFailure(Call<Boolean> call, Throwable t) {
-                           Toast.makeText(getApplicationContext()
-                                   ,t.getMessage()
-                                   ,Toast.LENGTH_LONG)
-                                   .show();
-
-                       }
-                   });
+                   checkRegister();
 
                }
                break;
@@ -142,7 +108,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                break;
        }
     }
-    public boolean checkLoginValidate(String name, String username,String password) {
+    private void initInstances(){
+        editPassword = (EditText) findViewById(R.id.input_password);
+        editPassword.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            InputMethodManager enter = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                            enter.hideSoftInputFromWindow(v.getWindowToken(),0);
+                            checkRegister();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+    public boolean checkRegisterValidate(String name, String username,String password) {
         if ( (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
                 name.equals(name) && username.equals(username) &&
                 password.equals(password)) {
@@ -176,5 +163,45 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } else {
             return true;
         }
+    }
+    private void checkRegister(){
+        LoginDao loginDao = new LoginDao();
+        loginDao.setName(editName.getText().toString());
+        loginDao.setUsername(editUsername.getText().toString());
+        loginDao.setPassword(editPassword.getText().toString());
+        Call<Boolean> call = HttpManagerNice.getInstance().getService().CheckRegister(loginDao);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful()){
+                    CheckRegister = response.body();
+                    boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+                    if (check == true) {
+                        Toast.makeText(getApplicationContext()
+                                ,"success"
+                                ,Toast.LENGTH_LONG)
+                                .show();
+                    }
+
+                    // Log.d("ff","dd");
+//                               editName.setText(CheckRegister+"");
+//                               editUsername.setText(CheckRegister+"");
+//                               editPassword.setText(CheckRegister+"");
+                }else {
+                    Toast.makeText(getApplicationContext()
+                            ,"no success"
+                            ,Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(getApplicationContext()
+                        ,t.getMessage()
+                        ,Toast.LENGTH_LONG)
+                        .show();
+
+            }
+        });
     }
 }
