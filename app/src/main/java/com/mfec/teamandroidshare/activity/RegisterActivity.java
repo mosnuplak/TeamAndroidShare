@@ -175,13 +175,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if(response.isSuccessful()){
                     CheckRegister = response.body();
                     boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
-                    if (check == true) {
+                    if(CheckRegister == true) {
+                        if (check == true) {
+                            Toast.makeText(getApplicationContext()
+                                    , "success"
+                                    , Toast.LENGTH_LONG)
+                                    .show();
+                        } else {
+                            Toast.makeText(getApplicationContext()
+                                    , "no success"
+                                    , Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    }else{
                         Toast.makeText(getApplicationContext()
-                                ,"success"
-                                ,Toast.LENGTH_LONG)
+                                , "Username and name already exists"
+                                , Toast.LENGTH_LONG)
                                 .show();
                     }
-
                     // Log.d("ff","dd");
 //                               editName.setText(CheckRegister+"");
 //                               editUsername.setText(CheckRegister+"");
