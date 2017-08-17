@@ -7,11 +7,15 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginDao {
+
     @SerializedName("name")
     private String name;
 
     @SerializedName("username")
     private String username;
+
+    @SerializedName("userId")
+    private String userId;
 
     @SerializedName("password")
     private String password;
@@ -44,5 +48,12 @@ public class LoginDao {
     public void setUsername(String username) {
 
         this.username = username;
+    }
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

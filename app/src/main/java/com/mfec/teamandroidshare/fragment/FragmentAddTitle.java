@@ -47,16 +47,18 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     public TextView tvAlert;
     public Button btnAdd;
     public String cateName;
+    public String userId;
 
     public FragmentAddTitle() {
         super();
     }
 
-    public static FragmentAddTitle newInstance(String cateName) {
+    public static FragmentAddTitle newInstance(String cateName,String userId) {
         FragmentAddTitle fragment = new FragmentAddTitle();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         args.putString("cateName", cateName);
+        args.putString("userId", userId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,6 +68,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         if (getArguments() != null)
             cateName = getArguments().getString("cateName");
+            userId = getArguments().getString("userId");
     }
 
     @Override
@@ -162,7 +165,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             titleDao.setHead(etTilteName.getText().toString());
             titleDao.setLink(etTitleLink.getText().toString());
             titleDao.setDescription(etTitleDis.getText().toString());
-            titleDao.setUserId("5992ced1e4b0bfbd84845d0b");
+            titleDao.setUserId(userId);
 
             wrapper.setTitleDao(titleDao);
             wrapper.setCategoryDao(categoryDao);

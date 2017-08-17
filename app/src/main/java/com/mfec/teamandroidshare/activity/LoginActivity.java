@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
     private void checkLogin(){
-        LoginDao loginDao = new LoginDao();
+        final LoginDao loginDao = new LoginDao();
         loginDao.setUsername(editUsername.getText().toString());
         loginDao.setPassword(editPassword.getText().toString());
 
@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
                     if (check == true) {
                         Intent i = new Intent(getApplication(), CategoryActivity.class);
+                        i.putExtra("userId",login.getUserId());
                         startActivity(i);
                         finish();
                     }

@@ -32,6 +32,7 @@ public class TitleActivity extends AppCompatActivity {
     public BottomNavigationView bottomNavView;
     public FrameLayout fragmentTitile;
     public String cateName;
+    public String userId;
     TextView tvToolbar;
 
     Toolbar toolbar;
@@ -49,6 +50,7 @@ public class TitleActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             cateName = getIntent().getStringExtra("cateName");
+            userId = getIntent().getStringExtra("userId");
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentTitle , FragmentWebTitle.newInstance("https://www.google.com"),"getFragmentWebTitle")
                     .commit();
         }
@@ -101,6 +103,7 @@ public class TitleActivity extends AppCompatActivity {
     private void init(String navigation) {
 
         cateName = getIntent().getStringExtra("cateName");
+        userId = getIntent().getStringExtra("userId");
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (navigation.equals("item_new")) {
@@ -110,7 +113,7 @@ public class TitleActivity extends AppCompatActivity {
             transaction.replace(R.id.fragmentTitle , FragmentWebTitle.newInstance("https://www.google.com"),"getFragmentWebTitle")
                     .commit();
         } else if (navigation.equals("item_add")) {
-            transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName),"getFragmentAddTitle")
+            transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName,userId),"getFragmentAddTitle")
                     .commit();
         }
     }

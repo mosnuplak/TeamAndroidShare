@@ -1,6 +1,7 @@
 package com.mfec.teamandroidshare.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,7 @@ public class FragmentCategory extends Fragment {
     FancyButton btnRank;
     RecyclerView rvCategory;
     CategoryAdapter adapter;
+    String userId;
     OptionsFabLayout fabWithOptions;
     private List<CategoryDao> categoryList;
 
@@ -39,11 +41,19 @@ public class FragmentCategory extends Fragment {
         super();
     }
 
-    public static FragmentCategory newInstance() {
+    public static FragmentCategory newInstance(String userId) {
         FragmentCategory fragment = new FragmentCategory();
         Bundle args = new Bundle();
+        args.putString("userId",userId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getArguments()!=null)
+            userId = getArguments().getString("userId");
     }
 
     @Override
@@ -159,7 +169,7 @@ public class FragmentCategory extends Fragment {
         GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 3);
         rvCategory.setLayoutManager(manager);
 
-        adapter = new CategoryAdapter(this, dao, FragmentCategory.this);
+        adapter = new CategoryAdapter(this, dao, FragmentCategory.this ,userId);
         rvCategory.setAdapter(adapter);
 
     }

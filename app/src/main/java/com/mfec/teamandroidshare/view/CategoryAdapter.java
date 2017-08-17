@@ -26,11 +26,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
     FragmentCategory fragmentCategory1;
     CategoryDao categoryDao;
     CategoryViewHolder holder;
-    public CategoryAdapter(FragmentCategory fragmentCategory, List<CategoryDao> categoryList, FragmentCategory fragmentCategory1) {
+    String userId;
+    public CategoryAdapter(FragmentCategory fragmentCategory, List<CategoryDao> categoryList, FragmentCategory fragmentCategory1 , String userId) {
 
         this.fragmentCategory = fragmentCategory;
         this.categoryList = categoryList;
         this.fragmentCategory1 = fragmentCategory1;
+        this.userId = userId;
+
 
     }
 
@@ -54,6 +57,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
             Log.d("MOSS", "onItemClickListener: "+categoryList.get(position).getCateName());
             Intent intent = new Intent(fragmentCategory1.getActivity(), TitleActivity.class);
             intent.putExtra("cateName",categoryList.get(position).getCateName());
+            intent.putExtra("userId",userId);
             fragmentCategory1.startActivity(intent);
         }
     };

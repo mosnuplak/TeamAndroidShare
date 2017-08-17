@@ -46,10 +46,10 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-
+        String userId = getIntent().getExtras().getString("userId");
 
         initInstance();
-        Call<LoginDao> call = HttpManagerNice.getInstance().getService().loadProfile("5992ced1e4b0bfbd84845d0b");
+        Call<LoginDao> call = HttpManagerNice.getInstance().getService().loadProfile(userId);
         call.enqueue(new Callback<LoginDao>() {
             @Override
             public void onResponse(Call<LoginDao> call, Response<LoginDao> response) {
@@ -79,7 +79,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fmCategory, new FragmentCategory())
+                    .add(R.id.fmCategory, new FragmentCategory().newInstance(userId))
                     .commit();
         }
         btnRank.setOnClickListener(this);
