@@ -50,6 +50,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
+                            android:imeOptions="actionNext"
                             android:background="@drawable/selector_bg_edit_2"
                             android:textCursorDrawable="@drawable/bg_input_cursor_2"
                             android:paddingBottom="2dp"
