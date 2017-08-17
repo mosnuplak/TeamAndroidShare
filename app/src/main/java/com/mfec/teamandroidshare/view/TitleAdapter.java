@@ -1,5 +1,7 @@
 package com.mfec.teamandroidshare.view;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -12,8 +14,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.WebviewActivity;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
+import com.mfec.teamandroidshare.fragment.FragmentWebTitle;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -85,7 +89,16 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
 
         @Override
         public void onItemClickListener(int position) {
-            Toast.makeText(fragmentTitle.getActivity(),"go webView",Toast.LENGTH_SHORT).show();
+            //TitleDao titleDao = TitleList.get(position);
+
+
+            //Toast.makeText(fragmentTitle.getActivity(),""+titleDao.getLink(),Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(fragmentTitle.getActivity(),WebviewActivity.class);
+            intent.putExtra("linkUrl",TitleList.get(position).getLink());
+            intent.putExtra("topicId",TitleList.get(position).getTopicId());
+            intent.putExtra("topicName",TitleList.get(position).getHead());
+            fragmentTitle.startActivity(intent);
 
         }
     };

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,9 +15,11 @@
 
     <EditText
         android:id="@+id/etTilteName"
+        android:maxLines="1"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:nextFocusDown="@+id/etTitleDis"
+        android:imeOptions="actionNext"
         android:paddingBottom="2dp"/>
 
     <TextView
@@ -23,9 +29,11 @@
 
     <EditText
         android:id="@+id/etTitleDis"
+        android:maxLines="1"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:nextFocusForward="@+id/etTilteName"
+        android:imeOptions="actionNext"
         android:paddingBottom="2dp"/>
 
     <TextView
@@ -35,9 +43,13 @@
 
     <EditText
         android:id="@+id/etTitleLink"
+        android:maxLines="1"
+        android:inputType="text"
         android:layout_width="match_parent"
+        android:imeOptions="actionDone"
         android:layout_height="56dp"
-        android:paddingBottom="2dp"/>
+        android:paddingBottom="2dp"
+        />
 
     <Button
         android:id="@+id/btnAdd"
@@ -52,3 +64,4 @@
         android:layout_width="match_parent"
         android:layout_height="56dp" />
 </LinearLayout>
+</ScrollView>
