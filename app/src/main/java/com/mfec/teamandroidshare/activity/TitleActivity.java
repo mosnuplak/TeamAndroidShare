@@ -39,7 +39,7 @@ public class TitleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
-        setupUI(findViewById(R.id.parent));
+        //setupUI(findViewById(R.id.parent));
         bottomNavView = (BottomNavigationView) findViewById(R.id.bottom_nav_view);
         fragmentTitile = (FrameLayout) findViewById(R.id.fragmentTitle);
         tvToolbar = (TextView) findViewById(R.id.tvToolbar);
@@ -119,34 +119,34 @@ public class TitleActivity extends AppCompatActivity {
         cateName = getIntent().getStringExtra("cateName");
 
     }
-    public void setupUI(View view) {
-
-
-        // Set up touch listener for non-text box views to hide keyboard.
-        if (!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard(TitleActivity.this);
-                    return false;
-                }
-            });
-        }
-
-        //If a layout container, iterate over children and seed recursion.
+//    public void setupUI(View view) {
+//
+//
+//        // Set up touch listener for non-text box views to hide keyboard.
+//        if (!(view instanceof EditText)) {
+//            view.setOnTouchListener(new View.OnTouchListener() {
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    hideSoftKeyboard(TitleActivity.this);
+//                    return false;
+//                }
+//            });
+//        }
+//
+//        //If a layout container, iterate over children and seed recursion.
 //        if (view instanceof ViewGroup) {
 //            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
 //                View innerView = ((ViewGroup) view).getChildAt(i);
 //                setupUI(innerView);
 //            }
 //        }
-    }
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager =
-                (InputMethodManager) activity.getSystemService(
-                        Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
-
-    }
+//    }
+//    public static void hideSoftKeyboard(Activity activity) {
+//        InputMethodManager inputMethodManager =
+//                (InputMethodManager) activity.getSystemService(
+//                        Activity.INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(
+//                activity.getCurrentFocus().getWindowToken(), 0);
+//
+//    }
 
 }
