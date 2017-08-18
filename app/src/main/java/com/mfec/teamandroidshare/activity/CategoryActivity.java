@@ -14,7 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import java.io.IOException;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,19 +38,27 @@ import retrofit2.Response;
  */
 
 public class CategoryActivity extends AppCompatActivity implements View.OnClickListener {
-    DrawerLayout drawerLayout;
+
     ActionBarDrawerToggle actionBarDrawerToggle;
+    @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    FancyButton btnRank;
-    private Button mButtonDialog;
-    private String TAG = "ff";
+    @InjectView(R.id.fmCategory)
+    FrameLayout fmCategory;
+    @InjectView(R.id.imgProfile)
+    ImageView imgProfile;
+    @InjectView(R.id.tvProfile)
     TextView tvProfile;
-    //CircleProgressView mCircleProgressView;
+    @InjectView(R.id.btn_rank)
+    FancyButton btnRank;
+    @InjectView(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    private String TAG = "ff";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        ButterKnife.inject(this);
         String userId = getIntent().getExtras().getString("userId");
 
         initInstance();
@@ -91,12 +102,12 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
     private void initInstance() {
         btnRank = (FancyButton) findViewById(R.id.btn_rank);
-        toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
+//        toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
         setSupportActionBar(toolbar); //คอมเม้น
-        tvProfile = (TextView) findViewById(R.id.tvProfile);
+//        tvProfile = (TextView) findViewById(R.id.tvProfile);
 
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+//        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,
                 drawerLayout,
                 R.string.open_drawer,

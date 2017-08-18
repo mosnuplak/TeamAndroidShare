@@ -65,7 +65,7 @@
     <TextView
         android:id="@+id/tvAlert"
         android:textSize="26dp"
-        android:textColor="#ff000d"
+
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="56dp" />

@@ -1,11 +1,9 @@
 package com.mfec.teamandroidshare.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +11,14 @@ import android.view.ViewGroup;
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.CategoryDao;
-import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 import com.mfec.teamandroidshare.view.CategoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,10 +30,12 @@ import retrofit2.Response;
  */
 public class FragmentCategory extends Fragment {
     FancyButton btnRank;
-    RecyclerView rvCategory;
+    //    RecyclerView rvCategory;
     CategoryAdapter adapter;
     String userId;
     OptionsFabLayout fabWithOptions;
+    @InjectView(R.id.rvCategory)
+    RecyclerView rvCategory;
     private List<CategoryDao> categoryList;
 
     public FragmentCategory() {
@@ -44,7 +45,7 @@ public class FragmentCategory extends Fragment {
     public static FragmentCategory newInstance(String userId) {
         FragmentCategory fragment = new FragmentCategory();
         Bundle args = new Bundle();
-        args.putString("userId",userId);
+        args.putString("userId", userId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,7 +53,7 @@ public class FragmentCategory extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments()!=null)
+        if (getArguments() != null)
             userId = getArguments().getString("userId");
     }
 
@@ -110,6 +111,7 @@ public class FragmentCategory extends Fragment {
 
         //getCategoryItem();
 
+        ButterKnife.inject(this, rootView);
         return rootView;
 
 
@@ -141,7 +143,7 @@ public class FragmentCategory extends Fragment {
     }
 
     private void initInstances(View rootView) {
-        rvCategory = (RecyclerView) rootView.findViewById(R.id.rvCategory);
+//        rvCategory = (RecyclerView) rootView.findViewById(R.id.rvCategory);
         btnRank = (FancyButton) rootView.findViewById(R.id.btn_rank);
 
         //getCategoryItem();
@@ -169,7 +171,7 @@ public class FragmentCategory extends Fragment {
         GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 3);
         rvCategory.setLayoutManager(manager);
 
-        adapter = new CategoryAdapter(this, dao, FragmentCategory.this ,userId);
+        adapter = new CategoryAdapter(this, dao, FragmentCategory.this, userId);
         rvCategory.setAdapter(adapter);
 
     }
@@ -203,5 +205,11 @@ public class FragmentCategory extends Fragment {
         if (savedInstanceState != null) {
             // Restore Instance State here
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 }

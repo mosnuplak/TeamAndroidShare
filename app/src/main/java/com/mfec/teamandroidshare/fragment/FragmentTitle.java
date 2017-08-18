@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.PeopleDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
-import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 import com.mfec.teamandroidshare.view.TitleAdapter;
 
@@ -146,7 +144,7 @@ public class FragmentTitle extends Fragment {
     }
 
     private void showTitle(List<TitleDao> dao) {
-        GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 1);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 1);
         rvTitle.setLayoutManager(manager);
 
         adapter = new TitleAdapter(this, dao, FragmentTitle.this);
