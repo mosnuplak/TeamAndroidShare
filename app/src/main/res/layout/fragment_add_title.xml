@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Topic" />
+        android:text="@string/text_topic" />
 
     <EditText
         android:id="@+id/etTilteName"
@@ -31,7 +31,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Discription" />
+        android:text="@string/text_description" />
 
     <EditText
         android:id="@+id/etTitleDis"
@@ -45,7 +45,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="link" />
+        android:text="@string/text_link" />
 
     <EditText
         android:id="@+id/etTitleLink"
@@ -61,7 +61,7 @@
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Add" />
+        android:text="@string/menu_add" />
     <TextView
         android:id="@+id/tvAlert"
         android:textSize="26dp"

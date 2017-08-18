@@ -1,25 +1,21 @@
 package com.mfec.teamandroidshare.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ScrollingView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +23,9 @@ import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.dao.WrapperDao;
-import com.mfec.teamandroidshare.manager.HttpManager;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import java.io.IOException;
-import java.sql.Wrapper;
-import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -209,9 +201,9 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             etTilteName.setText("");
             etTitleDis.setText("");
             etTitleLink.setText("");
-            tvAlert.setText("บันทึกสำเร็จ");
+            tvAlert.setText(R.string.text_alert_success);
         } else {
-            tvAlert.setText("กรุณากรอกข้อมูลให้ครบ");
+            tvAlert.setText(R.string.text_alert_thisform);
         }
     }
     private void setHideKeyboard(final EditText editText) {

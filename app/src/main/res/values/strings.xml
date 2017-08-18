@@ -14,7 +14,7 @@
     <string name="menu_hot">Hot</string>
     <string name="menu_love">Love</string>
     <string name="menu_add">Add</string>
-
+<!--ใช้สำหรับหน้า Login และ register-->
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
     <string name="text_name">Name</string>
@@ -29,6 +29,12 @@
     <string name="dialog_yes">yes</string>
     <string name="dialog_no">no</string>
     <string name="dialog_thankYou">Thank You</string>
+    <!--หน้า add title-->
+    <string name="text_topic">Topic</string>
+    <string name="text_description">Description</string>
+    <string name="text_link">Link</string>
+    <string name="text_alert_thisform">Please fill out this form completely.</string>
+    <string name="text_alert_success">Success</string>
 
 
 </resources>

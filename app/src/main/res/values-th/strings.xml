@@ -5,7 +5,7 @@
     <string name="menu_hot">Hot</string>
     <string name="menu_love">Love</string>
     <string name="menu_add">เพิ่ม</string>
-
+    <!--ใช้สำหรับหน้า Ligin และ register-->
     <string name="text_login">เข้าสู่ระบบ</string>
     <string name="text_register">สมัครสมาชิก</string>
     <string name="text_name">ชื่อ</string>
@@ -19,4 +19,10 @@
     <string name="dialog_yes">ใช่</string>
     <string name="dialog_no">ไม่</string>
     <string name="dialog_thankYou">ขอบคุณ</string>
+    <!--หน้า add title-->
+    <string name="text_topic">หัวข้อเรื่อง</string>
+    <string name="text_description">รายละเอียด</string>
+    <string name="text_link">ลิงค์</string>
+    <string name="text_alert_thisform">กรุณากรอกแบบฟอร์มนี้ให้ครบถ้วน</string>
+    <string name="text_alert_success">สำเร็จ</string>
 </resources>
