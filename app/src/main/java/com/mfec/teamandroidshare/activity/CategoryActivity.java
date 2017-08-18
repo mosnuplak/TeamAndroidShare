@@ -1,5 +1,7 @@
 package com.mfec.teamandroidshare.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -85,6 +87,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         btnRank.setOnClickListener(this);
 
 
+
+
     }
 
     private void initInstance() {
@@ -128,9 +132,26 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         if (actionBarDrawerToggle.onOptionsItemSelected(item))
             return true;
         if (item.getItemId() == R.id.action_settings) {
-            Intent i = new Intent(getApplication(), LoginActivity.class);
-            startActivity(i);
-            finish();
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(CategoryActivity.this);
+            builder.setMessage("Do you want to log out ?.");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Toast.makeText(getApplicationContext(),
+                            "Thank You", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplication(), LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //dialog.dismiss();
+                }
+            });
+            builder.show();
+
             return true;
         }
 
