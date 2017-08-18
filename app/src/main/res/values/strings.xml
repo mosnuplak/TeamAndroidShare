@@ -14,6 +14,11 @@
     <string name="menu_hot">Hot</string>
     <string name="menu_love">Love</string>
     <string name="menu_add">Add</string>
+
+    <string name="text_login">Login</string>
+    <string name="text_username">Username</string>
+    <string name="text_password">Password</string>
+
     <string name="menu_logout">Log out</string>
 
     <string name="dialog_logout">Are you sure you want to log out this account?</string>
