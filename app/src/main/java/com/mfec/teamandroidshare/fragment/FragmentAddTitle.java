@@ -1,6 +1,7 @@
 package com.mfec.teamandroidshare.fragment;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -203,10 +205,8 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             etTitleDis.setText("");
             etTitleLink.setText("");
             tvAlert.setText(R.string.text_alert_success);
-            tvAlert.setTextColor(Color.GREEN);
         } else {
             tvAlert.setText(R.string.text_alert_thisform);
-            tvAlert.setTextColor(Color.RED);
         }
     }
     private void setHideKeyboard(final EditText editText) {
