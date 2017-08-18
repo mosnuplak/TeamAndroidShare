@@ -9,11 +9,17 @@
     <string name="rank_number">00</string>
     <string name="username">input_username</string>
     <string name="password">input_password</string>
+
     <string name="menu_new">New</string>
     <string name="menu_hot">Hot</string>
     <string name="menu_love">Love</string>
     <string name="menu_add">Add</string>
     <string name="menu_logout">Log out</string>
+
+    <string name="dialog_logout">Are you sure you want to log out this account?</string>
+    <string name="dialog_yes">yes</string>
+    <string name="dialog_no">no</string>
+    <string name="dialog_thankYou">Thank You</string>
 
 
 </resources>

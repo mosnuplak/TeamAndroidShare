@@ -1,0 +1,6 @@
+<resources>
+    <string name="dialog_logout">คุณต้องการที่จะออกจากระบบหรือไม่?</string>
+    <string name="dialog_yes">ใช่</string>
+    <string name="dialog_no">ไม่</string>
+    <string name="dialog_thankYou">ขอบคุณ</string>
+</resources>

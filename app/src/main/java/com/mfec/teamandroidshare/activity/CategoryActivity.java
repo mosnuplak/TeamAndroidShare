@@ -87,8 +87,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         btnRank.setOnClickListener(this);
 
 
-
-
     }
 
     private void initInstance() {
@@ -134,17 +132,17 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         if (item.getItemId() == R.id.action_settings) {
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(CategoryActivity.this);
-            builder.setMessage("Do you want to log out ?.");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setMessage(R.string.dialog_logout);
+            builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     Toast.makeText(getApplicationContext(),
-                            "Thank You", Toast.LENGTH_SHORT).show();
+                            R.string.dialog_thankYou, Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplication(), LoginActivity.class);
                     startActivity(i);
                     finish();
                 }
             });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //dialog.dismiss();
