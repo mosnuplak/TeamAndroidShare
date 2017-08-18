@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethod;
@@ -63,8 +65,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
        // getTaskId();
-        setHideKeyboard(editUsername);
-        setHideKeyboard(editPassword);
+      //  setHideKeyboard(editUsername);
+        //setHideKeyboard(editPassword);
+        initHideKeyboard(relative);
         btnLogin.setOnClickListener(this);
         editUsername.setOnClickListener(this);
         editPassword.setOnClickListener(this);
@@ -203,15 +206,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return true;
         }
     }
-    private void setHideKeyboard(final EditText editText) {
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    private void initHideKeyboard(RelativeLayout touchInterceptor) {
+        touchInterceptor.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    setHideKeyboard(editUsername,v,event);
+                    setHideKeyboard(editPassword,v,event);
                 }
+                return false;
             }
         });
+    }
+
+    private void setHideKeyboard(final EditText editText,View v, MotionEvent event) {
+        if (editText.isFocused()) {
+            Rect outRect = new Rect();
+            editText.getGlobalVisibleRect(outRect);
+            if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                editText.clearFocus();
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
     }
 }
