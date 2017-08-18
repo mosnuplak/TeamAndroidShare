@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
@@ -56,10 +58,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.inject(this);
-        setHideKeyboard(editName);
-        setHideKeyboard(editUsername);
-        setHideKeyboard(editPassword);
+//        setHideKeyboard(editName);
+//        setHideKeyboard(editUsername);
+//        setHideKeyboard(editPassword);
         initInstances();
+        initHideKeyboard(relative);
         btnRegister.setOnClickListener(this) ;
         fab.setOnClickListener(this);
 
@@ -229,15 +232,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-    private void setHideKeyboard(final EditText editText) {
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    private void initHideKeyboard(RelativeLayout touchInterceptor) {
+        touchInterceptor.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    setHideKeyboard(editName,v,event);
+                    setHideKeyboard(editUsername,v,event);
+                    setHideKeyboard(editPassword,v,event);
                 }
+                return false;
             }
         });
+    }
+    private void setHideKeyboard(final EditText editText,View v, MotionEvent event) {
+        if (editText.isFocused()) {
+            Rect outRect = new Rect();
+            editText.getGlobalVisibleRect(outRect);
+            if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                editText.clearFocus();
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
     }
 }
