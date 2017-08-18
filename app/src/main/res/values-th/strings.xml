@@ -7,8 +7,11 @@
     <string name="menu_add">เพิ่ม</string>
 
     <string name="text_login">เข้าสู่ระบบ</string>
+    <string name="text_register">สมัครสมาชิก</string>
+    <string name="text_name">ชื่อ</string>
     <string name="text_username">ชื่อผู้ใช้</string>
     <string name="text_password">รหัสผ่าน</string>
+    <string name="text_done">เสร็จสิ้น</string>
 
     <string name="menu_logout">ออกจากระบบ</string>
 
