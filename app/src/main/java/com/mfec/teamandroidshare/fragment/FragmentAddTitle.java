@@ -1,8 +1,8 @@
 package com.mfec.teamandroidshare.fragment;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -47,7 +47,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     public Button btnAdd;
     public String cateName;
     public String userId;
-    public RelativeLayout scrollView;
+    public RelativeLayout relative;
     public LinearLayout linear;
 
     public FragmentAddTitle() {
@@ -87,13 +87,11 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         etTilteName = (EditText) rootView.findViewById(R.id.etTilteName);
         etTitleLink = (EditText) rootView.findViewById(R.id.etTitleLink);
         tvAlert = (TextView) rootView.findViewById(R.id.tvAlert);
-        scrollView = (RelativeLayout) rootView.findViewById(R.id.scrollView);
+        relative = (RelativeLayout) rootView.findViewById(R.id.relative);
         linear = (LinearLayout) rootView.findViewById(R.id.linear);
-        setHideKeyboard(etTitleDis);
-        setHideKeyboard(etTilteName);
-        setHideKeyboard(etTitleLink);
         btnAdd = (Button) rootView.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
+        initHideKeyboard(relative);
 
 
 
@@ -205,20 +203,36 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             etTitleDis.setText("");
             etTitleLink.setText("");
             tvAlert.setText(R.string.text_alert_success);
+            tvAlert.setTextColor(Color.GREEN);
         } else {
             tvAlert.setText(R.string.text_alert_thisform);
+            tvAlert.setTextColor(Color.RED);
         }
     }
-    private void setHideKeyboard(final EditText editText) {
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    private void initHideKeyboard(RelativeLayout touchInterceptor) {
+        touchInterceptor.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b) {
-                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    setHideKeyboard(etTilteName,v,event);
+                    setHideKeyboard(etTitleDis,v,event);
+                    setHideKeyboard(etTitleLink,v,event);
                 }
+                return false;
             }
         });
+    }
+
+    private void setHideKeyboard(final EditText editText,View v, MotionEvent event) {
+        if (editText.isFocused()) {
+            Rect outRect = new Rect();
+            editText.getGlobalVisibleRect(outRect);
+            if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                editText.clearFocus();
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
     }
 
 }
