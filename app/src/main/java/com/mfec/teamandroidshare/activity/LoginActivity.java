@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -144,6 +145,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (check == true) {
                         Intent i = new Intent(getApplication(), CategoryActivity.class);
                         i.putExtra("userId",login.getUserId());
+
+                        SharedPreferences sp = getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("userId", login.getUserId());
+                        editor.putString("name", login.getName());
+                        editor.commit();
+
                         startActivity(i);
                         finish();
                     }

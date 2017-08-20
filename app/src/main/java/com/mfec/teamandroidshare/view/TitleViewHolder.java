@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.mfec.teamandroidshare.R;
 
@@ -19,7 +20,7 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
     TextView tvTitle;
     TextView tvDescript;
     TextView tvPoster;
-    ImageButton ibtnStar;
+    ToggleButton ibtnStar;
     TextView tvStar;
     ImageView ivTitle;
     TextView totalViewer;
@@ -34,7 +35,7 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
         tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
         tvDescript = (TextView) itemView.findViewById(R.id.tvDescript);
         tvPoster = (TextView) itemView.findViewById(R.id.tvPoster);
-        ibtnStar = (ImageButton) itemView.findViewById(R.id.ibtnStar);
+        ibtnStar = (ToggleButton) itemView.findViewById(R.id.ibtnStar);
         tvStar = (TextView) itemView.findViewById(R.id.tvStar);
         ivTitle = (ImageView) itemView.findViewById(R.id.ivTitle);
 

@@ -1,8 +1,10 @@
 package com.mfec.teamandroidshare.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -53,13 +55,16 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @InjectView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     private String TAG = "ff";
+    //CircleProgressView mCircleProgressView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         ButterKnife.inject(this);
-        String userId = getIntent().getExtras().getString("userId");
+
+        SharedPreferences sp = getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
+        String userId = sp.getString("userId", "0");
 
         initInstance();
         Call<LoginDao> call = HttpManagerNice.getInstance().getService().loadProfile(userId);
@@ -69,8 +74,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 if (response.isSuccessful()) {
 
                     LoginDao dao = response.body();
-                    Log.d("mos", dao.getName() + "");
                     tvProfile.setText(dao.getName());
+
                 } else {
                     try {
                         Toast.makeText(getApplicationContext(),
@@ -92,7 +97,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fmCategory, new FragmentCategory().newInstance(userId))
+                    .add(R.id.fmCategory, new FragmentCategory().newInstance("0"))
                     .commit();
         }
         btnRank.setOnClickListener(this);

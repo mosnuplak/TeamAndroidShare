@@ -1,111 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<LinearLayout
-    android:background="#ffffff"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:id="@+id/rvTitle"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:orientation="vertical"
-
+        android:id="@+id/rvTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tvTitle"
-            android:text="@string/app_name"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/ivTitle"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvDescript"
-            android:text="@string/app_name"
-            android:textSize="16dp"
-            android:layout_marginLeft="15dp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvPoster"
-            android:text="@string/app_name"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="14dp"
-            android:layout_alignParentLeft="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
         <LinearLayout
-            android:background="@drawable/border_set"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
-            android:layout_height="2dp"></LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
 
-            <LinearLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/app_name"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/ivTitle"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tvDescript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/app_name"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tvPoster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/app_name"
+                android:textSize="14dp" />
 
-                <ImageButton
-                android:id="@+id/ibtnStar"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                android:src="@drawable/love_s1"
-                android:background="#ffffff"
-                android:scaleType="fitXY"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                />
-                <TextView
-                    android:id="@+id/tvStar"
-                   android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Love this"
-                    android:textSize="14dp"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:src="@drawable/eye"
-                    android:layout_gravity="center"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-                <TextView
-                    android:id="@+id/totalViewer"
-                    android:layout_marginLeft="3dp"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="14dp"
-                    android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_set"></LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true">
 
-            </LinearLayout>
-        </RelativeLayout>
+                    <ToggleButton
+                        android:id="@+id/ibtnStar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/love"
+                        android:scaleType="fitXY"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:textOn=""
+                        android:textOff=""
+                         />
+
+                    <TextView
+                        android:id="@+id/tvStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:text="Love this"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/eye" />
+
+                    <TextView
+                        android:id="@+id/totalViewer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
 </LinearLayout>

@@ -1,14 +1,17 @@
 package com.mfec.teamandroidshare.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -33,9 +36,9 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     FragmentTitle fragmentTitle;
     private FragmentTitle mContext;
     private List<TitleDao> TitleList;
-    public TitleAdapter(FragmentTitle mContext, List<TitleDao> TitleList , FragmentTitle fragmentTitle) {
+    public TitleAdapter(List<TitleDao> TitleList , FragmentTitle fragmentTitle) {
 
-        this.mContext = mContext;
+
         this.fragmentTitle = fragmentTitle;
         this.TitleList = TitleList;
 
@@ -51,7 +54,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(TitleViewHolder holder, int position) {
+    public void onBindViewHolder(final TitleViewHolder holder, int position) {
         String android = "Android";
         String ios = "IOS";
         String iot = "IoT";
@@ -81,6 +84,18 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
         }else {
             holder.ivTitle.setImageResource(R.drawable.logo);
         }
+        holder.ibtnStar.setChecked(false);
+        holder.ibtnStar.setBackgroundDrawable(ContextCompat.getDrawable(fragmentTitle.getContext(), R.drawable.love_s1));
+        holder.ibtnStar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    holder.ibtnStar.setBackgroundDrawable(ContextCompat.getDrawable(fragmentTitle.getContext(), R.drawable.love_s3));
+                } else {
+                    holder.ibtnStar.setBackgroundDrawable(ContextCompat.getDrawable(fragmentTitle.getContext(), R.drawable.love_s1));
+                }
+            }
+        });
 
 
     }

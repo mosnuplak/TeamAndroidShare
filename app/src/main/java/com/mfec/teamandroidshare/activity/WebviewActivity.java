@@ -1,10 +1,13 @@
 package com.mfec.teamandroidshare.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.mfec.teamandroidshare.R;
@@ -25,6 +28,7 @@ public class WebviewActivity extends AppCompatActivity {
     public String topicId;
     public String topicName;
     TextView tvToolbar;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +44,27 @@ public class WebviewActivity extends AppCompatActivity {
                     .add(R.id.fragmentWeb , FragmentWebTitle.newInstance(link),"getFragmentWebTitle")
                     .commit();
         }
+        setSupportActionBar(toolbar);
         tvToolbar.setText(topicName);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void init() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvToolbar = (TextView) findViewById(R.id.tvToolbar);
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home :
+                onBackPressed();
+                finish();
+            default :
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -59,7 +76,7 @@ public class WebviewActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<TitleDao> call, Response<TitleDao> response) {
                 if (response.isSuccessful()) {
-                    Log.d("hi","eiei");
+
                 }
             }
 

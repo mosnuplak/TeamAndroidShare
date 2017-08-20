@@ -57,7 +57,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
             Log.d("MOSS", "onItemClickListener: "+categoryList.get(position).getCateName());
             Intent intent = new Intent(fragmentCategory1.getActivity(), TitleActivity.class);
             intent.putExtra("cateName",categoryList.get(position).getCateName());
-            intent.putExtra("userId",userId);
             fragmentCategory1.startActivity(intent);
         }
     };

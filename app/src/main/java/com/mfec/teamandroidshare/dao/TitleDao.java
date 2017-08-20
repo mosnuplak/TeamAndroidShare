@@ -34,6 +34,9 @@ public class TitleDao {
     @SerializedName("topicId")
     private String topicId;
 
+    @SerializedName("totalLike")
+    private String totalLike;
+
     public String getTopicId() {
         return topicId;
     }

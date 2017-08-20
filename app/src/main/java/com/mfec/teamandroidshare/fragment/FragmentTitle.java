@@ -1,6 +1,7 @@
 package com.mfec.teamandroidshare.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -56,6 +57,8 @@ public class FragmentTitle extends Fragment {
         if(getArguments()!=null)
         cateName = getArguments().getString("cateName");
     }
+
+
 
 
 
@@ -119,11 +122,12 @@ public class FragmentTitle extends Fragment {
             public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {
                 swipeRefreshLayout.setRefreshing(false);
                 if (response.isSuccessful()) {
-
                     List<TitleDao> dao = response.body();
-                    //Log.d(" "+dao.get(1).getCategory(),"getCategory Mos");
-                        showTitle(dao);
+                    if (dao == null){
 
+                    }else {
+                        showTitle(dao);
+                    }
                 } else {
                     try {
                         Toast.makeText(getActivity(),
@@ -147,7 +151,7 @@ public class FragmentTitle extends Fragment {
         GridLayoutManager manager = new GridLayoutManager(getContext(), 1);
         rvTitle.setLayoutManager(manager);
 
-        adapter = new TitleAdapter(this, dao, FragmentTitle.this);
+        adapter = new TitleAdapter(dao, FragmentTitle.this);
         rvTitle.setAdapter(adapter);
     }
 
@@ -180,5 +184,11 @@ public class FragmentTitle extends Fragment {
         if (savedInstanceState != null) {
             // Restore Instance State here
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
     }
 }

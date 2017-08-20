@@ -123,8 +123,6 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.wtf("plengslowtoad", "resume fragmentAdd");
     }
 
     @Override
