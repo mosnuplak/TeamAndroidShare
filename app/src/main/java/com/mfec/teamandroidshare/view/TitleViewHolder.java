@@ -20,7 +20,7 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
     TextView tvTitle;
     TextView tvDescript;
     TextView tvPoster;
-    ToggleButton ibtnStar;
+    ImageButton ibtnStar;
     TextView tvStar;
     ImageView ivTitle;
     TextView totalViewer;
@@ -35,7 +35,7 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
         tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
         tvDescript = (TextView) itemView.findViewById(R.id.tvDescript);
         tvPoster = (TextView) itemView.findViewById(R.id.tvPoster);
-        ibtnStar = (ToggleButton) itemView.findViewById(R.id.ibtnStar);
+        ibtnStar = (ImageButton) itemView.findViewById(R.id.ibtnStar);
         tvStar = (TextView) itemView.findViewById(R.id.tvStar);
         ivTitle = (ImageView) itemView.findViewById(R.id.ivTitle);
 

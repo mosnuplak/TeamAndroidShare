@@ -31,6 +31,7 @@ public interface ApiService {
 
     @POST("topic/createTopic")
     Call<WrapperDao> AddTopic(@Body WrapperDao wrapper);
+
     @POST("topic/viewTopic")
     Call<TitleDao> AddViewTopic(@Body TitleDao titleDao);
 
@@ -49,5 +50,7 @@ public interface ApiService {
     @GET("profile/getUserProfile/{id}")
     Call<LoginDao> loadProfile(@Path("id") String id);
 
+    @POST("topic/likeTopic/{id}")
+    Call<Boolean> likeAndUnlike(@Body TitleDao titleDao,@Path("id") String id);
 
 }

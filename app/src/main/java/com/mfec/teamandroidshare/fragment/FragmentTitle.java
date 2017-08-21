@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,8 @@ public class FragmentTitle extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sp = getActivity().getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
+        userId = sp.getString("userId", "0");
         if(getArguments()!=null)
         cateName = getArguments().getString("cateName");
     }
@@ -118,8 +121,9 @@ public class FragmentTitle extends Fragment {
     private void reloadData() {
         CategoryDao categoryDao = new CategoryDao();
         categoryDao.setCateName(cateName);
-        SharedPreferences sp = getActivity().getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
-        userId = sp.getString("userId", "0");
+
+        Log.d("userId","ENG"+userId+cateName);
+
         Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicList(categoryDao,userId);
         call.enqueue(new Callback<List<TitleDao>>() {
             @Override

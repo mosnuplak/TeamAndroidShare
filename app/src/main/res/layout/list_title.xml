@@ -71,17 +71,14 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true">
 
-                    <ToggleButton
+                    <ImageButton
                         android:id="@+id/ibtnStar"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/love"
                         android:scaleType="fitXY"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:textOn=""
-                        android:textOff=""
                          />
 
                     <TextView

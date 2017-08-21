@@ -2,12 +2,14 @@ package com.mfec.teamandroidshare.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +19,23 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.TitleActivity;
 import com.mfec.teamandroidshare.activity.WebviewActivity;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
 import com.mfec.teamandroidshare.fragment.FragmentWebTitle;
+import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by MSI on 4/8/2560.
@@ -36,9 +45,13 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     FragmentTitle fragmentTitle;
     private FragmentTitle mContext;
     private List<TitleDao> TitleList;
+    Boolean status = false;
+    String userId;
+    Boolean callBackLike = false;
     public TitleAdapter(List<TitleDao> TitleList , FragmentTitle fragmentTitle) {
 
-
+        SharedPreferences sp = fragmentTitle.getActivity().getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
+        userId = sp.getString("userId", "0");
         this.fragmentTitle = fragmentTitle;
         this.TitleList = TitleList;
 
@@ -59,7 +72,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
         String ios = "IOS";
         String iot = "IoT";
         String wed = "Web";
-        TitleDao titleDao = TitleList.get(position);
+        final TitleDao titleDao = TitleList.get(position);
 
         //SpannableString content = new SpannableString(titleDao.getHead());
         //content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
@@ -84,20 +97,69 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
         }else {
             holder.ivTitle.setImageResource(R.drawable.logo);
         }
-        holder.ibtnStar.setChecked(false);
-        holder.ibtnStar.setBackgroundDrawable(ContextCompat.getDrawable(fragmentTitle.getContext(), R.drawable.love_s1));
-        holder.ibtnStar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        if(titleDao.getStatus() == true) {
+            holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
+        } else {
+            holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
+        }
+
+        holder.ibtnStar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    holder.ibtnStar.setBackgroundDrawable(ContextCompat.getDrawable(fragmentTitle.getContext(), R.drawable.love_s3));
+            public void onClick(View v) {
+
+                if(titleDao.getStatus() == true) {
+                    holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
+                    likeService(titleDao.getTopicId(), userId);
                 } else {
-                    holder.ibtnStar.setBackgroundDrawable(ContextCompat.getDrawable(fragmentTitle.getContext(), R.drawable.love_s1));
+                    holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
+                    likeService(titleDao.getTopicId(), userId);
                 }
             }
         });
 
 
+    }
+
+    private void likeService(String titleId,String userId) {
+        TitleDao titledao = new TitleDao();
+        titledao.setTopicId(titleId);
+        Call<Boolean> call = HttpManagerNice.getInstance().getService().likeAndUnlike(titledao,userId);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    callBackLike = response.body();
+                    if (callBackLike == true) {
+                        Toast.makeText(fragmentTitle.getContext()
+                                , "like"
+                                , Toast.LENGTH_SHORT)
+                                .show();
+                    } else {
+                        Toast.makeText(fragmentTitle.getContext()
+                                , "Unlike"
+                                , Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }else {
+                    try {
+                        Toast.makeText(fragmentTitle.getContext(),
+                                response.errorBody().string(),
+                                Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(fragmentTitle.getContext()
+                        , t.getMessage()
+                        , Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
     }
 
     TitleViewHolder.onItemClick itemClick = new TitleViewHolder.onItemClick() {
