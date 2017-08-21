@@ -6,66 +6,74 @@
     android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#cecbcb"
     android:fillViewport="true">
 <LinearLayout
     android:id="@+id/linear"
     android:layout_marginTop="50dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#cecbcb"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_topic" />
 
     <EditText
         android:id="@+id/etTilteName"
+        android:layout_marginTop="35dp"
+        android:hint="Topic"
         android:maxLines="1"
         android:inputType="text"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="56dp"
+        android:background="@drawable/btn_default_normal"
+        android:backgroundTint="#ffff"
         android:imeOptions="actionNext"
-        android:paddingBottom="2dp"/>
+        android:paddingBottom="2dp"
+        android:layout_gravity="center_horizontal"
+        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_description" />
 
     <EditText
         android:id="@+id/etTitleDis"
+        android:hint="Description"
         android:maxLines="1"
         android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:background="@drawable/btn_default_normal"
+        android:backgroundTint="#ffff"
         android:imeOptions="actionNext"
+        android:layout_gravity="center_horizontal"
         android:paddingBottom="2dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_link" />
 
     <EditText
         android:id="@+id/etTitleLink"
+        android:hint="Link"
         android:maxLines="1"
         android:inputType="text"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
+        android:background="@drawable/btn_default_normal"
+        android:backgroundTint="#ffff"
         android:imeOptions="actionDone"
         android:layout_height="56dp"
         android:paddingBottom="2dp"
+        android:layout_gravity="center_horizontal"
+        />
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/btnAdd"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/menu_add"
+        android:textColor="#ffff"
         />
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="@string/menu_add" />
     <TextView
         android:id="@+id/tvAlert"
         android:textSize="26dp"
-
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="56dp" />

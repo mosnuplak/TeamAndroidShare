@@ -30,7 +30,7 @@
     <string name="dialog_no">no</string>
     <string name="dialog_thankYou">Thank You</string>
     <!--หน้า add title-->
-    <string name="text_topic">Topic</string>
+    <string name="text_topic">AddTopic</string>
     <string name="text_description">Description</string>
     <string name="text_link">Link</string>
     <string name="text_alert_thisform">Please fill out this form completely.</string>
