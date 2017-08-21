@@ -1,5 +1,7 @@
 package com.mfec.teamandroidshare.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -38,6 +40,7 @@ public class FragmentTitle extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     private List<PeopleDao> peopleList;
     String cateName;
+    String userId;
 
     public FragmentTitle() {
         super();
@@ -115,8 +118,9 @@ public class FragmentTitle extends Fragment {
     private void reloadData() {
         CategoryDao categoryDao = new CategoryDao();
         categoryDao.setCateName(cateName);
-
-        Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicList(categoryDao);
+        SharedPreferences sp = getActivity().getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
+        userId = sp.getString("userId", "0");
+        Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicList(categoryDao,userId);
         call.enqueue(new Callback<List<TitleDao>>() {
             @Override
             public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {

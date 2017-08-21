@@ -26,8 +26,8 @@ public interface ApiService {
 //    @GET("topic/getListTopicByCategory/{category}")
 //    Call<List<TitleDao>> LoadTopicList(@Path("category") String cateName);
 
-    @POST("topic/getListTopicByCategory")
-    Call<List<TitleDao>> LoadTopicList(@Body CategoryDao categoryDao);
+    @POST("topic/getListTopicByCategory/{id}")
+    Call<List<TitleDao>> LoadTopicList(@Body CategoryDao categoryDao,@Path("id") String id);
 
     @POST("topic/createTopic")
     Call<WrapperDao> AddTopic(@Body WrapperDao wrapper);
