@@ -20,7 +20,7 @@
     <EditText
         android:id="@+id/etTilteName"
         android:layout_marginTop="35dp"
-        android:hint="text_topic"
+        android:hint="@string/text_topic"
         android:maxLines="1"
         android:inputType="text"
         android:layout_width="320dp"
@@ -35,7 +35,7 @@
 
     <EditText
         android:id="@+id/etTitleDis"
-        android:hint="text_description"
+        android:hint="@string/text_description"
         android:maxLines="1"
         android:inputType="text"
         android:layout_width="320dp"
@@ -49,7 +49,7 @@
 
     <EditText
         android:id="@+id/etTitleLink"
-        android:hint="text_link"
+        android:hint="@string/text_link"
         android:maxLines="1"
         android:inputType="text"
         android:layout_width="320dp"
