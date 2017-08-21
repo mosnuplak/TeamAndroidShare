@@ -1,13 +1,15 @@
 package com.mfec.teamandroidshare.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -54,7 +56,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         super();
     }
 
-    public static FragmentAddTitle newInstance(String cateName,String userId) {
+    public static FragmentAddTitle newInstance(String cateName, String userId) {
         FragmentAddTitle fragment = new FragmentAddTitle();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -70,7 +72,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
 
         if (getArguments() != null)
             cateName = getArguments().getString("cateName");
-            userId = getArguments().getString("userId");
+        userId = getArguments().getString("userId");
     }
 
     @Override
@@ -94,15 +96,13 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         initHideKeyboard(relative);
 
 
-
-
         etTitleLink.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
 
                     addTopic();
-                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getActivity()
                             .getCurrentFocus()
                             .getWindowToken(), 0);
@@ -202,30 +202,58 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             etTitleLink.setText("");
             tvAlert.setText(R.string.text_alert_success);
             tvAlert.setTextColor(Color.GREEN);
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(getContext());
+            builder.setMessage(R.string.text_alert_success);
+            builder.setPositiveButton(R.string.text_ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Toast.makeText(getContext(),
+                            R.string.text_alert_success, Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragmentTitle, FragmentTitle.newInstance(cateName), "getFragmentTitle")
+                            .commit();
+                }
+            });
+            builder.show();
         } else {
             tvAlert.setText(R.string.text_alert_thisform);
             tvAlert.setTextColor(Color.RED);
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(getContext());
+            builder.setMessage(R.string.text_alert_thisform);
+            builder.setNegativeButton(R.string.text_continue, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getContext(),
+                            R.string.text_alert_thisform, Toast.LENGTH_SHORT).show();
+                    //dialog.dismiss();
+                }
+            });
+            builder.show();
+
+
         }
     }
+
     private void initHideKeyboard(RelativeLayout touchInterceptor) {
         touchInterceptor.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    setHideKeyboard(etTilteName,v,event);
-                    setHideKeyboard(etTitleDis,v,event);
-                    setHideKeyboard(etTitleLink,v,event);
+                    setHideKeyboard(etTilteName, v, event);
+                    setHideKeyboard(etTitleDis, v, event);
+                    setHideKeyboard(etTitleLink, v, event);
                 }
                 return false;
             }
         });
     }
 
-    private void setHideKeyboard(final EditText editText,View v, MotionEvent event) {
+    private void setHideKeyboard(final EditText editText, View v, MotionEvent event) {
         if (editText.isFocused()) {
             Rect outRect = new Rect();
             editText.getGlobalVisibleRect(outRect);
-            if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+            if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                 editText.clearFocus();
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);

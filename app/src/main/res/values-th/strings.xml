@@ -25,4 +25,6 @@
     <string name="text_link">ลิงค์</string>
     <string name="text_alert_thisform">กรุณากรอกแบบฟอร์มนี้ให้ครบถ้วน</string>
     <string name="text_alert_success">สำเร็จ</string>
+    <string name="text_ok">ตกลง</string>
+    <string name="text_continue">ดำเนินต่อ</string>
 </resources>
