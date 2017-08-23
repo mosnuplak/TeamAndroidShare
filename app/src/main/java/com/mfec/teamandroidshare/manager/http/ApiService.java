@@ -3,6 +3,7 @@ package com.mfec.teamandroidshare.manager.http;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.LoginDao;
 import com.mfec.teamandroidshare.dao.PeopleDao;
+import com.mfec.teamandroidshare.dao.RankDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.dao.WrapperDao;
 
@@ -52,5 +53,8 @@ public interface ApiService {
 
     @POST("topic/likeTopic/{id}")
     Call<Boolean> likeAndUnlike(@Body TitleDao titleDao,@Path("id") String id);
+
+    @GET("rank/rankTopic")
+    Call<List<RankDao>> LoadRankList();
 
 }

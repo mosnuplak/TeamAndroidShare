@@ -1,23 +1,40 @@
 package com.mfec.teamandroidshare.dao;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by lenovoNB on 08-Aug-17.
  */
 
 public class RankDao {
-    private String tv_num;
-    private String tv_name;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("totalLike")
+    private int totalLike;
+    @SerializedName("rankedNumber")
+    private int rankedNumber;
 
-    public RankDao(String tv_num, String tv_name) {
-        this.tv_num = tv_num;
-        this.tv_name = tv_name;
+    public String getName() {
+        return name;
     }
 
-    public String getTv_num() {
-        return tv_num;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTv_name() {
-        return tv_name;
+    public int getTotalLike() {
+        return totalLike;
+    }
+
+    public void setTotalLike(int totalLike) {
+        this.totalLike = totalLike;
+    }
+
+    public int getRankedNumber() {
+        return rankedNumber;
+    }
+
+    public void setRankedNumber(int rankedNumber) {
+        this.rankedNumber = rankedNumber;
     }
 }
