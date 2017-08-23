@@ -18,11 +18,11 @@
     <!--android:title="Add Category" />-->
     <item
         android:id="@+id/btn_eng"
-        android:title="Theme Eng"
+        android:title="@string/menu_theme_english"
         app:showAsAction="never" />
     <item
         android:id="@+id/btn_thai"
-        android:title="Theme Thai"
+        android:title="@string/menu_theme_thai"
         app:showAsAction="never" />
 
     <item

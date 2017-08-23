@@ -56,6 +56,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     FancyButton btnRank;
     @InjectView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @InjectView(R.id.btn_logout)
+    FancyButton btnLogout;
     private String TAG = "ff";
     Button butonTh;
     //CircleProgressView mCircleProgressView;
@@ -118,12 +120,13 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                     .commit();
         }
         btnRank.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
 
 
     }
 
     private void initInstance() {
-        btnRank = (FancyButton) findViewById(R.id.btn_rank);
+//        btnRank = (FancyButton) findViewById(R.id.btn_rank);
 //        toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
         setSupportActionBar(toolbar); //คอมเม้น
 //        tvProfile = (TextView) findViewById(R.id.tvProfile);
@@ -163,26 +166,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         if (actionBarDrawerToggle.onOptionsItemSelected(item))
             return true;
         if (item.getItemId() == R.id.action_settings) {
-            AlertDialog.Builder builder =
-                    new AlertDialog.Builder(CategoryActivity.this);
-            builder.setMessage(R.string.dialog_logout);
-            builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    Toast.makeText(getApplicationContext(),
-                            R.string.dialog_thankYou, Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplication(), LoginActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            });
-            builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //dialog.dismiss();
-                }
-            });
-            builder.show();
-
+            confirm_logout();
             return true;
         }
         if (item.getItemId() == R.id.btn_eng) {
@@ -215,8 +199,13 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(getApplication(), RankActivity.class);
-        startActivity(i);
+        if (v == btnLogout) {
+            confirm_logout();
+        }
+        if (v == btnRank) {
+            Intent i = new Intent(getApplication(), RankActivity.class);
+            startActivity(i);
+        }
 
     }
 
@@ -248,5 +237,27 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void confirm_logout() {///////////////////ฟังก์ชันนี้ ใช้ Log out
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(CategoryActivity.this);
+        builder.setMessage(R.string.dialog_logout);
+        builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast.makeText(getApplicationContext(),
+                        R.string.dialog_thankYou, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplication(), LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }
