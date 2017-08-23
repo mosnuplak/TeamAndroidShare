@@ -197,11 +197,11 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
                 }
             });
 
-            etTilteName.setText("");
-            etTitleDis.setText("");
-            etTitleLink.setText("");
-            tvAlert.setText(R.string.text_alert_success);
-            tvAlert.setTextColor(Color.GREEN);
+//            etTilteName.setText("");
+//            etTitleDis.setText("");
+//            etTitleLink.setText("");
+//            tvAlert.setText(R.string.text_alert_success);
+//            tvAlert.setTextColor(Color.GREEN);
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(getContext());
             builder.setMessage(R.string.text_alert_success);
@@ -216,8 +216,8 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             });
             builder.show();
         } else {
-            tvAlert.setText(R.string.text_alert_thisform);
-            tvAlert.setTextColor(Color.RED);
+//            tvAlert.setText(R.string.text_alert_thisform);
+//            tvAlert.setTextColor(Color.RED);
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(getContext());
             builder.setMessage(R.string.text_alert_thisform);

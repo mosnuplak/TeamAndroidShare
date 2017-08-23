@@ -176,6 +176,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
         if (check == true) {
             callRegister();
+            Intent i = new Intent(getApplication(), LoginActivity.class);
+            startActivity(i);
             Toast.makeText(getApplicationContext()
                     , "success"
                     , Toast.LENGTH_LONG)
