@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.LoginDao;
+import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import butterknife.ButterKnife;
@@ -47,13 +48,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     CardView cv;
     @InjectView(R.id.relative)
     RelativeLayout relative;
+
+    SharedPrefUtil sharedPrefUtil;
    // private  Call<LoginDao> checkLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
-
+        sharedPrefUtil = new SharedPrefUtil(this);
         initInstances();
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
@@ -139,11 +142,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Intent i = new Intent(getApplication(), CategoryActivity.class);
                         i.putExtra("userId",login.getUserId());
 
-                        SharedPreferences sp = getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sp.edit();
-                        editor.putString("userId", login.getUserId());
-                        editor.putString("name", login.getName());
-                        editor.commit();
+                        sharedPrefUtil.saveUserId(login.getUserId());
+                        sharedPrefUtil.saveName(login.getName());
 
                         startActivity(i);
                         finish();

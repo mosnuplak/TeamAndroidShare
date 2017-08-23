@@ -19,6 +19,7 @@ import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.PeopleDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
+import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 import com.mfec.teamandroidshare.view.TitleAdapter;
 
@@ -43,6 +44,7 @@ public class FragmentTitle extends Fragment {
     String cateName;
     String userId;
     private String fragMent;
+    SharedPrefUtil sharedPrefUtil;
 
     public FragmentTitle() {
         super();
@@ -60,8 +62,8 @@ public class FragmentTitle extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sp = getActivity().getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
-        userId = sp.getString("userId", "0");
+        sharedPrefUtil = new SharedPrefUtil(getContext());
+        userId = sharedPrefUtil.getUserId();
         if(getArguments()!=null)
         cateName = getArguments().getString("cateName");
         fragMent = getArguments().getString("fragMent");
@@ -177,7 +179,7 @@ public class FragmentTitle extends Fragment {
         GridLayoutManager manager = new GridLayoutManager(getContext(), 1);
         rvTitle.setLayoutManager(manager);
 
-        adapter = new TitleAdapter(dao, FragmentTitle.this);
+        adapter = new TitleAdapter(dao, FragmentTitle.this,userId);
         rvTitle.setAdapter(adapter);
     }
 

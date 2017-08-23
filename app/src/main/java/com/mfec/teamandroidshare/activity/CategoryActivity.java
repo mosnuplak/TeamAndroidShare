@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.LoginDao;
 import com.mfec.teamandroidshare.fragment.FragmentCategory;
+import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import java.io.IOException;
@@ -59,15 +60,15 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     private String TAG = "ff";
     Button butonTh;
     //CircleProgressView mCircleProgressView;
-
+    SharedPrefUtil sharedPrefUtil;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         ButterKnife.inject(this);
 
-        SharedPreferences sp = getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
-        String userId = sp.getString("userId", "0");
+        sharedPrefUtil = new SharedPrefUtil(this);
+        String userId = sharedPrefUtil.getUserId();
 
         initInstance();
 //        ////////////////////

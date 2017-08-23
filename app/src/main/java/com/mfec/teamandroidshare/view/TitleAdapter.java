@@ -24,6 +24,7 @@ import com.mfec.teamandroidshare.activity.WebviewActivity;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
 import com.mfec.teamandroidshare.fragment.FragmentWebTitle;
+import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import java.io.BufferedReader;
@@ -47,11 +48,11 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     Boolean status = false;
     String userId;
     Boolean callBackLike = false;
+    SharedPrefUtil sharedPrefUtil;
 
-    public TitleAdapter(List<TitleDao> TitleList, FragmentTitle fragmentTitle) {
+    public TitleAdapter(List<TitleDao> TitleList, FragmentTitle fragmentTitle,String userId) {
 
-        SharedPreferences sp = fragmentTitle.getActivity().getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
-        userId = sp.getString("userId", "0");
+        this.userId = userId;
         this.fragmentTitle = fragmentTitle;
         this.TitleList = TitleList;
 
