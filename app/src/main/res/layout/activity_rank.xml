@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -24,8 +24,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="@string/app_name_rank"
-                android:textColor="#ffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
         </android.support.v7.widget.Toolbar>
 

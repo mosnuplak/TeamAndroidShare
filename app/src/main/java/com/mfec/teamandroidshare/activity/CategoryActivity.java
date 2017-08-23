@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import com.mfec.teamandroidshare.fragment.FragmentCategory;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -55,6 +57,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @InjectView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     private String TAG = "ff";
+    Button butonTh;
     //CircleProgressView mCircleProgressView;
 
     @Override
@@ -67,6 +70,20 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         String userId = sp.getString("userId", "0");
 
         initInstance();
+//        ////////////////////
+//        butonTh = (Button) findViewById(R.id.butonTh);
+//        butonTh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Configuration config = new Configuration();
+//                config.locale = new Locale("th");
+//                getResources().updateConfiguration(config, null);
+//                Toast.makeText(getApplicationContext(),
+//                        "Theme Thai", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        /////////////////////
         Call<LoginDao> call = HttpManagerNice.getInstance().getService().loadProfile(userId);
         call.enqueue(new Callback<LoginDao>() {
             @Override
@@ -167,6 +184,28 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
             builder.show();
 
             return true;
+        }
+        if (item.getItemId() == R.id.btn_eng) {
+            Toast.makeText(getApplicationContext(),
+                    R.string.menu_theme_english, Toast.LENGTH_SHORT).show();
+            Configuration config = new Configuration();
+            config.locale = Locale.ENGLISH;
+            getResources().updateConfiguration(config, null);
+            finish();
+            Intent i = new Intent(getApplication(), CategoryActivity.class);
+            startActivity(i);
+        }
+        if (item.getItemId() == R.id.btn_thai) {
+            Toast.makeText(getApplicationContext(),
+                    R.string.menu_theme_thai, Toast.LENGTH_SHORT).show();
+            Configuration config = new Configuration();
+            config.locale = new Locale("th");
+            getResources().updateConfiguration(config, null);
+            finish();
+            Intent i = new Intent(getApplication(), CategoryActivity.class);
+            startActivity(i);
+
+
         }
 
         return super.onOptionsItemSelected(item);

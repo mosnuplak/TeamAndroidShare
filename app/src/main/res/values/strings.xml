@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Category</string>
+    <string name="app_name">Share knowledge</string>
+    <string name="app_name_category">Category</string>
     <string name="app_name_rank">Rank</string>
     <string name="app_name_title">Title</string>
     <string name="app_name_profile">Profile</string>
@@ -23,6 +24,8 @@
     <string name="text_done">Done</string>
 
 
+    <string name="menu_theme_english">Theme English</string>
+    <string name="menu_theme_thai">Theme Thai</string>
     <string name="menu_logout">Log out</string>
 
     <string name="dialog_logout">Are you sure you want to log out this account?</string>

@@ -2,26 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--<item-->
-        <!--android:id="@+id/fab_gotoRank"-->
-        <!--android:icon="@drawable/ic_crown_menu"-->
-        <!--android:title="Rank"-->
-        <!--/>-->
+    <!--android:id="@+id/fab_gotoRank"-->
+    <!--android:icon="@drawable/ic_crown_menu"-->
+    <!--android:title="Rank"-->
+    <!--/>-->
 
     <!--<item-->
-        <!--android:id="@+id/fab_profile"-->
-        <!--android:icon="@drawable/ic_menu_profile"-->
-        <!--android:title="Profile"-->
-        <!--/>-->
+    <!--android:id="@+id/fab_profile"-->
+    <!--android:icon="@drawable/ic_menu_profile"-->
+    <!--android:title="Profile"-->
+    <!--/>-->
     <!--<item-->
-        <!--android:id="@+id/fab_addCategory"-->
-        <!--android:icon="@drawable/ic_plus"-->
-        <!--android:title="Add Category" />-->
+    <!--android:id="@+id/fab_addCategory"-->
+    <!--android:icon="@drawable/ic_plus"-->
+    <!--android:title="Add Category" />-->
+    <item
+        android:id="@+id/btn_eng"
+        android:title="Theme Eng"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/btn_thai"
+        android:title="Theme Thai"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
         android:title="@string/menu_logout"
         app:showAsAction="never" />
-
 
 
 </menu>

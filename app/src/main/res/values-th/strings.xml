@@ -13,6 +13,8 @@
     <string name="text_password">รหัสผ่าน</string>
     <string name="text_done">เสร็จสิ้น</string>
 
+    <string name="menu_theme_english">Theme English</string>
+    <string name="menu_theme_thai">ภาษาไทย</string>
     <string name="menu_logout">ออกจากระบบ</string>
 
     <string name="dialog_logout">คุณต้องการออกจากระบบหรือไม่?</string>
