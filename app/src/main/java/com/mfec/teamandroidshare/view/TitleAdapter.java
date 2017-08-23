@@ -43,12 +43,12 @@ import retrofit2.Response;
 
 public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     FragmentTitle fragmentTitle;
-    private FragmentTitle mContext;
     private List<TitleDao> TitleList;
     Boolean status = false;
     String userId;
     Boolean callBackLike = false;
-    public TitleAdapter(List<TitleDao> TitleList , FragmentTitle fragmentTitle) {
+
+    public TitleAdapter(List<TitleDao> TitleList, FragmentTitle fragmentTitle) {
 
         SharedPreferences sp = fragmentTitle.getActivity().getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
         userId = sp.getString("userId", "0");
@@ -58,47 +58,44 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     }
 
 
-
-
     @Override
     public TitleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_title,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_title, parent, false);
         return new TitleViewHolder(view, itemClick);
     }
 
     @Override
-    public void onBindViewHolder(final TitleViewHolder holder, int position) {
+    public void onBindViewHolder(final TitleViewHolder holder, final int position) {
+
         String android = "Android";
         String ios = "IOS";
         String iot = "IoT";
         String wed = "Web";
         final TitleDao titleDao = TitleList.get(position);
 
-        //SpannableString content = new SpannableString(titleDao.getHead());
-        //content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 
         holder.tvTitle.setText(titleDao.getHead());
         holder.tvDescript.setText(titleDao.getDescription());
         holder.totalViewer.setText(titleDao.getTotalViewer());
-        if (titleDao.getPoster() == null){
+        if (titleDao.getPoster() == null) {
             holder.tvPoster.setText("Share by Anonymous");
         } else {
-            holder.tvPoster.setText("Share by "+titleDao.getPoster());
+            holder.tvPoster.setText("Share by " + titleDao.getPoster());
         }
 
         if (titleDao.getCategory().equals(android)) {
             holder.ivTitle.setImageResource(R.drawable.android_fix);
-        }else if (titleDao.getCategory().equals(ios)){
+        } else if (titleDao.getCategory().equals(ios)) {
             holder.ivTitle.setImageResource(R.drawable.ios_fix);
-        }else if (titleDao.getCategory().equals(iot)){
+        } else if (titleDao.getCategory().equals(iot)) {
             holder.ivTitle.setImageResource(R.drawable.iot_fix);
-        }else if (titleDao.getCategory().equals(wed)) {
+        } else if (titleDao.getCategory().equals(wed)) {
             holder.ivTitle.setImageResource(R.drawable.web_fix);
-        }else {
+        } else {
             holder.ivTitle.setImageResource(R.drawable.logo);
         }
 
-        if(titleDao.getStatus() == true) {
+        if (titleDao.getStatus() == true) {
             holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
         } else {
             holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
@@ -108,23 +105,28 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
             @Override
             public void onClick(View v) {
 
-                if(titleDao.getStatus() == true) {
+                if (titleDao.getStatus() == true) {
                     holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
-                    likeService(titleDao.getTopicId(), userId);
+                    likeService(titleDao.getTopicId(), userId, position);
+                    titleDao.setStatus(false);
+
                 } else {
                     holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
-                    likeService(titleDao.getTopicId(), userId);
+                    likeService(titleDao.getTopicId(), userId, position);
+                    titleDao.setStatus(true);
+
                 }
+
             }
         });
 
 
     }
 
-    private void likeService(String titleId,String userId) {
+    private void likeService(String titleId, String userId,int position) {
         TitleDao titledao = new TitleDao();
         titledao.setTopicId(titleId);
-        Call<Boolean> call = HttpManagerNice.getInstance().getService().likeAndUnlike(titledao,userId);
+        Call<Boolean> call = HttpManagerNice.getInstance().getService().likeAndUnlike(titledao, userId);
         call.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
@@ -141,7 +143,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
                                 , Toast.LENGTH_SHORT)
                                 .show();
                     }
-                }else {
+                } else {
                     try {
                         Toast.makeText(fragmentTitle.getContext(),
                                 response.errorBody().string(),
@@ -160,21 +162,18 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
                         .show();
             }
         });
+        notifyItemChanged(position);
     }
 
     TitleViewHolder.onItemClick itemClick = new TitleViewHolder.onItemClick() {
 
         @Override
         public void onItemClickListener(int position) {
-            //TitleDao titleDao = TitleList.get(position);
 
-
-            //Toast.makeText(fragmentTitle.getActivity(),""+titleDao.getLink(),Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(fragmentTitle.getActivity(),WebviewActivity.class);
-            intent.putExtra("linkUrl",TitleList.get(position).getLink());
-            intent.putExtra("topicId",TitleList.get(position).getTopicId());
-            intent.putExtra("topicName",TitleList.get(position).getHead());
+            Intent intent = new Intent(fragmentTitle.getActivity(), WebviewActivity.class);
+            intent.putExtra("linkUrl", TitleList.get(position).getLink());
+            intent.putExtra("topicId", TitleList.get(position).getTopicId());
+            intent.putExtra("topicName", TitleList.get(position).getHead());
             fragmentTitle.startActivity(intent);
 
         }

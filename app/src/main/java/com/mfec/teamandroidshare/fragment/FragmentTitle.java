@@ -39,18 +39,20 @@ public class FragmentTitle extends Fragment {
     RecyclerView rvTitle;
     TitleAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
-    private List<PeopleDao> peopleList;
+    private List<TitleDao> titleList;
     String cateName;
     String userId;
+    private String fragMent;
 
     public FragmentTitle() {
         super();
     }
 
-    public static FragmentTitle newInstance(String cateName) {
+    public static FragmentTitle newInstance(String cateName,String fragMent) {
         FragmentTitle fragment = new FragmentTitle();
         Bundle args = new Bundle();
         args.putString("cateName",cateName);
+        args.putString("fragMent",fragMent);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,6 +64,8 @@ public class FragmentTitle extends Fragment {
         userId = sp.getString("userId", "0");
         if(getArguments()!=null)
         cateName = getArguments().getString("cateName");
+        fragMent = getArguments().getString("fragMent");
+
     }
 
 
@@ -80,23 +84,8 @@ public class FragmentTitle extends Fragment {
     }
 
     private void initPeople() {
-        peopleList = new ArrayList<>();
-        peopleList.add(new PeopleDao("AndroidStaggered Grid"));
-        peopleList.add(new PeopleDao("Paralloid"));
-        peopleList.add(new PeopleDao("Retrofit"));
-        peopleList.add(new PeopleDao("SwipeRefreshLayout"));
-        peopleList.add(new PeopleDao("Android GraphView"));
-        peopleList.add(new PeopleDao("Holo Color Picker"));
-        peopleList.add(new PeopleDao("Android Async Http"));
-        peopleList.add(new PeopleDao("Crashlytics"));
-        peopleList.add(new PeopleDao("Butter Knife"));
-        peopleList.add(new PeopleDao("Android Annotations"));
-        peopleList.add(new PeopleDao("DateTimePicker"));
-        peopleList.add(new PeopleDao("Circular Progress Button"));
-        peopleList.add(new PeopleDao("ViewPager"));
-        peopleList.add(new PeopleDao("ViewPagerIndicator"));
-        peopleList.add(new PeopleDao("FadingActionBar"));
-        peopleList.add(new PeopleDao("AutofitTextView"));
+        titleList = new ArrayList<>();
+
     }
 
 
@@ -113,8 +102,6 @@ public class FragmentTitle extends Fragment {
         });
 
         reloadData();
-        //initPeople();
-
 
     }
 
@@ -123,36 +110,67 @@ public class FragmentTitle extends Fragment {
         categoryDao.setCateName(cateName);
 
         Log.d("userId","ENG"+userId+cateName);
+        if(fragMent == "LoadTopicList") {
+            Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicList(categoryDao, userId);
+            call.enqueue(new Callback<List<TitleDao>>() {
+                @Override
+                public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {
+                    swipeRefreshLayout.setRefreshing(false);
+                    if (response.isSuccessful()) {
+                        List<TitleDao> dao = response.body();
+                        if (dao == null) {
 
-        Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicList(categoryDao,userId);
-        call.enqueue(new Callback<List<TitleDao>>() {
-            @Override
-            public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {
-                swipeRefreshLayout.setRefreshing(false);
-                if (response.isSuccessful()) {
-                    List<TitleDao> dao = response.body();
-                    if (dao == null){
-
-                    }else {
-                        showTitle(dao);
-                    }
-                } else {
-                    try {
-                        Toast.makeText(getActivity(),
-                                response.errorBody().string(),
-                                Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        } else {
+                            showTitle(dao);
+                        }
+                    } else {
+                        try {
+                            Toast.makeText(getActivity(),
+                                    response.errorBody().string(),
+                                    Toast.LENGTH_LONG).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-            }
 
 
-            @Override
-            public void onFailure(Call<List<TitleDao>> call, Throwable t) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+                @Override
+                public void onFailure(Call<List<TitleDao>> call, Throwable t) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }else if(fragMent == "LoadTopicLikeList"){
+            Call<List<TitleDao>> call = HttpManagerNice.getInstance().getService().LoadTopicLikeList(categoryDao, userId);
+            call.enqueue(new Callback<List<TitleDao>>() {
+                @Override
+                public void onResponse(Call<List<TitleDao>> call, Response<List<TitleDao>> response) {
+                    swipeRefreshLayout.setRefreshing(false);
+                    if (response.isSuccessful()) {
+                        List<TitleDao> dao = response.body();
+                        if (dao == null) {
+
+                        } else {
+                            showTitle(dao);
+                        }
+                    } else {
+                        try {
+                            Toast.makeText(getActivity(),
+                                    response.errorBody().string(),
+                                    Toast.LENGTH_LONG).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+
+                @Override
+                public void onFailure(Call<List<TitleDao>> call, Throwable t) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
     }
 
     private void showTitle(List<TitleDao> dao) {

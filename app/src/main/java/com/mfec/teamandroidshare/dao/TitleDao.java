@@ -40,6 +40,11 @@ public class TitleDao {
     @SerializedName("status")
     private Boolean status;
 
+    public TitleDao(){
+
+    }
+
+
     public Boolean getStatus() {
         return status;
     }
@@ -55,7 +60,6 @@ public class TitleDao {
     public void setTotalLike(String totalLike) {
         this.totalLike = totalLike;
     }
-
 
 
     public String getTopicId() {

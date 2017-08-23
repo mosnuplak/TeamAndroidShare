@@ -72,7 +72,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
 
         if (getArguments() != null)
             cateName = getArguments().getString("cateName");
-        userId = getArguments().getString("userId");
+            userId = getArguments().getString("userId");
     }
 
     @Override
@@ -210,7 +210,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
                     Toast.makeText(getContext(),
                             R.string.text_alert_success, Toast.LENGTH_SHORT).show();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragmentTitle, FragmentTitle.newInstance(cateName), "getFragmentTitle")
+                    transaction.replace(R.id.fragmentTitle, FragmentTitle.newInstance(cateName,"LoadTopicList"), "getFragmentTitle")
                             .commit();
                 }
             });

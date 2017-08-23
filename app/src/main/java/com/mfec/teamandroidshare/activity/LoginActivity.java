@@ -148,10 +148,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         startActivity(i);
                         finish();
                     }
-//                                login.getName();
-//                                Toast.makeText(getApplicationContext(),
-//                                        login.getName().toString(),
-//                                        Toast.LENGTH_LONG).show();
+                                login.getName();
+                                Toast.makeText(getApplicationContext(),
+                                        login.getName().toString(),
+                                        Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(getApplicationContext(),
                             "no success".toString(),
