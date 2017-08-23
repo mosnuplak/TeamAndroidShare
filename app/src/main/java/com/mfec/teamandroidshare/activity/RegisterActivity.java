@@ -2,6 +2,7 @@ package com.mfec.teamandroidshare.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -112,7 +113,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                break;
 
            case R.id.fab:
-               animateRevealClose();
+               if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                   animateRevealClose();
+               }else {
+                   startActivity(new Intent(this, LoginActivity.class));
+               }
                break;
        }
     }
