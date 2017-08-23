@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.RankDao;
@@ -38,10 +39,11 @@ public class RankAdapter extends RecyclerView.Adapter<RankViewHolder>{
 
     @Override
     public void onBindViewHolder(RankViewHolder holder, int position) {
+       // holder.tv_num.setText(rankList.get(position).getName()+"");
+        //rankDao = rankList.get(position);
 
-        rankDao = rankList.get(position);
-        holder.tv_num.setText(rankDao.getTv_num());
-        holder.tv_name.setText(rankDao.getTv_name());
+        holder.tv_num.setText(rankList.get(position).getRankedNumber()+"");
+        holder.tv_name.setText(rankList.get(position).getName()+"");
 
     }
 

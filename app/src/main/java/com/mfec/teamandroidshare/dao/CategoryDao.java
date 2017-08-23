@@ -13,6 +13,15 @@ public class CategoryDao {
     @SerializedName("categoryId")
     private String id;
 
+    public CategoryDao(){
+
+    }
+    public CategoryDao(String id,String cateName){
+        this.id = id;
+        this.cateName = cateName;
+    }
+
+
     public String getId() {
         return id;
     }

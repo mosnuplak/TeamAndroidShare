@@ -3,9 +3,18 @@ package com.mfec.teamandroidshare.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.dao.RankDao;
 import com.mfec.teamandroidshare.fragment.FragmentRank;
+import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RankActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -22,7 +31,9 @@ public class RankActivity extends AppCompatActivity {
                     .add(R.id.fragmentRank, new FragmentRank())
                     .commit();
         }
+
     }
+
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //

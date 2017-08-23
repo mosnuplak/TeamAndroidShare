@@ -63,54 +63,6 @@ public class FragmentCategory extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
         initInstances(rootView);
 
-//        fabWithOptions = (OptionsFabLayout) rootView.findViewById(R.id.fab_l);  // ปุ่ม หน้า Category
-
-
-        //Set mini fab's colors.
-//        fabWithOptions.setMiniFabsColors(
-//                R.color.menu_category_rank,
-//                R.color.menu_category_profile,
-//                R.color.menu_category_category);
-
-        //Set main fab clicklistener.
-//        fabWithOptions.setMainFabOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getContext(), "Main fab clicked!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        //Set mini fabs clicklisteners.
-//        fabWithOptions.setMiniFabSelectedListener(new OptionsFabLayout.OnMiniFabSelectedListener() {
-//            @Override
-//            public void onMiniFabSelected(MenuItem fabItem) {
-//                if (fabItem.getItemId() == fab_profile) {
-//                    Toast.makeText(getContext(),
-//                            "Go to " + fabItem.getTitle(),
-//                            Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(getActivity(), ProfileActivity.class);
-//                    startActivity(i);
-//                }
-//
-////                if (fabItem.getItemId() == fab_addCategory) {
-////                    Toast.makeText(getContext(),
-////                            fabItem.getTitle(),
-////                            Toast.LENGTH_SHORT).show();
-////
-////                }
-//                if (fabItem.getItemId() == fab_gotoRank) {
-//                    Toast.makeText(
-//                            getContext(),
-//                            "Go To " + fabItem.getTitle(),
-//                            Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getActivity(), RankActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//        });
-
-        //getCategoryItem();
-
         ButterKnife.inject(this, rootView);
         return rootView;
 
@@ -119,26 +71,11 @@ public class FragmentCategory extends Fragment {
 
     private void getCategoryItem() {
         categoryList = new ArrayList<>();
-//        categoryList.add(new CategoryDao("Android"));
-//        categoryList.add(new CategoryDao("IOS"));
-//        categoryList.add(new CategoryDao("Web"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("มอส เอง ไง จะ ใคร ละ"));
-//        categoryList.add(new CategoryDao("เกมส์เอง อิอิ อะอะ อึอึ อุอุ"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("ป๊อป กวน ตีน"));
-//        categoryList.add(new CategoryDao("ฟ้า กวน ตีน "));
-//        categoryList.add(new CategoryDao("คลิปหลุดเกมส์ 18+ "));
-//        categoryList.add(new CategoryDao("คลิปเกย์เรท ฉ "));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
-//        categoryList.add(new CategoryDao("คลิปโป๊ สุดยอดแห่งความมันส์"));
 
+        categoryList.add(new CategoryDao("0001","Mos"));
+        categoryList.add(new CategoryDao("0002","MosNaja"));
+
+        //categoryList.add(new CategoryDao());
 
     }
 
@@ -154,11 +91,14 @@ public class FragmentCategory extends Fragment {
                 if (response.isSuccessful()) {
                     List<CategoryDao> dao = response.body();
                     showCategory(dao);
+                } else {
+
                 }
             }
 
             @Override
             public void onFailure(Call<List<CategoryDao>> call, Throwable t) {
+
 
             }
         });

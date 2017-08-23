@@ -25,6 +25,7 @@ public class TitleActivity extends AppCompatActivity {
     public BottomNavigationView bottomNavView;
     public FrameLayout fragmentTitile;
     public String cateName;
+    public String fragMent;
     public String userId;
     TextView tvToolbar;
 
@@ -46,8 +47,7 @@ public class TitleActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             cateName = getIntent().getStringExtra("cateName");
-
-            getSupportFragmentManager().beginTransaction().add(R.id.fragmentTitle , FragmentWebTitle.newInstance("https://www.google.com"),"getFragmentWebTitle")
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentTitle , FragmentTitle.newInstance(cateName,"LoadTopicLikeList"),"getFragmentTitle")
                     .commit();
         }
         tvToolbar.setText(cateName);
@@ -90,10 +90,12 @@ public class TitleActivity extends AppCompatActivity {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (navigation.equals("item_new")) {
-            transaction.replace(R.id.fragmentTitle , FragmentTitle.newInstance(cateName),"getFragmentTitle")
+            fragMent = "LoadTopicList";
+            transaction.replace(R.id.fragmentTitle , FragmentTitle.newInstance(cateName,fragMent),"getFragmentTitle")
             .commit();
         } else if (navigation.equals("item_hot")) {
-            transaction.replace(R.id.fragmentTitle , FragmentWebTitle.newInstance("https://www.google.com"),"getFragmentWebTitle")
+            fragMent = "LoadTopicLikeList";
+            transaction.replace(R.id.fragmentTitle , FragmentTitle.newInstance(cateName,"LoadTopicLikeList"),"getFragmentTitle")
                     .commit();
         } else if (navigation.equals("item_add")) {
             transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName,userId),"getFragmentAddTitle")
