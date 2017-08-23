@@ -166,7 +166,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         if (actionBarDrawerToggle.onOptionsItemSelected(item))
             return true;
         if (item.getItemId() == R.id.action_settings) {
-            confirm_logout();
+            confirm_logout();//ใช้ยืนยันการล็อคเอ้า
             return true;
         }
         if (item.getItemId() == R.id.btn_eng) {
@@ -200,7 +200,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if (v == btnLogout) {
-            confirm_logout();
+            confirm_logout();//ใช้ยืนยันการล็อคเอ้า
         }
         if (v == btnRank) {
             Intent i = new Intent(getApplication(), RankActivity.class);
