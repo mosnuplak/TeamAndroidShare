@@ -1,8 +1,8 @@
 <resources>
 
 
-    <string name="menu_new">New</string>
-    <string name="menu_hot">Hot</string>
+    <string name="menu_new">ล่าสุด</string>
+    <string name="menu_hot">ยอดนิยม</string>
     <string name="menu_love">Love</string>
     <string name="menu_add">เพิ่ม</string>
     <!--ใช้สำหรับหน้า Ligin และ register-->
@@ -13,7 +13,8 @@
     <string name="text_password">รหัสผ่าน</string>
     <string name="text_done">เสร็จสิ้น</string>
 
-    <string name="menu_theme_english">Theme English</string>
+    <!--หน้า Category-->
+    <string name="menu_theme_english">English</string>
     <string name="menu_theme_thai">ภาษาไทย</string>
     <string name="menu_logout">ออกจากระบบ</string>
 
@@ -21,6 +22,10 @@
     <string name="dialog_yes">ใช่</string>
     <string name="dialog_no">ไม่</string>
     <string name="dialog_thankYou">ขอบคุณ</string>
+
+    <!--หน้า Profile-->
+    <string name="btn_ranking">ระดับแรงค์</string>
+
     <!--หน้า add title-->
     <string name="text_topic">หัวข้อเรื่อง</string>
     <string name="text_description">รายละเอียด</string>

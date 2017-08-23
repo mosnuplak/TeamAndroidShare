@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                                 login.getName();
                                 Toast.makeText(getApplicationContext(),
-                                        login.getName().toString(),
+                                        "success".toString(),
                                         Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(getApplicationContext(),

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -110,23 +110,50 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5" />
 
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btn_rank"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:paddingBottom="15dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="15dp"
-                    fancy:fb_borderColor="#FFFFFF"
-                    fancy:fb_borderWidth="1dp"
-                    fancy:fb_defaultColor="@color/colorPrimaryDark"
-                    fancy:fb_focusColor="#66FFFF"
-                    fancy:fb_fontIconResource="&#xf04b;"
-                    fancy:fb_iconPosition="left"
-                    fancy:fb_radius="10dp"
-                    fancy:fb_text="Rank" />
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btn_rank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="10dp"
+                        fancy:fb_borderColor="#FFFFFF"
+                        fancy:fb_borderWidth="1dp"
+                        fancy:fb_defaultColor="@color/colorPrimaryDark"
+                        fancy:fb_focusColor="#66FFFF"
+                        fancy:fb_fontIconResource="&#xf04b;"
+                        fancy:fb_iconPosition="left"
+                        fancy:fb_radius="10dp"
+                        fancy:fb_text="@string/btn_ranking"
+                        fancy:fb_textSize="15sp" />
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btn_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingTop="10dp"
+                        fancy:fb_borderColor="#FFFFFF"
+                        fancy:fb_borderWidth="1dp"
+                        fancy:fb_defaultColor="@color/colorPrimaryDark"
+                        fancy:fb_focusColor="#66FFFF"
+                        fancy:fb_fontIconResource="&#xf04b;"
+                        fancy:fb_iconPosition="left"
+                        fancy:fb_radius="10dp"
+                        fancy:fb_text="@string/menu_logout"
+                        fancy:fb_textSize="15sp" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"

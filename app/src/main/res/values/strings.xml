@@ -23,15 +23,19 @@
     <string name="text_password">Password</string>
     <string name="text_done">Done</string>
 
-
-    <string name="menu_theme_english">Theme English</string>
-    <string name="menu_theme_thai">Theme Thai</string>
+    <!--หน้า Category-->
+    <string name="menu_theme_english">English</string>
+    <string name="menu_theme_thai">Thai</string>
     <string name="menu_logout">Log out</string>
 
     <string name="dialog_logout">Are you sure you want to log out this account?</string>
     <string name="dialog_yes">yes</string>
     <string name="dialog_no">no</string>
     <string name="dialog_thankYou">Thank You</string>
+
+    <!--หน้า Profile-->
+    <string name="btn_ranking">Ranking</string>
+
     <!--หน้า add title-->
     <string name="text_topic">Topic</string>
     <string name="text_description">Description</string>
