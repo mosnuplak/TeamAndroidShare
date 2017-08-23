@@ -57,7 +57,7 @@
                         <EditText
                             android:textSize="13sp"
                             android:hint="@string/text_name"
-                            android:textColor="#000"
+                            android:textColor="#ffffff"
                             android:id="@+id/input_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                         <EditText
                             android:textSize="13sp"
                             android:hint="@string/text_username"
-                            android:textColor="#000"
+                            android:textColor="#ffffff"
                             android:id="@+id/input_username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                         <EditText
                             android:textSize="13sp"
                             android:hint="@string/text_password"
-                            android:textColor="#000"
+                            android:textColor="#ffffff"
                             android:id="@+id/input_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:text="@string/text_done"
-                    android:textColor="#FFCC00"
+                    android:textColor="@color/colorPrimaryDark"
                     >
                 </Button>
             </LinearLayout>
@@ -139,6 +139,8 @@
             app:fabSize="normal"
             android:src="@drawable/plus_x"
             android:transitionName="loginFab"
-            android:layout_gravity="center_horizontal|top" />
+            android:layout_gravity="center_horizontal|top"
+            android:backgroundTint="@color/colorPrimary"
+            />
     </FrameLayout>
 </RelativeLayout>
