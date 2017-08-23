@@ -102,18 +102,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.btn_login, R.id.fab})
-
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                getWindow().setExitTransition(null);
-                getWindow().setEnterTransition(null);
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ){
+                    getWindow().setExitTransition(null);
+                    getWindow().setEnterTransition(null);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(this, fab, fab.getTransitionName());
-                    startActivity(new Intent(this, RegisterActivity.class), options.toBundle());
-                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ActivityOptions options =
+                                ActivityOptions.makeSceneTransitionAnimation(this, fab, fab.getTransitionName());
+                        startActivity(new Intent(this, RegisterActivity.class), options.toBundle());
+                    } else {
+                        startActivity(new Intent(this, RegisterActivity.class));
+                    }
+                }else {
                     startActivity(new Intent(this, RegisterActivity.class));
                 }
                 break;
