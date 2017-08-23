@@ -34,7 +34,7 @@ public interface ApiService {
     Call<List<TitleDao>> LoadTopicLikeList(@Body CategoryDao categoryDao,@Path("id") String id);
 
     @POST("topic/createTopic")
-    Call<WrapperDao> AddTopic(@Body WrapperDao wrapper);
+    Call<Boolean> AddTopic(@Body WrapperDao wrapper);
 
     @POST("topic/viewTopic")
     Call<TitleDao> AddViewTopic(@Body TitleDao titleDao);

@@ -19,6 +19,7 @@ import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.fragment.FragmentAddTitle;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
 import com.mfec.teamandroidshare.fragment.FragmentWebTitle;
+import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 
 public class TitleActivity extends AppCompatActivity {
     public String title;
@@ -29,11 +30,13 @@ public class TitleActivity extends AppCompatActivity {
     public String userId;
     TextView tvToolbar;
 
+
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
+
         //setupUI(findViewById(R.id.parent));
 
         bottomNavView = (BottomNavigationView) findViewById(R.id.bottom_nav_view);
@@ -85,8 +88,7 @@ public class TitleActivity extends AppCompatActivity {
     private void init(String navigation) {
 
         cateName = getIntent().getStringExtra("cateName");
-        SharedPreferences sp = getSharedPreferences("SHARE_DATA", Context.MODE_PRIVATE);
-        String userId = sp.getString("userId", "0");
+
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (navigation.equals("item_new")) {
@@ -98,7 +100,7 @@ public class TitleActivity extends AppCompatActivity {
             transaction.replace(R.id.fragmentTitle , FragmentTitle.newInstance(cateName,"LoadTopicLikeList"),"getFragmentTitle")
                     .commit();
         } else if (navigation.equals("item_add")) {
-            transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName,userId),"getFragmentAddTitle")
+            transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName),"getFragmentAddTitle")
                     .commit();
         }
     }

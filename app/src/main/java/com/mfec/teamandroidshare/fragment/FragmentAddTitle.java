@@ -28,6 +28,7 @@ import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.dao.WrapperDao;
+import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
 import java.io.IOException;
@@ -51,17 +52,19 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     public String userId;
     public RelativeLayout relative;
     public LinearLayout linear;
+    public Boolean checkAdd;
+    SharedPrefUtil sharedPrefUtil;
 
     public FragmentAddTitle() {
         super();
     }
 
-    public static FragmentAddTitle newInstance(String cateName, String userId) {
+    public static FragmentAddTitle newInstance(String cateName) {
         FragmentAddTitle fragment = new FragmentAddTitle();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         args.putString("cateName", cateName);
-        args.putString("userId", userId);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,10 +72,10 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPrefUtil = new SharedPrefUtil(getContext());
 
         if (getArguments() != null)
             cateName = getArguments().getString("cateName");
-            userId = getArguments().getString("userId");
     }
 
     @Override
@@ -158,6 +161,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     }
 
     private void addTopic() {
+        userId = sharedPrefUtil.getUserId();
         if (!TextUtils.isEmpty(etTilteName.getText().toString()) && !TextUtils.isEmpty(etTitleDis.getText().toString())
                 && !TextUtils.isEmpty(etTitleLink.getText().toString())) {
             //Toast.makeText(getActivity(), "mosNaja" + cateName, Toast.LENGTH_SHORT).show();
@@ -174,11 +178,22 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             wrapper.setTitleDao(titleDao);
             wrapper.setCategoryDao(categoryDao);
 
-            Call<WrapperDao> call = HttpManagerNice.getInstance().getService().AddTopic(wrapper);
-            call.enqueue(new Callback<WrapperDao>() {
+            Call<Boolean> call = HttpManagerNice.getInstance().getService().AddTopic(wrapper);
+            call.enqueue(new Callback<Boolean>() {
                 @Override
-                public void onResponse(Call<WrapperDao> call, Response<WrapperDao> response) {
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                     if (response.isSuccessful()) {
+
+                           checkAdd = response.body();
+                        if (checkAdd == true) {
+                            Toast.makeText(getActivity(),
+                                    "บันทึกสำเร็จ",
+                                    Toast.LENGTH_LONG).show();
+                        }else {
+                            Toast.makeText(getActivity(),
+                                    "ไม่สำเร็จกรุณณาลองอีกครั้ง",
+                                    Toast.LENGTH_LONG).show();
+                        }
 
                     } else {
                         try {
@@ -192,7 +207,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
                 }
 
                 @Override
-                public void onFailure(Call<WrapperDao> call, Throwable t) {
+                public void onFailure(Call<Boolean> call, Throwable t) {
 
                 }
             });
