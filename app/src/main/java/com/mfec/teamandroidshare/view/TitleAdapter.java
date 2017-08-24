@@ -48,6 +48,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     Boolean status = false;
     String userId;
     Boolean callBackLike = false;
+    Boolean callBacklike =false;
     SharedPrefUtil sharedPrefUtil;
     private int totalLike;
     public TitleAdapter(List<TitleDao> TitleList, FragmentTitle fragmentTitle,String userId) {
@@ -112,20 +113,20 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
             public void onClick(View v) {
 
                 if (titleDao.getStatus() == true) {
-                    holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
-                    likeService(titleDao.getTopicId(), userId, position);
-                    titleDao.setStatus(false);
-                    totalLike = Integer.parseInt(titleDao.getTotalLike());
-                    totalLike = totalLike-1;
-                    titleDao.setTotalLike(totalLike+"");
+                        likeService(titleDao.getTopicId(), userId, position);
+                        holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
+                        titleDao.setStatus(false);
+                        totalLike = Integer.parseInt(titleDao.getTotalLike());
+                        totalLike = totalLike - 1;
+                        titleDao.setTotalLike(totalLike + "");
 
                 } else {
-                    holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
-                    likeService(titleDao.getTopicId(), userId, position);
-                    titleDao.setStatus(true);
-                    totalLike = Integer.parseInt(titleDao.getTotalLike());
-                    totalLike = totalLike+1;
-                    titleDao.setTotalLike(totalLike+"");
+                        likeService(titleDao.getTopicId(), userId, position);
+                        titleDao.setStatus(true);
+                        totalLike = Integer.parseInt(titleDao.getTotalLike());
+                        totalLike = totalLike + 1;
+                        titleDao.setTotalLike(totalLike + "");
+                        holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
 
                 }
 
@@ -135,7 +136,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
 
     }
 
-    private void likeService(String titleId, String userId,int position) {
+    private Boolean likeService(String titleId, String userId,int position) {
         TitleDao titledao = new TitleDao();
         titledao.setTopicId(titleId);
         Call<Boolean> call = HttpManagerNice.getInstance().getService().likeAndUnlike(titledao, userId);
@@ -175,6 +176,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
             }
         });
         notifyItemChanged(position);
+        return callBackLike;
     }
 
     TitleViewHolder.onItemClick itemClick = new TitleViewHolder.onItemClick() {
