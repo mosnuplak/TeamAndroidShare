@@ -170,6 +170,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             TitleDao titleDao = new TitleDao();
             categoryDao.setCateName(cateName);
 
+
             titleDao.setHead(etTilteName.getText().toString());
             titleDao.setLink(etTitleLink.getText().toString());
             titleDao.setDescription(etTitleDis.getText().toString());
