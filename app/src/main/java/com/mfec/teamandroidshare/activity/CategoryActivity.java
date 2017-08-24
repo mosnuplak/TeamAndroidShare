@@ -247,8 +247,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         builder.setMessage(R.string.dialog_logout);
         builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Toast.makeText(getApplicationContext(),
-                        R.string.dialog_thankYou, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),
+//                        R.string.dialog_thankYou, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplication(), LoginActivity.class);
                 startActivity(i);
                 finish();

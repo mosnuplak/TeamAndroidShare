@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -181,16 +182,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
         if (check == true) {
             callRegister();
-            Intent i = new Intent(getApplication(), LoginActivity.class);
-            startActivity(i);
+//            Intent i = new Intent(getApplication(), LoginActivity.class);
+//            startActivity(i);
+            finish();
             Toast.makeText(getApplicationContext()
                     , "success"
-                    , Toast.LENGTH_LONG)
+                    , Toast.LENGTH_SHORT)
                     .show();
         } else{
             Toast.makeText(getApplicationContext()
                     , "no success"
-                    , Toast.LENGTH_LONG)
+                    , Toast.LENGTH_SHORT)
                     .show();
         }
 
@@ -208,14 +210,25 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     CheckRegister = response.body();
                     //   boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
                     if(CheckRegister == true) {
-                        Toast.makeText(getApplicationContext()
-                                , "Success"
-                                , Toast.LENGTH_LONG)
-                                .show();
+//                        Toast.makeText(getApplicationContext()
+//                                , "Success"
+//                                , Toast.LENGTH_SHORT)
+//                                .show();
+
+                        final Toast toast = Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT);
+                        toast.show();
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                toast.cancel();
+                            }
+                        }, 500);
                     }else{
                         Toast.makeText(getApplicationContext()
                                 , "Username and name already exists"
-                                , Toast.LENGTH_LONG)
+                                , Toast.LENGTH_SHORT)
                                 .show();
                     }
                     // Log.d("ff","dd");
@@ -223,17 +236,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                               editUsername.setText(CheckRegister+"");
 //                               editPassword.setText(CheckRegister+"");
                 }else {
-                    Toast.makeText(getApplicationContext()
-                            ,"no success"
-                            ,Toast.LENGTH_LONG)
-                            .show();
+//                    Toast.makeText(getApplicationContext()
+//                            ,"no success"
+//                            ,Toast.LENGTH_SHORT)
+//                            .show();
+
+                    final Toast toast = Toast.makeText(getApplicationContext(), "no success", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
                 }
             }
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
                 Toast.makeText(getApplicationContext()
                         ,t.getMessage()
-                        ,Toast.LENGTH_LONG)
+                        ,Toast.LENGTH_SHORT)
                         .show();
 
             }

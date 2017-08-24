@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.common.Toaster;
 import com.mfec.teamandroidshare.dao.LoginDao;
 import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
@@ -115,9 +117,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         startActivity(new Intent(this, RegisterActivity.class), options.toBundle());
                     } else {
                         startActivity(new Intent(this, RegisterActivity.class));
+
                     }
                 }else {
                     startActivity(new Intent(this, RegisterActivity.class));
+                    finish();
                 }
                 break;
             case R.id.btn_login:
@@ -152,21 +156,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         finish();
                     }
                                 login.getName();
-                                Toast.makeText(getApplicationContext(),
-                                        "success".toString(),
-                                        Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(),
+//                            "success",
+//                            Toast.LENGTH_SHORT)
+//                            .show();
+                    Toaster.ggToast(getApplicationContext(),"success",20);
+
                 }else {
                     Toast.makeText(getApplicationContext(),
-                            "no success".toString(),
-                            Toast.LENGTH_LONG).show();
+                            "no success",
+                            Toast.LENGTH_SHORT)
+                            .show();
+//                    Toaster.ggToast(getApplicationContext(),"no success",500);
                 }
 
             }
             @Override
             public void onFailure(Call<LoginDao> call, Throwable t) {
-                Toast.makeText(getApplicationContext()
-                        ,"username หรือ password ไม่ถูกต้อง"
-                        ,Toast.LENGTH_LONG)
+//                Toaster.ggToast(getApplicationContext(),"gg",500);
+                Toast.makeText(getApplicationContext(),
+                        "username หรือ password ไม่ถูกต้อง",
+                        Toast.LENGTH_SHORT)
                         .show();
             }
         });
@@ -188,23 +198,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     "กรุณากรอก username และ password",
                     Toast.LENGTH_SHORT)
                     .show();
+//            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
         }else if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
             Toast.makeText(this,
                     "username หรือ password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
                     .show();
+//            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
         }
         return false;
     }
     public boolean checkSpecialCharacter(String username, String password){
 
         if (!username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
-            //editUsername.setError("username");
-            //editPassword.setError("pass");
+            editUsername.setError("username");
+            editPassword.setError("pass");
             Toast.makeText(this,
                     "username หรือ password ไม่ถูกต้อง",
                     Toast.LENGTH_SHORT)
                     .show();
+//            Toaster.ggToast(getApplicationContext(),"username หรือ password ไม่ถูกต้อง",500);
             return false;
         }else {
             return true;
