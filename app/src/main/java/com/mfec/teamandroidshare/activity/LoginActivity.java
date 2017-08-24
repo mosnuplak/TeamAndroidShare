@@ -59,7 +59,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         sharedPrefUtil = new SharedPrefUtil(this);
+        checkSharePre();
         initInstances();
+
+
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
@@ -71,6 +74,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editUsername.setOnClickListener(this);
         editPassword.setOnClickListener(this);
 
+    }
+
+    private void checkSharePre() {
+        if (sharedPrefUtil.getUserId()!=""){
+            Intent i = new Intent(getApplication(), CategoryActivity.class);
+            startActivity(i);
+        }
     }
 
     @Override

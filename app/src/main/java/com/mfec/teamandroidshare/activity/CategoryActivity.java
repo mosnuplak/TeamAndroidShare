@@ -251,6 +251,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 //                        R.string.dialog_thankYou, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplication(), LoginActivity.class);
                 startActivity(i);
+                sharedPrefUtil.clearSharedPref();
                 finish();
             }
         });
