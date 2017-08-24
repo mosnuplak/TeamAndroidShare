@@ -186,6 +186,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
             intent.putExtra("linkUrl", TitleList.get(position).getLink());
             intent.putExtra("topicId", TitleList.get(position).getTopicId());
             intent.putExtra("topicName", TitleList.get(position).getHead());
+            intent.putExtra("category", TitleList.get(position).getCategory());
             fragmentTitle.startActivity(intent);
 
         }

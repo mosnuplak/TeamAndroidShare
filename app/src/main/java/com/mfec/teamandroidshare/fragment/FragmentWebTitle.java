@@ -18,14 +18,16 @@ import com.mfec.teamandroidshare.R;
 public class FragmentWebTitle extends Fragment {
     WebView myWebView;
     String link;
+    String category;
     public FragmentWebTitle() {
         super();
     }
 
-    public static FragmentWebTitle newInstance(String link) {
+    public static FragmentWebTitle newInstance(String link,String category) {
         FragmentWebTitle fragment = new FragmentWebTitle();
         Bundle args = new Bundle();
         args.putString("link",link);
+        args.putString("category",category);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,13 +40,24 @@ public class FragmentWebTitle extends Fragment {
 
         myWebView.getSettings().setJavaScriptEnabled(true);
         Fragment fragment = this;
+
         link = getArguments().getString("link");
+
 
         myWebView.setWebViewClient(new WebViewClient(){
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 Toast.makeText(getActivity(), description, Toast.LENGTH_SHORT).show();
             }
         });
+
+        //String[] parts = link.split(".");
+
+        if (link.indexOf("//") == -1) {
+            link = "http://"+link;
+        }else {
+
+        }
+
 
         myWebView.loadUrl(link);
 

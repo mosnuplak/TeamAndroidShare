@@ -27,6 +27,7 @@ public class WebviewActivity extends AppCompatActivity {
     public String link;
     public String topicId;
     public String topicName;
+    public String category;
     TextView tvToolbar;
     Toolbar toolbar;
     @Override
@@ -40,11 +41,14 @@ public class WebviewActivity extends AppCompatActivity {
             link = getIntent().getStringExtra("linkUrl");
             topicId = getIntent().getStringExtra("topicId");
             topicName = getIntent().getStringExtra("topicName");
+            category = getIntent().getStringExtra("category");
+
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragmentWeb , FragmentWebTitle.newInstance(link),"getFragmentWebTitle")
+                    .add(R.id.fragmentWeb , FragmentWebTitle.newInstance(link,category),"getFragmentWebTitle")
                     .commit();
         }
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(category);
         tvToolbar.setText(topicName);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
