@@ -45,7 +45,6 @@
         android:layout_gravity="bottom"
         android:animateLayoutChanges="false"
         android:background="@color/colorPrimary"
-
         app:itemIconTint="#ffffff"
         app:itemTextColor="#ffffff"
         app:menu="@menu/menu_bn_title" />

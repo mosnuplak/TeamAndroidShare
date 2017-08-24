@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -72,14 +73,13 @@ public class TitleActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.item_new:
                     init("item_new");
-                    return true;
-
+                    break;
                 case R.id.item_hot:
                     init("item_hot");
-                    return true;
+                    break;
                 case R.id.item_add:
                     init("item_add");
-                    return true;
+                    break;
             }
             return false;
         }

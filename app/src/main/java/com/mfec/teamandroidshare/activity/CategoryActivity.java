@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -260,5 +261,27 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
             }
         });
         builder.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(CategoryActivity.this);
+        builder.setCancelable(false);
+        builder.setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        })
+                .setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP)
+                            finish();
+                        return false;
+                    }
+                });
     }
 }

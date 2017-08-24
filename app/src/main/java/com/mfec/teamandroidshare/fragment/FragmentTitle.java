@@ -127,7 +127,7 @@ public class FragmentTitle extends Fragment {
                         }
                     } else {
                         try {
-                            Toast.makeText(getActivity(),
+                            Toast.makeText(getContext(),
                                     response.errorBody().string(),
                                     Toast.LENGTH_LONG).show();
                         } catch (IOException e) {

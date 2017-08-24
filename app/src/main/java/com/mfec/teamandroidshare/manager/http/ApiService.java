@@ -30,7 +30,7 @@ public interface ApiService {
     @POST("topic/getListTopicByCategory/{id}")
     Call<List<TitleDao>> LoadTopicList(@Body CategoryDao categoryDao,@Path("id") String id);
 
-    @POST("topic/getListTopicByLike/{id}")
+    @POST("topic/getListTopicByView/{id}")
     Call<List<TitleDao>> LoadTopicLikeList(@Body CategoryDao categoryDao,@Path("id") String id);
 
     @POST("topic/createTopic")

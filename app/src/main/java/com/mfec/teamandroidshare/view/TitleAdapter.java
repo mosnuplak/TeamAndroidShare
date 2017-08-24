@@ -49,7 +49,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     String userId;
     Boolean callBackLike = false;
     SharedPrefUtil sharedPrefUtil;
-
+    private int totalLike;
     public TitleAdapter(List<TitleDao> TitleList, FragmentTitle fragmentTitle,String userId) {
 
         this.userId = userId;
@@ -73,7 +73,12 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
         String iot = "IoT";
         String wed = "Web";
         final TitleDao titleDao = TitleList.get(position);
-
+        totalLike = Integer.parseInt(titleDao.getTotalLike());
+        if(totalLike == 0) {
+            holder.tvStar.setText("Love this");
+        }else {
+            holder.tvStar.setText(titleDao.getTotalLike());
+        }
 
         holder.tvTitle.setText(titleDao.getHead());
         holder.tvDescript.setText(titleDao.getDescription());
@@ -110,11 +115,17 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
                     holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
                     likeService(titleDao.getTopicId(), userId, position);
                     titleDao.setStatus(false);
+                    totalLike = Integer.parseInt(titleDao.getTotalLike());
+                    totalLike = totalLike-1;
+                    titleDao.setTotalLike(totalLike+"");
 
                 } else {
                     holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
                     likeService(titleDao.getTopicId(), userId, position);
                     titleDao.setStatus(true);
+                    totalLike = Integer.parseInt(titleDao.getTotalLike());
+                    totalLike = totalLike+1;
+                    titleDao.setTotalLike(totalLike+"");
 
                 }
 
