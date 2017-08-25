@@ -182,13 +182,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
         if (check == true) {
             callRegister();
-//            Intent i = new Intent(getApplication(), LoginActivity.class);
-//            startActivity(i);
-            finish();
-            Toast.makeText(getApplicationContext()
-                    , "success"
-                    , Toast.LENGTH_SHORT)
-                    .show();
+
         } else{
             Toast.makeText(getApplicationContext()
                     , "no success"
@@ -210,21 +204,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     CheckRegister = response.body();
                     //   boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
                     if(CheckRegister == true) {
-//                        Toast.makeText(getApplicationContext()
-//                                , "Success"
-//                                , Toast.LENGTH_SHORT)
-//                                .show();
-
-                        final Toast toast = Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT);
-                        toast.show();
-
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                toast.cancel();
-                            }
-                        }, 500);
+                        Toast.makeText(getApplicationContext()
+                                , "Success"
+                                , Toast.LENGTH_SHORT)
+                                .show();
+                            finish();
+//                        final Toast toast = Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT);
+//                        toast.show();
+//
+//                        Handler handler = new Handler();
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                toast.cancel();
+//
+//                        }, 500);
                     }else{
                         Toast.makeText(getApplicationContext()
                                 , "Username and name already exists"
@@ -236,21 +230,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                               editUsername.setText(CheckRegister+"");
 //                               editPassword.setText(CheckRegister+"");
                 }else {
-//                    Toast.makeText(getApplicationContext()
-//                            ,"no success"
-//                            ,Toast.LENGTH_SHORT)
-//                            .show();
+                    Toast.makeText(getApplicationContext()
+                            ,"no success"
+                            ,Toast.LENGTH_SHORT)
+                            .show();
 
-                    final Toast toast = Toast.makeText(getApplicationContext(), "no success", Toast.LENGTH_SHORT);
-                    toast.show();
-
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            toast.cancel();
-                        }
-                    }, 500);
+//                    final Toast toast = Toast.makeText(getApplicationContext(), "no success", Toast.LENGTH_SHORT);
+//                    toast.show();
+//
+//                    Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            toast.cancel();
+//                        }
+//                    }, 500);
                 }
             }
             @Override
