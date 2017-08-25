@@ -12,6 +12,12 @@
     <string name="text_username">ชื่อผู้ใช้</string>
     <string name="text_password">รหัสผ่าน</string>
     <string name="text_done">เสร็จสิ้น</string>
+    <string name="Toast_success">สำเร็จ</string>
+    <string name="Toast_nosuccess">ไม่สำเร็จ</string>
+    <string name="Toast_Invalid">ชื่อผู้ใช้ และ รหัสผ่าน ไม่ถูกต้อง </string>
+    <string name="Toast_EnterUP">กรุณากรอก ชื่อผู้ใช้ และ รหัสผ่าน</string>
+    <string name="Toast_EnterFill">กรุณากรอกข้อมูลให้ครบ</string>
+    <string name="Toast_exists">ชื่อผู้ใช้และชื่อนี้มีอยู่แล้ว</string>
 
     <!--หน้า Category-->
     <string name="menu_theme_english">English</string>
