@@ -154,6 +154,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
             return true;
         }else if(TextUtils.isEmpty(name) && TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
+            editName.setError(getResources().getString(R.string.Toast_EnterFill));
+            editUsername.setError(getResources().getString(R.string.Toast_EnterFill));
+            editPassword.setError(getResources().getString(R.string.Toast_EnterFill));
             Toast.makeText(this,
                     R.string.Toast_EnterFill,
                     Toast.LENGTH_SHORT)
@@ -250,10 +253,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             callRegister();
 
         } else{
-            Toast.makeText(getApplicationContext()
-                    , R.string.Toast_nosuccess
-                    , Toast.LENGTH_SHORT)
-                    .show();
+//            Toast.makeText(getApplicationContext()
+//                    , R.string.Toast_nosuccess
+//                    , Toast.LENGTH_SHORT)
+//                    .show();
         }
 
     }
