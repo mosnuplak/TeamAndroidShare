@@ -28,15 +28,16 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary">
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="@string/app_name_category"
-                android:textSize="20sp"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -114,8 +115,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <mehdi.sakout.fancybuttons.FancyButton
                         android:id="@+id/btn_rank"
@@ -139,10 +140,10 @@
                         android:id="@+id/btn_logout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:paddingBottom="10dp"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:layout_marginTop="10dp"
                         android:paddingTop="10dp"
                         fancy:fb_borderColor="#FFFFFF"
                         fancy:fb_borderWidth="1dp"

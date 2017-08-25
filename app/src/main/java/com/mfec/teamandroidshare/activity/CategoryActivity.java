@@ -129,8 +129,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 //        toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
         setSupportActionBar(toolbar); //คอมเม้น
 //        tvProfile = (TextView) findViewById(R.id.tvProfile);
-
-
 //        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,
                 drawerLayout,
@@ -155,7 +153,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
 
     }
