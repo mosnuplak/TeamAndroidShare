@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class Toaster {
 
-    public static void  ggToast(Context context, String string, int showTime){
+    public static void  ggToast(Context context, int string, int showTime){
         final Toast toast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
         toast.show();
 

@@ -170,11 +170,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                            "success",
 //                            Toast.LENGTH_SHORT)
 //                            .show();
-                    Toaster.ggToast(getApplicationContext(),"success",20);
+                    Toaster.ggToast(getApplicationContext(),
+                            R.string.Toast_success,20);
 
                 }else {
                     Toast.makeText(getApplicationContext(),
-                            "no success",
+                            R.string.Toast_nosuccess,
                             Toast.LENGTH_SHORT)
                             .show();
 //                    Toaster.ggToast(getApplicationContext(),"no success",500);
@@ -185,7 +186,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onFailure(Call<LoginDao> call, Throwable t) {
 //                Toaster.ggToast(getApplicationContext(),"gg",500);
                 Toast.makeText(getApplicationContext(),
-                        "username หรือ password ไม่ถูกต้อง",
+                        R.string.Toast_Invalid,
                         Toast.LENGTH_SHORT)
                         .show();
             }
@@ -205,13 +206,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return true;
         }else if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
             Toast.makeText(this,
-                    "กรุณากรอก username และ password",
+                    R.string.Toast_EnterUP,
                     Toast.LENGTH_SHORT)
                     .show();
 //            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
         }else if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
             Toast.makeText(this,
-                    "username หรือ password ไม่ถูกต้อง",
+                    R.string.Toast_Invalid,
                     Toast.LENGTH_SHORT)
                     .show();
 //            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
@@ -224,7 +225,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editUsername.setError("username");
             editPassword.setError("pass");
             Toast.makeText(this,
-                    "username หรือ password ไม่ถูกต้อง",
+                    R.string.Toast_Invalid,
                     Toast.LENGTH_SHORT)
                     .show();
 //            Toaster.ggToast(getApplicationContext(),"username หรือ password ไม่ถูกต้อง",500);
