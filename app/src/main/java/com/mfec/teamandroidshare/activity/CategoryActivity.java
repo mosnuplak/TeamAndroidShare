@@ -1,10 +1,8 @@
 package com.mfec.teamandroidshare.activity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -266,23 +263,10 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder builder =
-                new AlertDialog.Builder(CategoryActivity.this);
-        builder.setCancelable(false);
-        builder.setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        })
-                .setOnKeyListener(new DialogInterface.OnKeyListener() {
-                    @Override
-                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP)
-                            finish();
-                        return false;
-                    }
-                });
+//        super.onBackPressed();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
