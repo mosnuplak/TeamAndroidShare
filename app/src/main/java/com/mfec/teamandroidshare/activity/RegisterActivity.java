@@ -155,12 +155,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return true;
         }else if(TextUtils.isEmpty(name) && TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
             Toast.makeText(this,
-                    "กรุณากรอกข้อมูลให้ครบ",
+                    R.string.Toast_EnterFill,
                     Toast.LENGTH_SHORT)
                     .show();
         }else if(TextUtils.isEmpty(name) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
             Toast.makeText(this,
-                    "กรุณากรอกข้อมูลให้ครบ",
+                    R.string.Toast_EnterFill,
                     Toast.LENGTH_SHORT)
                     .show();
         }
@@ -170,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (!name.matches( "[a-zA-Z0-9._-]*" ) || !username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
             Toast.makeText(this,
-                    "username หรือ password ไม่ถูกต้อง",
+                    R.string.Toast_Invalid,
                     Toast.LENGTH_SHORT)
                     .show();
             return false;
@@ -185,7 +185,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         } else{
             Toast.makeText(getApplicationContext()
-                    , "no success"
+                    , R.string.Toast_nosuccess
                     , Toast.LENGTH_SHORT)
                     .show();
         }
@@ -205,7 +205,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     //   boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
                     if(CheckRegister == true) {
                         Toast.makeText(getApplicationContext()
-                                , "Success"
+                                ,R.string.Toast_success
                                 , Toast.LENGTH_SHORT)
                                 .show();
                             finish();
@@ -221,7 +221,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                        }, 500);
                     }else{
                         Toast.makeText(getApplicationContext()
-                                , "Username and name already exists"
+                                , R.string.Toast_exists
                                 , Toast.LENGTH_SHORT)
                                 .show();
                     }
@@ -231,7 +231,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                               editPassword.setText(CheckRegister+"");
                 }else {
                     Toast.makeText(getApplicationContext()
-                            ,"no success"
+                            ,R.string.Toast_nosuccess
                             ,Toast.LENGTH_SHORT)
                             .show();
 

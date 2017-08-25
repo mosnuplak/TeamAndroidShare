@@ -27,6 +27,10 @@
     <string name="Toast_nosuccess">no success</string>
     <string name="Toast_Invalid"> Invalid username and password</string>
     <string name="Toast_EnterUP">  Please enter your username and password</string>
+    <string name="Toast_EnterFill"> Please fill in all information</string>
+    <string name="Toast_exists"> Username and name already exists</string>
+
+
 
     <!--หน้า Category-->
     <string name="menu_theme_english">English</string>
