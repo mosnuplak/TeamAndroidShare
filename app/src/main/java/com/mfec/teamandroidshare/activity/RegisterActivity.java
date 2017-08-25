@@ -178,19 +178,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return true;
         }
     }
-    private void checkRegister(){
-        boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
-        if (check == true) {
-            callRegister();
-
-        } else{
-            Toast.makeText(getApplicationContext()
-                    , R.string.Toast_nosuccess
-                    , Toast.LENGTH_SHORT)
-                    .show();
-        }
-
-    }
     private void callRegister(){
         LoginDao loginDao = new LoginDao();
         loginDao.setName(editName.getText().toString());
@@ -256,6 +243,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+    }
+    private void checkRegister(){
+        boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+        if (check == true) {
+            callRegister();
+
+        } else{
+            Toast.makeText(getApplicationContext()
+                    , R.string.Toast_nosuccess
+                    , Toast.LENGTH_SHORT)
+                    .show();
+        }
+
     }
     private void initHideKeyboard(RelativeLayout touchInterceptor) {
         touchInterceptor.setOnTouchListener(new View.OnTouchListener() {

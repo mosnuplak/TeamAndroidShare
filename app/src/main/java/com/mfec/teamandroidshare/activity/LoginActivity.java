@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
@@ -143,7 +144,47 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
-    private void checkLogin(){
+    public boolean checkLoginValidate(String username, String password) {
+        if ( (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
+                username.equals(username) &&
+                password.equals(password)) {
+            //เช็คอักขระพิเศษ
+            boolean check = checkSpecialCharacter(username, password);
+            if( check == false ){
+                return false;
+            }
+            return true;
+        }else if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
+            editUsername.setError(getResources().getString(R.string.Toast_EnterUP));
+            editPassword.setError(getResources().getString(R.string.Toast_EnterUP));
+            Toast.makeText(this,
+                    R.string.Toast_EnterUP,
+                    Toast.LENGTH_SHORT)
+                    .show();
+//            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
+        }else if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+            Toast.makeText(this,
+                    R.string.Toast_Invalid,
+                    Toast.LENGTH_SHORT)
+                    .show();
+//            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
+        }
+        return false;
+    }
+    public boolean checkSpecialCharacter(String username, String password){
+
+        if (!username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
+            Toast.makeText(this,
+                    R.string.Toast_Invalid,
+                    Toast.LENGTH_SHORT)
+                    .show();
+//            Toaster.ggToast(getApplicationContext(),"username หรือ password ไม่ถูกต้อง",500);
+            return false;
+        }else {
+            return true;
+        }
+    }
+    private void callLogin(){
         final LoginDao loginDao = new LoginDao();
         loginDao.setUsername(editUsername.getText().toString());
         loginDao.setPassword(editPassword.getText().toString());
@@ -154,22 +195,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<LoginDao> call, Response<LoginDao> response) {
                 if(response.isSuccessful()){
                     LoginDao login = response.body();
-                    boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
-                    if (check == true) {
                         Intent i = new Intent(getApplication(), CategoryActivity.class);
-                        i.putExtra("userId",login.getUserId());
-
+                        i.putExtra("userId", login.getUserId());
                         sharedPrefUtil.saveUserId(login.getUserId());
                         sharedPrefUtil.saveName(login.getName());
-
                         startActivity(i);
                         finish();
-                    }
-                                login.getName();
-//                    Toast.makeText(getApplicationContext(),
-//                            "success",
-//                            Toast.LENGTH_SHORT)
-//                            .show();
+////                    Toast.makeText(getApplicationContext(),
+////                            "success",
+////                            Toast.LENGTH_SHORT)
+////                            .show();
                     Toaster.ggToast(getApplicationContext(),
                             R.string.Toast_success,20);
 
@@ -191,48 +226,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .show();
             }
         });
+        
     }
+    private void checkLogin(){
+        boolean check = checkLoginValidate(editUsername.getText().toString(), editPassword.getText().toString());
+        if (check == true) {
+            callLogin();
 
-
-    public boolean checkLoginValidate(String username, String password) {
-        if ( (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
-                username.equals(username) &&
-                password.equals(password)) {
-            //เช็คอักขระพิเศษ
-            boolean check = checkSpecialCharacter(username, password);
-            if( check == false ){
-                return false;
-            }
-            return true;
-        }else if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
-            Toast.makeText(this,
-                    R.string.Toast_EnterUP,
-                    Toast.LENGTH_SHORT)
-                    .show();
-//            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
-        }else if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
-            Toast.makeText(this,
-                    R.string.Toast_Invalid,
-                    Toast.LENGTH_SHORT)
-                    .show();
-//            Toaster.ggToast(getApplicationContext(),"กรุณากรอก username และ password",500);
         }
-        return false;
-    }
-    public boolean checkSpecialCharacter(String username, String password){
 
-        if (!username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
-            editUsername.setError("username");
-            editPassword.setError("pass");
-            Toast.makeText(this,
-                    R.string.Toast_Invalid,
-                    Toast.LENGTH_SHORT)
-                    .show();
-//            Toaster.ggToast(getApplicationContext(),"username หรือ password ไม่ถูกต้อง",500);
-            return false;
-        }else {
-            return true;
-        }
     }
     private void initHideKeyboard(RelativeLayout touchInterceptor) {
         touchInterceptor.setOnTouchListener(new View.OnTouchListener() {
