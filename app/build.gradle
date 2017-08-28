@@ -46,6 +46,10 @@ dependencies {
     compile 'com.github.medyo:fancybuttons:1.8.3'
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    compile 'com.kbeanie:multipicker:1.1.1@aar'//อัปรูป
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'//อับรูป การติดต่อกับ server
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'//อับรูป การติดต่อกับ server
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'//อับรูป การติดต่อกับ server
 
 
 }

@@ -73,6 +73,7 @@
             android:orientation="vertical">
 
             <ImageView
+
                 android:id="@+id/imgProfile"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -128,7 +129,7 @@
                         android:paddingTop="10dp"
                         fancy:fb_borderColor="#FFFFFF"
                         fancy:fb_borderWidth="1dp"
-                        fancy:fb_defaultColor="@color/colorPrimaryDark"
+                        fancy:fb_defaultColor="#E91E63"
                         fancy:fb_focusColor="#66FFFF"
                         fancy:fb_fontIconResource="&#xf04b;"
                         fancy:fb_iconPosition="left"
@@ -147,7 +148,7 @@
                         android:paddingTop="10dp"
                         fancy:fb_borderColor="#FFFFFF"
                         fancy:fb_borderWidth="1dp"
-                        fancy:fb_defaultColor="@color/colorPrimaryDark"
+                        fancy:fb_defaultColor="#E91E63"
                         fancy:fb_focusColor="#66FFFF"
                         fancy:fb_fontIconResource="&#xf04b;"
                         fancy:fb_iconPosition="left"
