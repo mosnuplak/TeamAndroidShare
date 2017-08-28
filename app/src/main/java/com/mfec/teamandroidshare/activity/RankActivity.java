@@ -20,7 +20,7 @@ public class RankActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
         ///////////////////////////////////////////////
-        cdt = new CountDownTimer(3000, 1000) {
+        cdt = new CountDownTimer(4000, 1000) {
             public void onTick(long millisUntilFinished) {
                 // Tick
             }

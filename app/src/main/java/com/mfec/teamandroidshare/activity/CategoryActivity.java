@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -20,13 +22,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
+import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.LoginDao;
 import com.mfec.teamandroidshare.fragment.FragmentCategory;
 import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
@@ -59,8 +67,9 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     FancyButton btnLogout;
     private String TAG = "ff";
     Button butonTh;
-    //CircleProgressView mCircleProgressView;
+    ImagePicker imagePicker;//อับรูป
     SharedPrefUtil sharedPrefUtil;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,16 +129,41 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         }
         btnRank.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
-
+        imgProfile.setOnClickListener(this);
 
     }
 
     private void initInstance() {
-//        btnRank = (FancyButton) findViewById(R.id.btn_rank);
-//        toolbar = (Toolbar) findViewById(R.id.toolbar); //เครื่องมือ ทำเมนู toobar
         setSupportActionBar(toolbar); //คอมเม้น
-//        tvProfile = (TextView) findViewById(R.id.tvProfile);
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        ///////////////////////////อับรูป//////////////////////////////////
+        imagePicker = new ImagePicker(CategoryActivity.this);//อับรูป
+        imagePicker.allowMultiple();//อับหลายรูป
+        imagePicker.setImagePickerCallback(new ImagePickerCallback() {
+                                               @Override
+                                               public void onImagesChosen(List<ChosenImage> list) {
+                                                   // get path and create file.
+                                                   String path = list.get(0).getOriginalPath();
+                                                   File file = new File(path);
+                                                   Toast.makeText(getApplicationContext(),
+                                                           "กดที่รูปแล้ว จะทำไรต่อ", Toast.LENGTH_SHORT).show();
+
+                                                   // convert file to bitmap and set to imageView.
+                                                   if (file.exists()) {
+                                                       Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                                                       imgProfile.setImageBitmap(myBitmap);
+
+                                                   }
+                                               }
+
+                                               @Override
+                                               public void onError(String message) {
+                                                   // Do error handling
+                                               }
+                                           }
+        );
+
+
+        /////////////////////////ปิดอับรูป//////////////////////////////////
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,
                 drawerLayout,
                 R.string.open_drawer,
@@ -202,6 +236,12 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
             Intent i = new Intent(getApplication(), RankActivity.class);
             startActivity(i);
         }
+        if (v == imgProfile) {
+            Toast.makeText(getApplicationContext(),
+                    "โชว์รูป", Toast.LENGTH_SHORT).show();
+            imagePicker.pickImage();
+
+        }
 
     }
 
@@ -265,5 +305,15 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override  ////อับรูป
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+                imagePicker.submit(data);
+            }
+        }
     }
 }
