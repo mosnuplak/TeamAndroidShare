@@ -48,6 +48,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText editUsername;
     @InjectView(R.id.input_password)
     EditText editPassword;
+    @InjectView(R.id.input_repassword)
+    EditText editRepassword;
     boolean CheckRegister;
     @InjectView(R.id.btn_register)
     Button btnRegister;
@@ -123,8 +125,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
        }
     }
     private void initInstances(){
-        editPassword = (EditText) findViewById(R.id.input_password);
-        editPassword.setOnKeyListener(new View.OnKeyListener() {
+        editRepassword = (EditText) findViewById(R.id.input_repassword);
+        editRepassword.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -143,25 +145,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-    public boolean checkRegisterValidate(String name, String username,String password) {
-        if ( (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) &&
+    public boolean checkRegisterValidate(String name, String username,String password ,String repassword ) {
+        if ( (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(repassword)) &&
                 name.equals(name) && username.equals(username) &&
-                password.equals(password)) {
+                password.equals(password)&& repassword.equals(repassword)) {
             //เช็คอักขระพิเศษ
-            boolean check = checkSpecialCharacter(name, username, password);
+            boolean check = checkSpecialCharacter(name, username, password, repassword);
             if( check == false ){
                 return false;
             }
             return true;
-        }else if(TextUtils.isEmpty(name) && TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
+        }else if(TextUtils.isEmpty(name) && TextUtils.isEmpty(username) && TextUtils.isEmpty(password) && TextUtils.isEmpty(repassword)){
             editName.setError(getResources().getString(R.string.Toast_EnterFill));
             editUsername.setError(getResources().getString(R.string.Toast_EnterFill));
             editPassword.setError(getResources().getString(R.string.Toast_EnterFill));
+            editRepassword.setError(getResources().getString(R.string.Toast_EnterFill));
             Toast.makeText(this,
                     R.string.Toast_EnterFill,
                     Toast.LENGTH_SHORT)
                     .show();
-        }else if(TextUtils.isEmpty(name) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+        }else if(TextUtils.isEmpty(name) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty((repassword))){
             Toast.makeText(this,
                     R.string.Toast_EnterFill,
                     Toast.LENGTH_SHORT)
@@ -169,9 +172,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         return false;
     }
-    public boolean checkSpecialCharacter(String name, String username, String password){
+    public boolean checkSpecialCharacter(String name, String username, String password, String repassword){
 
-        if (!name.matches( "[a-zA-Z0-9._-]*" ) || !username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )){
+        if (!name.matches( "[a-zA-Z0-9._-]*" ) || !username.matches( "[a-zA-Z0-9._-]*" ) || !password.matches( "[a-zA-Z0-9._-]*" )|| !repassword.matches( "[a-zA-Z0-9._-]*" )){
             Toast.makeText(this,
                     R.string.Toast_Invalid,
                     Toast.LENGTH_SHORT)
@@ -248,13 +251,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         });
     }
     private void checkRegister(){
-        boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+        boolean check = checkRegisterValidate(editName.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString(), editRepassword.getText().toString());
         if (check == true) {
-            callRegister();
+            if(editPassword.getText().toString().equals(editRepassword.getText().toString())){
+                callRegister();
+            }else {
+                    Toast.makeText(getApplicationContext()
+                    , R.string.Toast_pwnoSuccess
+                    , Toast.LENGTH_SHORT)
+                    .show();
+            }
+           // callRegister();
 
         } else{
+
 //            Toast.makeText(getApplicationContext()
-//                    , R.string.Toast_nosuccess
+//                    , "test"
 //                    , Toast.LENGTH_SHORT)
 //                    .show();
         }
@@ -268,6 +280,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     setHideKeyboard(editName,v,event);
                     setHideKeyboard(editUsername,v,event);
                     setHideKeyboard(editPassword,v,event);
+                    setHideKeyboard(editRepassword,v,event);
                 }
                 return false;
             }

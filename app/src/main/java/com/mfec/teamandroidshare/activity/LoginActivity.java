@@ -67,7 +67,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
-       // getTaskId();
       //  setHideKeyboard(editUsername);
         //setHideKeyboard(editPassword);
         initHideKeyboard(relative);

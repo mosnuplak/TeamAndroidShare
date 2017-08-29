@@ -22,6 +22,7 @@
     <string name="text_name">Name</string>
     <string name="text_username">Username</string>
     <string name="text_password">Password</string>
+    <string name="text_repassword">RePassword</string>
     <string name="text_done">Done</string>
     <string name="Toast_success">success</string>
     <string name="Toast_nosuccess">no success</string>
@@ -29,6 +30,7 @@
     <string name="Toast_EnterUP">  Please enter your username and password</string>
     <string name="Toast_EnterFill"> Please fill in all information</string>
     <string name="Toast_exists"> Username and name already exists</string>
+    <string name="Toast_pwnoSuccess">Invalid password confirmation</string>
 
 
 
