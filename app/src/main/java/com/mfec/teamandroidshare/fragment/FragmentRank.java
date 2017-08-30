@@ -122,7 +122,7 @@ public class FragmentRank extends Fragment {
 
     }
     private void showRank(List<RankDao>rankList){
-        GridLayoutManager manager = new GridLayoutManager(getContext().getApplicationContext(), 1);
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 1);
         rv_rank.setLayoutManager(manager);
         adapter = new RankAdapter(this , rankList ,FragmentRank.this);
         rv_rank.setAdapter(adapter);

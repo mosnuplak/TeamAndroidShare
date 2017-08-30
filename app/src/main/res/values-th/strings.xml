@@ -31,6 +31,7 @@
 
     <!--หน้า Profile-->
     <string name="btn_ranking">ระดับแรงค์</string>
+    <string name="text_totalLikeRank">คะแนนทั้งหมด :</string>
 
     <!--หน้า add title-->
     <string name="text_topic">หัวข้อเรื่อง</string>

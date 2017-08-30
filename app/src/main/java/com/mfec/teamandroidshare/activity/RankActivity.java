@@ -61,9 +61,10 @@ public class RankActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (time == true) {
-            super.onBackPressed();
-            finish();
-        }
+//        if (time == true) {
+//            super.onBackPressed();
+//            finish();
+//        }
+        super.onBackPressed();
     }
 }

@@ -43,6 +43,8 @@
 
     <!--หน้า Profile-->
     <string name="btn_ranking">Ranking</string>
+    <string name="text_totalLikeRank">Total Like:</string>
+
 
     <!--หน้า add title-->
     <string name="text_topic">Topic</string>

@@ -28,6 +28,7 @@ import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.LoginDao;
+import com.mfec.teamandroidshare.dao.MyService;
 import com.mfec.teamandroidshare.fragment.FragmentCategory;
 import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
@@ -40,9 +41,14 @@ import java.util.Locale;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import mehdi.sakout.fancybuttons.FancyButton;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.R.attr.path;
+
 
 /**
  * Created by User on 4/8/2560.
@@ -65,10 +71,13 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     DrawerLayout drawerLayout;
     @InjectView(R.id.btn_logout)
     FancyButton btnLogout;
+    @InjectView(R.id.tvTotalLikeRank)
+    TextView tvTotalLikeRank;
     private String TAG = "ff";
     Button butonTh;
     ImagePicker imagePicker;//อับรูป
     SharedPrefUtil sharedPrefUtil;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,20 +89,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         String userId = sharedPrefUtil.getUserId();
 
         initInstance();
-//        ////////////////////
-//        butonTh = (Button) findViewById(R.id.butonTh);
-//        butonTh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Configuration config = new Configuration();
-//                config.locale = new Locale("th");
-//                getResources().updateConfiguration(config, null);
-//                Toast.makeText(getApplicationContext(),
-//                        "Theme Thai", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        /////////////////////
+
         Call<LoginDao> call = HttpManagerNice.getInstance().getService().loadProfile(userId);
         call.enqueue(new Callback<LoginDao>() {
             @Override
@@ -102,6 +98,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
                     LoginDao dao = response.body();
                     tvProfile.setText(dao.getName());
+                    tvTotalLikeRank.setText(dao.getTotalLikeRank());
 
                 } else {
                     try {
@@ -113,6 +110,10 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
             }
+            ////////////////////////////////
+
+
+            ////////////////////////////////
 
             @Override
             public void onFailure(Call<LoginDao> call, Throwable t) {
@@ -142,15 +143,29 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                                                @Override
                                                public void onImagesChosen(List<ChosenImage> list) {
                                                    // get path and create file.
+                                                   Toast.makeText(getApplicationContext(),
+                                                           "กดที่รูปแล้ว จะทำไรต่อ" + path, Toast.LENGTH_LONG).show();
+
                                                    String path = list.get(0).getOriginalPath();
                                                    File file = new File(path);
-                                                   Toast.makeText(getApplicationContext(),
-                                                           "กดที่รูปแล้ว จะทำไรต่อ", Toast.LENGTH_SHORT).show();
 
+                                                   Bitmap ii = BitmapFactory.decodeFile(file.getPath());
+                                                   imgProfile.setImageBitmap(ii);
+
+//                                                   Resources iamge = new Resources(getAssets(),null,null);
+//                                                   imgProfile.setImageDrawable(iamge.getDrawable(R.drawable.user));
+
+                                                   RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), "1");
+                                                   RequestBody img = RequestBody.create(MediaType.parse("image/jpeg"), file);
+
+                                                   callServerUploadImageProfile(img, user_id);
+//
                                                    // convert file to bitmap and set to imageView.
                                                    if (file.exists()) {
-                                                       Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                                                       imgProfile.setImageBitmap(myBitmap);
+                                                       Toast.makeText(getApplicationContext(),
+                                                               "กดที่รูปแล้ว จะทำไรต่อ2", Toast.LENGTH_SHORT).show();
+//                                                       Bitmap ii = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                                                       imgProfile.setImageBitmap(ii);
 
                                                    }
                                                }
@@ -161,8 +176,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                                                }
                                            }
         );
-
-
         /////////////////////////ปิดอับรูป//////////////////////////////////
         actionBarDrawerToggle = new ActionBarDrawerToggle(CategoryActivity.this,
                 drawerLayout,
@@ -183,7 +196,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         actionBarDrawerToggle.syncState();
 
     }
-
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -221,10 +233,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
 
         }
-
         return super.onOptionsItemSelected(item);
-
-
     }
 
     @Override
@@ -281,8 +290,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         builder.setMessage(R.string.dialog_logout);
         builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-//                Toast.makeText(getApplicationContext(),
-//                        R.string.dialog_thankYou, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplication(), LoginActivity.class);
                 startActivity(i);
                 sharedPrefUtil.clearSharedPref();
@@ -316,4 +323,26 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
             }
         }
     }
+
+    private void callServerUploadImageProfile(RequestBody img, RequestBody user_id) {
+
+        Call call = MyService.getService().updateImageProfile(img, user_id);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if (response.isSuccessful()) {
+                    //MessageUploadImageDAO message = (MessageUploadImageDAO) response.body();
+                    Toast.makeText(CategoryActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                // handle error.
+            }
+        });
+    }
+
+
 }
+

@@ -20,6 +20,17 @@ public class LoginDao {
     @SerializedName("password")
     private String password;
 
+    @SerializedName("totalLikeRank")
+    private  String totalLikeRank;
+
+    public String getTotalLikeRank() {
+        return totalLikeRank;
+    }
+
+    public void setTotalLikeRank(String totalLikeRank) {
+        this.totalLikeRank = totalLikeRank;
+    }
+
     public String getName() {
 
         return name;

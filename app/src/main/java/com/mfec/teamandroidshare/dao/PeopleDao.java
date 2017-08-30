@@ -9,6 +9,8 @@ import com.google.gson.annotations.SerializedName;
 public class PeopleDao {
     @SerializedName("head")
     private String KnownAsName;
+//    @SerializedName("totalLikeRank")
+//    private int totalLikeRank;
 
     public PeopleDao(String knownAsName){
         this.KnownAsName = knownAsName;
@@ -20,4 +22,11 @@ public class PeopleDao {
     public void setKnownAsName(String knownAsName) {
         KnownAsName = knownAsName;
     }
+//    public int getTotalLikeRank() {
+//        return totalLikeRank;
+//    }
+//
+//    public void setTotalLikeRank(int totalLike) {
+//        this.totalLikeRank = totalLikeRank;
+//    }
 }
