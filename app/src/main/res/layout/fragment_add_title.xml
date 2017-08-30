@@ -33,6 +33,7 @@
     <EditText
         android:id="@+id/etTilteName"
         android:hint="@string/text_topic"
+        android:layout_marginTop="20dp"
         android:maxLines="1"
         android:inputType="text"
         android:layout_width="320dp"
