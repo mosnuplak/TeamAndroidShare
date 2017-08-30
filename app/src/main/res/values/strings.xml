@@ -7,9 +7,6 @@
 
     <string name="open_drawer">Open Menu</string>
     <string name="close_drawer">Close Menu</string>
-    <string name="rank_number">00</string>
-
-
     <string name="menu_new">New</string>
     <string name="menu_hot">Hot</string>
     <string name="menu_love">Love</string>
@@ -60,6 +57,10 @@
     <!--หน้า Title -->
     <string name="Toast_like">Like</string>
     <string name="Toast_unlike">Unlike</string>
+
+    <!--หน้า Rank -->
+    <string name="rank_number">00</string>
+    <string name="totallike">00</string>
 
 
 

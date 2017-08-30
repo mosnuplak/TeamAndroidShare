@@ -18,6 +18,7 @@ public class RankViewHolder extends RecyclerView.ViewHolder{
     TextView tv_num;
     ImageView iv_image;
     TextView tv_name;
+    TextView totalLike;
 
     public RankViewHolder (View itemView){
         super(itemView);
@@ -26,6 +27,7 @@ public class RankViewHolder extends RecyclerView.ViewHolder{
         tv_num = (TextView) itemView.findViewById(R.id.tv_num);
         iv_image = (ImageView) itemView.findViewById(R.id.iv_image);
         tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+        totalLike = (TextView) itemView.findViewById(R.id.tv_totalLike);
 
     }
 

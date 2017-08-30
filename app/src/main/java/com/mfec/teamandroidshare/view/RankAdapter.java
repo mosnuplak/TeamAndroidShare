@@ -44,6 +44,8 @@ public class RankAdapter extends RecyclerView.Adapter<RankViewHolder>{
 
         holder.tv_num.setText(rankList.get(position).getRankedNumber()+"");
         holder.tv_name.setText(rankList.get(position).getName()+"");
+        holder.totalLike.setText(rankList.get(position).getTotalLike()+"");
+
 
     }
 

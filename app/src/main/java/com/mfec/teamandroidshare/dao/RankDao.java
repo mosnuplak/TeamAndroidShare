@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 public class RankDao {
     @SerializedName("name")
     private String name;
-    @SerializedName("totalLike")
+    @SerializedName("totalLikeRank")
     private int totalLike;
     @SerializedName("rankedNumber")
     private int rankedNumber;
