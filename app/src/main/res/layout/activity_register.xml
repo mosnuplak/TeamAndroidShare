@@ -131,7 +131,7 @@
                         android:layout_height="wrap_content">
                         <EditText
                             android:textSize="13sp"
-                            android:hint="@string/text_repassword"
+                            android:hint="@string/text_repeatpassword"
                             android:textColor="#ffffff"
                             android:id="@+id/input_repassword"
                             android:layout_width="match_parent"

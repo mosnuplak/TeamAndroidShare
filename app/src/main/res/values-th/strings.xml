@@ -18,6 +18,7 @@
     <string name="Toast_EnterUP">กรุณากรอก ชื่อผู้ใช้ และ รหัสผ่าน</string>
     <string name="Toast_EnterFill">กรุณากรอกข้อมูลให้ครบ</string>
     <string name="Toast_exists">ชื่อผู้ใช้และชื่อนี้มีอยู่แล้ว</string>
+    <string name="text_repeatpassword">รหัสผ่านอีกครั้ง</string>
 
     <!--หน้า Category-->
     <string name="menu_theme_english">English</string>

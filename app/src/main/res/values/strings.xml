@@ -19,7 +19,7 @@
     <string name="text_name">Name</string>
     <string name="text_username">Username</string>
     <string name="text_password">Password</string>
-    <string name="text_repassword">RePassword</string>
+    <string name="text_repeatpassword">RepeatPassword</string>
     <string name="text_done">Done</string>
     <string name="Toast_success">success</string>
     <string name="Toast_nosuccess">no success</string>
