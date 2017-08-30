@@ -28,7 +28,6 @@ import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.dao.LoginDao;
-import com.mfec.teamandroidshare.dao.MyService;
 import com.mfec.teamandroidshare.fragment.FragmentCategory;
 import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
@@ -158,7 +157,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                                                    RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), "1");
                                                    RequestBody img = RequestBody.create(MediaType.parse("image/jpeg"), file);
 
-                                                   callServerUploadImageProfile(img, user_id);
+
 //
                                                    // convert file to bitmap and set to imageView.
                                                    if (file.exists()) {
@@ -324,24 +323,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void callServerUploadImageProfile(RequestBody img, RequestBody user_id) {
-
-        Call call = MyService.getService().updateImageProfile(img, user_id);
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                if (response.isSuccessful()) {
-                    //MessageUploadImageDAO message = (MessageUploadImageDAO) response.body();
-                    Toast.makeText(CategoryActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                // handle error.
-            }
-        });
-    }
 
 
 }
