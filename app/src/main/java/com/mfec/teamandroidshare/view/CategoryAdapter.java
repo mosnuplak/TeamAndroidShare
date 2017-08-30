@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.activity.TitleActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
@@ -15,6 +17,8 @@ import com.mfec.teamandroidshare.fragment.FragmentCategory;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
 
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by MSI on 8/8/2560.
@@ -47,6 +51,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>{
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         categoryDao = categoryList.get(position);
         holder.tvNameCate.setText(categoryDao.getCateName());
+        Log.d("MildMos",categoryDao.getImageUrl()+"");
+        Glide.with(fragmentCategory.getActivity())
+                .load(categoryDao.getImageUrl())
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .bitmapTransform(new CropCircleTransformation(fragmentCategory.getContext()))
+                .into(holder.ivPicCate);
 
 
     }

@@ -3,13 +3,20 @@ package com.mfec.teamandroidshare.fragment;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,23 +26,42 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.transcode.BitmapToGlideDrawableTranscoder;
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
+import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
+import com.kbeanie.multipicker.utils.FileUtils;
 import com.mfec.teamandroidshare.R;
+import com.mfec.teamandroidshare.activity.TitleActivity;
 import com.mfec.teamandroidshare.dao.CategoryDao;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.dao.WrapperDao;
 import com.mfec.teamandroidshare.manager.SharedPrefUtil;
 import com.mfec.teamandroidshare.manager.http.HttpManagerNice;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -43,6 +69,7 @@ import retrofit2.Response;
  */
 public class FragmentAddTitle extends Fragment implements View.OnClickListener {
 
+    public ImageView imgView;
     public EditText etTitleDis;
     public EditText etTilteName;
     public EditText etTitleLink;
@@ -54,7 +81,10 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     public LinearLayout linear;
     public Boolean checkAdd;
     SharedPrefUtil sharedPrefUtil;
-
+    ImagePicker imagePicker;
+    String base64String;
+    int bytesRead;
+    Bitmap bitmap;
     public FragmentAddTitle() {
         super();
     }
@@ -64,15 +94,17 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         args.putString("cateName", cateName);
-
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPrefUtil = new SharedPrefUtil(getContext());
+        imagePicker = new ImagePicker(this);
+
 
         if (getArguments() != null)
             cateName = getArguments().getString("cateName");
@@ -95,6 +127,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         relative = (RelativeLayout) rootView.findViewById(R.id.relative);
         linear = (LinearLayout) rootView.findViewById(R.id.linear);
         btnAdd = (Button) rootView.findViewById(R.id.btnAdd);
+        imgView = (ImageView) rootView.findViewById(R.id.imgView);
         btnAdd.setOnClickListener(this);
         initHideKeyboard(relative);
 
@@ -105,6 +138,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
 
                     addTopic();
+                    Log.d("MildMos","thisway");
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getActivity()
                             .getCurrentFocus()
@@ -116,6 +150,25 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
         });
 
         // Init 'View' instance(s) with rootView.findViewById here
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("MildMos","onActivityResult"+data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+//                try {
+//                    //bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
+//                    imgView.setImageBitmap(bitmap);
+//
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+               imagePicker.submit(data);
+            }
+        }
+
+
     }
 
     @Override
@@ -157,8 +210,30 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v == btnAdd) {
             addTopic();
+
+//            imagePicker.setImagePickerCallback(new ImagePickerCallback() {
+//                @Override
+//                public void onImagesChosen(List<ChosenImage> list) {
+//                    Bitmap myBitmap = null;
+//                    FileInputStream fis = null;
+//                    String path = list.get(0).getOriginalPath();
+//                    File file = new File(path);
+////                    byte[] imageBytes = IOUtils.toByteArray(new URL("...")));
+////                    String base64 = Base64.getEncoder().encodeToString(imageBytes);
+//
+//
+//                }
+//
+//                @Override
+//                public void onError(String s) {
+//
+//                }
+//            });
+//            imagePicker.pickImage();
+
         }
     }
+
 
     private void addTopic() {
         userId = sharedPrefUtil.getUserId();
@@ -170,7 +245,7 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
             TitleDao titleDao = new TitleDao();
             categoryDao.setCateName(cateName);
 
-
+            titleDao.setImageUrl("");
             titleDao.setHead(etTilteName.getText().toString());
             titleDao.setLink(etTitleLink.getText().toString());
             titleDao.setDescription(etTitleDis.getText().toString());
@@ -278,4 +353,5 @@ public class FragmentAddTitle extends Fragment implements View.OnClickListener {
     }
 
 }
+
 

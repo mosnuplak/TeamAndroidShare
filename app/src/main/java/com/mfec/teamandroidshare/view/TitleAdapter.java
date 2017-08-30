@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -21,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.activity.TitleActivity;
 import com.mfec.teamandroidshare.activity.WebviewActivity;
+import com.mfec.teamandroidshare.common.Toaster;
 import com.mfec.teamandroidshare.dao.TitleDao;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
 import com.mfec.teamandroidshare.fragment.FragmentWebTitle;
@@ -45,13 +47,15 @@ import retrofit2.Response;
 public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     FragmentTitle fragmentTitle;
     private List<TitleDao> TitleList;
-    Boolean status = false;
     String userId;
     Boolean callBackLike = false;
-    Boolean callBacklike =false;
-    SharedPrefUtil sharedPrefUtil;
     private int totalLike;
-    public TitleAdapter(List<TitleDao> TitleList, FragmentTitle fragmentTitle,String userId) {
+    String android = "Android";
+    String ios = "IOS";
+    String iot = "IoT";
+    String wed = "Web";
+
+    public TitleAdapter(List<TitleDao> TitleList, FragmentTitle fragmentTitle, String userId) {
 
         this.userId = userId;
         this.fragmentTitle = fragmentTitle;
@@ -69,76 +73,84 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
     @Override
     public void onBindViewHolder(final TitleViewHolder holder, final int position) {
 
-        String android = "Android";
-        String ios = "IOS";
-        String iot = "IoT";
-        String wed = "Web";
+
         final TitleDao titleDao = TitleList.get(position);
         totalLike = Integer.parseInt(titleDao.getTotalLike());
-        if(totalLike == 0) {
+        if (totalLike == 0) {
             holder.tvStar.setText("Love this");
-        }else {
-            holder.tvStar.setText(titleDao.getTotalLike());
+        } else {
+            holder.tvStar.setText(totalLike + "");
         }
 
         holder.tvTitle.setText(titleDao.getHead());
         holder.tvDescript.setText(titleDao.getDescription());
         holder.totalViewer.setText(titleDao.getTotalViewer());
-        if (titleDao.getPoster() == null) {
-            holder.tvPoster.setText("Share by Anonymous");
-        } else {
-            holder.tvPoster.setText("Share by " + titleDao.getPoster());
-        }
-
-        if (titleDao.getCategory().equals(android)) {
-            holder.ivTitle.setImageResource(R.drawable.android_fix);
-        } else if (titleDao.getCategory().equals(ios)) {
-            holder.ivTitle.setImageResource(R.drawable.ios_fix);
-        } else if (titleDao.getCategory().equals(iot)) {
-            holder.ivTitle.setImageResource(R.drawable.iot_fix);
-        } else if (titleDao.getCategory().equals(wed)) {
-            holder.ivTitle.setImageResource(R.drawable.web_fix);
-        } else {
-            holder.ivTitle.setImageResource(R.drawable.logo);
-        }
-
-        if (titleDao.getStatus() == true) {
-            holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
-        } else {
-            holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
-        }
+        setPoster(titleDao.getPoster(),holder);
+        setPic(titleDao.getCategory(),holder);
+        setLike(titleDao.getStatus(),holder);
 
         holder.ibtnStar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (titleDao.getStatus() == true) {
-                        likeService(titleDao.getTopicId(), userId, position);
-                        holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
-                        titleDao.setStatus(false);
-                        totalLike = Integer.parseInt(titleDao.getTotalLike());
-                        totalLike = totalLike - 1;
-                        titleDao.setTotalLike(totalLike + "");
-
+                    titleDao.setStatus(false);
+                    totalLike = Integer.parseInt(titleDao.getTotalLike());
+                    totalLike = totalLike - 1;
+                    titleDao.setTotalLike(totalLike + "");
+                    likeService(titleDao.getTopicId(), userId, totalLike + "", false);
+                    holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
                 } else {
-                        likeService(titleDao.getTopicId(), userId, position);
-                        titleDao.setStatus(true);
-                        totalLike = Integer.parseInt(titleDao.getTotalLike());
-                        totalLike = totalLike + 1;
-                        titleDao.setTotalLike(totalLike + "");
-                        holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
-
+                    titleDao.setStatus(true);
+                    totalLike = Integer.parseInt(titleDao.getTotalLike());
+                    totalLike = totalLike + 1;
+                    titleDao.setTotalLike(totalLike + "");
+                    likeService(titleDao.getTopicId(), userId, totalLike + "", true);
+                    holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
                 }
+                notifyItemChanged(position);
 
             }
         });
 
+    }
+
+    private void setLike(Boolean status, TitleViewHolder holder) {
+        if (status == true) {
+            holder.ibtnStar.setBackgroundResource(R.drawable.love_s2);
+        } else {
+            holder.ibtnStar.setBackgroundResource(R.drawable.love_s1);
+        }
+    }
+
+    private void setPic(String category, TitleViewHolder holder) {
+        if (category.equals(android)) {
+            holder.ivTitle.setImageResource(R.drawable.android_fix);
+        } else if (category.equals(ios)) {
+            holder.ivTitle.setImageResource(R.drawable.ios_fix);
+        } else if (category.equals(iot)) {
+            holder.ivTitle.setImageResource(R.drawable.iot_fix);
+        } else if (category.equals(wed)) {
+            holder.ivTitle.setImageResource(R.drawable.web_fix);
+        } else {
+            holder.ivTitle.setImageResource(R.drawable.logo);
+        }
+    }
+
+    private void setPoster(String namePoster,TitleViewHolder holder) {
+        if (namePoster == null) {
+            holder.tvPoster.setText("Share by Anonymous");
+        } else {
+            holder.tvPoster.setText("Share by " + namePoster);
+        }
 
     }
 
-    private Boolean likeService(String titleId, String userId,int position) {
+    private Boolean likeService(String titleId, String userId, String totalLike, boolean sta) {
         TitleDao titledao = new TitleDao();
         titledao.setTopicId(titleId);
+        titledao.setTotalLike(totalLike);
+        titledao.setStatus(sta);
         Call<Boolean> call = HttpManagerNice.getInstance().getService().likeAndUnlike(titledao, userId);
         call.enqueue(new Callback<Boolean>() {
             @Override
@@ -146,15 +158,15 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
                 if (response.isSuccessful()) {
                     callBackLike = response.body();
                     if (callBackLike == true) {
-                        Toast.makeText(fragmentTitle.getContext()
-                                , "like"
-                                , Toast.LENGTH_SHORT)
-                                .show();
+
+                        Toaster.ggToast(fragmentTitle.getContext(),
+                                R.string.Toast_like,
+                                1000);
+
                     } else {
-                        Toast.makeText(fragmentTitle.getContext()
-                                , "Unlike"
-                                , Toast.LENGTH_SHORT)
-                                .show();
+                        Toaster.ggToast(fragmentTitle.getContext(),
+                                R.string.Toast_unlike,
+                                1000);
                     }
                 } else {
                     try {
@@ -175,7 +187,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleViewHolder> {
                         .show();
             }
         });
-        notifyItemChanged(position);
+        //notifyItemChanged(position);
         return callBackLike;
     }
 

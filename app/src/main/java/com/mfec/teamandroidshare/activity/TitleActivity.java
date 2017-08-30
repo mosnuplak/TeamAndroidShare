@@ -16,6 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
 import com.mfec.teamandroidshare.R;
 import com.mfec.teamandroidshare.fragment.FragmentAddTitle;
 import com.mfec.teamandroidshare.fragment.FragmentTitle;
@@ -30,6 +32,7 @@ public class TitleActivity extends AppCompatActivity {
     public String fragMent;
     public String userId;
     TextView tvToolbar;
+    ImagePicker imagePicker;
 
 
     Toolbar toolbar;
@@ -37,6 +40,8 @@ public class TitleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
+
+        imagePicker = new ImagePicker(this);
 
         //setupUI(findViewById(R.id.parent));
 
@@ -102,8 +107,13 @@ public class TitleActivity extends AppCompatActivity {
         } else if (navigation.equals("item_add")) {
             transaction.replace(R.id.fragmentTitle , FragmentAddTitle.newInstance(cateName),"getFragmentAddTitle")
                     .commit();
+
         }
     }
+
+
+
+
 
     private  void createFragmentView(){
         cateName = getIntent().getStringExtra("cateName");
@@ -157,5 +167,6 @@ public class TitleActivity extends AppCompatActivity {
         super.onResume();
         Log.d("mmr","onResume");
     }
+
 
 }

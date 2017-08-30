@@ -40,4 +40,8 @@
     <string name="text_alert_success">สำเร็จ</string>
     <string name="text_ok">ตกลง</string>
     <string name="text_continue">ดำเนินต่อ</string>
+
+    <!--หน้า Title -->
+    <string name="Toast_like">ชอบ</string>
+    <string name="Toast_unlike">ไม่รุ็สิ</string>
 </resources>

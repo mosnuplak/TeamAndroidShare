@@ -57,6 +57,10 @@
     <string name="text_continue">Continue</string>
     <string name="post_image">PostImage</string>
 
+    <!--หน้า Title -->
+    <string name="Toast_like">Like</string>
+    <string name="Toast_unlike">Unlike</string>
+
 
 
 </resources>

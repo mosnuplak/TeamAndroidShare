@@ -1,11 +1,6 @@
 package com.mfec.teamandroidshare.common;
 
-//import android.os.CountDownTimer;
-//import android.view.Gravity;
-//import android.widget.Toast;
-
 import android.content.Context;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.widget.Toast;
 

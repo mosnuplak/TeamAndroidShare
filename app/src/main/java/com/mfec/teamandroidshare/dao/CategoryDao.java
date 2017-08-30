@@ -13,6 +13,17 @@ public class CategoryDao {
     @SerializedName("categoryId")
     private String id;
 
+    @SerializedName("imageUrl")
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public CategoryDao(){
 
     }
